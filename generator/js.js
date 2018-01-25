@@ -354,12 +354,8 @@ function rasd (b){
 
 
 
-function update() {
-	$('.knop').css('marginLeft', ($('.knop').css('width')/2)*(-1));
 
-}
 
-setInterval(update, 100);
 
 
 
