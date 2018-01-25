@@ -1,21 +1,35 @@
-.knop{
+
+
+.knop {
   text-align: center;
   color: #FFFFFF;
   position: fixed;
   bottom: 59px;
   background-color: black;
-  width: 226px;
-  height: 53px;
+  width: 346px;
+  height: 70px;
   left: 50%;
-  margin-left: -113px;
+  margin-left: -173px;
 }
-
-#bot{
-  top: 27%;
+#copy-im {
+  left: -17px;
+  width: 89px;
+  position:  relative;
+  top: -6px;
+}
+#bot-copy {
+  bottom: 65%;
+  left: 104%;
   position: relative;
+  width: 59px;
+  height: 84px;
 }
-
-#text{
+#bot {
+  top: 25%;
+  position: relative;
+  font-size: 22px;
+}
+#text {
   max-width: 100%;
   color: white;
   text-align: center;
@@ -24,103 +38,159 @@
   margin: -8px;
   font-size: 24px;
   height: 143px;
-  top: 257px;
+  top: 549px;
 }
-
-[type="checkbox"]{
-    color: white;
+[type="checkbox"] {
+  color: white;
 }
-
-.check{
-  
-color: white;
-  
-font-size: 15px;
-  
-position: static;
+.check {
+  color: white;
+  font-size: 20px;
+  position: static;
 }
-
-body{
-  
-background-color: #151515;
+body {
+  background-color: #151515;
 }
-
-
-@font-face{
-	font-family: comic;
-	src:url(comic.ttf);
-
+@font-face {
+  font-family: comic;
+  src: url(comic.ttf);
 }
-div{
-	font-family: comic;
+div {
+  font-family: comic;
 }
-
 ::selection {
-	background:#000000;
-	color: #F6F6F6;
-
+  background: #F2F2F2;
+  color: #333333;
 }
-
-
-
 A {
-	text-decoration: none;
-	
+  text-decoration: none;
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-	@keyframes bounceIn {
+@keyframes bounceIn {
   from, to {
     -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
   }
-
   0% {
     opacity: 0;
-    
   }
-
- 
-
   to {
     opacity: 1;
-    
   }
 }
-
 div {
   animation-name: bounceIn;
 }
-
-
-
 .check {}
-
 div#b_ch {
+  color: white;
+  font-size: 21px;
+  bottom: 27px;
+  left: 50%;
+  margin-left: -98.771px;
+  position: fixed;
+}
+input#b {
+  width: 55px;
+  font-size: 18px;
+}
+.upr {}
+
+
+
+
+/*@media(max-width : 720px) {
+
+  .knop {
+    text-align: center;
+    color: #FFFFFF;
+    position: fixed;
+    bottom: 59px;
+    background-color: black;
+    width: 376px;
+    margin-left: -188px;
+    height: 73px;
+    left: 50%;
+  }
+  #copy-im {
+    width: 107px;
+  }
+  #bot-copy {
+    bottom: 5%;
+    left: 80%;
+    position: absolute;
+  }
+  #bot {
+    font-size: 27px;
+    top: 20%;
+    position: relative;
+  }
+  #text {
+    max-width: 100%;
+    color: white;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    margin: -8px;
+    font-size: 24px;
+    height: 143px;
+    top: 578px;
+  }
+  [type="checkbox"] {
+    color: white;
+  }
+  .check {
+    color: white;
+    font-size: 24px;
+    position: static;
+  }
+  body {
+    background-color: #151515;
+  }
+  @font-face {
+    font-family: comic;
+    src: url(comic.ttf);
+  }
+  div {
+    font-family: comic;
+  }
+  ::selection {
+    background: #F2F2F2;
+    color: #333333;
+  }
+  A {
+    text-decoration: none;
+  }
+
+
+
+  @keyframes bounceIn {
+    from, to {
+      -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  div {
+    animation-name: bounceIn;
+  }
+  .check {}
+  div#b_ch {
     color: white;
     font-size: 15px;
     bottom: 27px;
     left: 50%;
     margin-left: -81px;
     position: fixed;
-}
-
-input#b {
+  }
+  input#b {
     width: 50px;
-}
+  }
+  .upr {}
 
-.upr {
-}
+}*/
