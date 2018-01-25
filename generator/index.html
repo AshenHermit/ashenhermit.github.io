@@ -6,7 +6,8 @@
   <meta charset = "utf-8">
 
  <link rel="shortcut icon" href="ico.ico" type="image/x-icon">
- <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="viewport" content="width=device-width">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
  <script type="text/javascript" src="jquery-3.2.1.js"></script>
  <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js"></script>
@@ -33,8 +34,8 @@
 		<div class="check"><input name="ch" id="ch-6" type="radio" value="ник">ник</div>
 		<div class="check"><input name="ch" id="ch-7" type="radio" value="символы">символы</div>
 		<div id="b_ch">кол-во  <input id="b" type="number" value="2"> гена</div>
-		<div class = "knop"><div id="bot">generate</div></div>
-		<div id="bot-copy" data-clipboard-target="#text"><img src="copy-b.png" id="copy-im"></div>
+		<div class = "knop"><div id="bot">generate</div><div id="bot-copy" data-clipboard-target="#text"><img src="copy-b.png" id="copy-im"></div></div>
+		
 	</div>
 	<script>
 		new Clipboard('#bot-copy'); // Не забываем инициализировать библиотеку на нашей кнопке
