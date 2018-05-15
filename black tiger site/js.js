@@ -1,20 +1,21 @@
 var projects = [];
 
-function createProject(name,image,url,delay) {
+function createProject(name,image,url,delay,tSize) {
 	this.name = name;
 	this.url = url;
 	this.delay = delay;
 	this.image = image;
 
-	$('#sideBar').append('<div class="listLine" style="transition-delay: '+delay+'s;"><a href="'+url+'"><img id="icon" src="'+image+'"><div id="text"><span>'+name+'</span></div></a></div>');
+	$('#sideBar').append('<div class="listLine" style="transition-delay: '+delay+'s, 0s, 0s;"><a href="'+url+'"><img id="icon" src="'+image+'"><div style="font-size: '+tSize+'px;" id="text"><span>'+name+'</span></div></a></div>');
 	//$(elem).css('transition-delay', delay+'s');
 	//img/icons/STICKER ICO.png
 }
 
-createProject("sticker","img/icons/STICKER ICO.png","",0.1);
-createProject("sticker","img/icons/STICKER ICO.png","",0.2);
-createProject("sticker","img/icons/STICKER ICO.png","",0.3);
-createProject("sticker","img/icons/STICKER ICO.png","",0.4);
+createProject("sticker","img/icons/STICKER ICO.png","pages/bt-sticker.html",0.1,30);
+createProject("quarter of life","img/icons/qol logo.png","",0.2,25);
+createProject("unforgettable olympiad","img/icons/qol logo.png","",0.3,20);
+// createProject("sticker","img/icons/STICKER ICO.png","",0.3);
+// createProject("sticker","img/icons/STICKER ICO.png","",0.4);
 
 var sideBar = false;
 var info = false;
@@ -34,6 +35,17 @@ function refresh_UI() {
 		$('.listLine').css('left', '-267px');
 		$('#mainBody').css('left', '50%');
 		$('body').css('background-position-x', '0px');
+	}
+}
+
+function turnSideBar() {
+	if (!sideBar) {
+		sideBar = true;
+		refresh_UI();
+
+	}else{
+		sideBar = false;
+		refresh_UI();
 	}
 }
 
@@ -82,3 +94,12 @@ $('body').on('mousedown', '*[data-url="info"]', function(e) {
 
 
 
+
+
+$('#title').css('top', '0px');
+
+$('#page-image').css('margin-top', '0px');
+$('.page-scrn').css('bottom', '0px');
+$('#right-align').css('height', '400px');
+
+//396px
