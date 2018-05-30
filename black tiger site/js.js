@@ -11,8 +11,8 @@ function createProject(name,image,url,delay,tSize) {
 	//img/icons/STICKER ICO.png
 }
 
-createProject("sticker","img/icons/STICKER ICO.png","pages/bt-sticker.html",0.1,30);
-createProject("quarter of life","img/icons/qol logo.png","",0.2,25);
+createProject("sticker","img/icons/STICKER_ICO.png","pages/bt-sticker.html",0.1,30);
+createProject("quarter of life","img/icons/qol_logo.png","",0.2,25);
 createProject("unforgettable olympiad","img/icons/unfolimp.png","",0.3,20);
 // createProject("sticker","img/icons/STICKER ICO.png","",0.3);
 // createProject("sticker","img/icons/STICKER ICO.png","",0.4);
