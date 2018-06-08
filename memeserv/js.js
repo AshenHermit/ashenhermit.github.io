@@ -1,3 +1,4 @@
+memeses = memeses.reverse();
 
 var _delay = 0.1;
 
