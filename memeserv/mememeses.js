@@ -92,8 +92,15 @@ addMeme("suicide","https://pp.userapi.com/c834402/v834402030/eeb2b/E1BXvgFEt4Y.j
 addMeme("разное","https://pp.userapi.com/c840132/v840132361/840e5/7zjoZ9ZSP6Y.jpg");
 addMeme("разное","https://pp.userapi.com/c830708/v830708668/97e9d/25M5NXv5cqo.jpg");
 addMeme("ебать","https://pp.userapi.com/c841522/v841522929/7c64f/8kkhJxLNaOE.jpg");
-addMeme("опятьдрочить","");
-addMeme("опятьдрочить","");
+addMeme("ебать","https://pp.userapi.com/c830309/v830309437/11bbdc/ffuBCP0n4rk.jpg");
+addMeme("поясни","https://pp.userapi.com/c845418/v845418211/790e2/50F0u2Z7AhA.jpg");
+addMeme("ржомба","https://pp.userapi.com/c847016/v847016211/6ef90/TsQkTvWc8jc.jpg");
+addMeme("ржомба","https://pp.userapi.com/c845220/v845220246/6643d/MJp4NFoCY-8.jpg");
+addMeme("ржомба","https://pp.userapi.com/c831109/v831109820/10b2cc/7l1k45Vt7Fs.jpg");
+addMeme("suicide","https://pp.userapi.com/c840321/v840321593/8a28d/Nf8_9tUWvck.jpg");
+addMeme("разное","https://pp.userapi.com/c834102/v834102316/149cde/F_QkIK2aVWY.jpg");
+addMeme("ржомба","https://pp.userapi.com/c543100/v543100853/3ad87/lCu_IIypmF0.jpg");
+addMeme("секс","https://pp.userapi.com/c840134/v840134085/4b356/ZDzXG11yAbg.jpg");
 addMeme("опятьдрочить","");
 addMeme("опятьдрочить","");
 addMeme("опятьдрочить","");
