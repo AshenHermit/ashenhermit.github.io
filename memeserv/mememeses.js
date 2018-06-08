@@ -69,12 +69,12 @@ addMeme("разное","https://pp.userapi.com/c840125/v840125084/4528e/gnMVVx8X
 addMeme("подозрительно","https://pp.userapi.com/c837738/v837738854/347d1/YWMTytfHa2o.jpg");
 addMeme("чо бля?","https://pp.userapi.com/c844320/v844320815/462f2/VPCBUYWepN8.jpg");
 addMeme("секс","https://pp.userapi.com/c636727/v636727100/5c8f/AQtqluEeNtQ.jpg");
-addMeme("опятьдрочить","");
-addMeme("опятьдрочить","");
-addMeme("опятьдрочить","");
-addMeme("опятьдрочить","");
-addMeme("опятьдрочить","");
-addMeme("опятьдрочить","");
+addMeme("уважаемо","https://vk.com/photo-128623911_456264893");
+addMeme("разное","https://vk.com/photo464261540_456242200");
+addMeme("разное","https://vk.com/photo464261540_456241885");
+addMeme("чо бля?","https://vk.com/photo464261540_456241803");
+addMeme("разное","https://vk.com/photo464261540_456241753");
+addMeme("разное","https://vk.com/photo464261540_456240297");
 addMeme("опятьдрочить","");
 addMeme("опятьдрочить","");
 addMeme("опятьдрочить","");
