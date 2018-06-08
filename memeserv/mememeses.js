@@ -68,7 +68,7 @@ addMeme("ржомба","https://pp.userapi.com/c840125/v840125084/4528e/gnMVVx8X
 addMeme("разное","https://pp.userapi.com/c840125/v840125084/4528e/gnMVVx8X7fc.jpg");
 addMeme("подозрительно","https://pp.userapi.com/c837738/v837738854/347d1/YWMTytfHa2o.jpg");
 addMeme("чо бля?","https://pp.userapi.com/c844320/v844320815/462f2/VPCBUYWepN8.jpg");
-addMeme("опятьдрочить","");
+addMeme("секс","https://pp.userapi.com/c636727/v636727100/5c8f/AQtqluEeNtQ.jpg");
 addMeme("опятьдрочить","");
 addMeme("опятьдрочить","");
 addMeme("опятьдрочить","");
