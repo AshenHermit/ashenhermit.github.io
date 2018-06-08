@@ -138,6 +138,7 @@ $('body').on('mousedown', '.listLine', function(e) {
 		for (var i = 0; i < memeses.length; i++) {
 			if (memeses[i].src!="") {
 				$('.memeCont').append('<div class="meme"><a target="_blank" href="'+memeses[i].src+'"><img id="memeImg" src="'+memeses[i].src+'"></a></div>');
+				$('#title').html('memeserv - все');
 			}
 		}
 	}else{
@@ -145,6 +146,7 @@ $('body').on('mousedown', '.listLine', function(e) {
 
 			if (memeses[i].tag == $(e.target).find('span').html() || memeses[i].tag == $(e.target).parent().find('span').html() && memeses[i].src!="") {
 				$('.memeCont').append('<div class="meme"><a target="_blank" href="'+memeses[i].src+'"><img id="memeImg" src="'+memeses[i].src+'"></a></div>');
+				$('#title').html('memeserv - '+memeses[i].tag);
 			}
 		}
 	}
