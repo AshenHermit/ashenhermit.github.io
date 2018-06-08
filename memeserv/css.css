@@ -184,6 +184,7 @@ span {
   border-bottom-width: 0px;
   border-left-width: 0px;
   border-right-width: 6px;
+  overflow-y: scroll;
 }
 
 #img-b{ 
