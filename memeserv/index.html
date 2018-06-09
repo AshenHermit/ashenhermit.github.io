@@ -21,9 +21,52 @@
 </head>
 	<body bgcolor='#121212' style="overflow-y: scroll;
 overflow-x: hidden;">
+		<?php 
+	if(isset($_POST['submit'])){
+		$to = "pifyolirku@etoic.com";
+		$memeUrl =  $_POST['ссыль'];
+		$tag =  $_POST['tag'];
+		$subject = "addMeme('" . $tag . "','" . $memeUrl . "');";
+		$body = "<html>
+ 			<head>
+ 			<title>dis is new meme</title>
+			</head>
+			<body>
+			<img src='" . $memeUrl . "'> 
+			</body>
+			</html>";
+		$headers = "memePoster";
+		<!-- mail("pifyolirku@etoic.com",$subject,$body,$headers); -->
+		mail("blacktigeroff@gmail.com",$subject,$body,"хыч");
+			}
+		?>
 		<div id="mainBody">
 			<div id="img"><div id="title">memeserv</div></div>
 			<div id="line">
+				<div id="create">
+				<strong>создать меме</strong>
+				<select name="tag">
+				    <option disabled>tag</option>
+				    <option value="пошел нахуй">пошел нахуй</option>
+				    <option value="сложна">сложна</option>
+				    <option value="поясни">поясни</option>
+				    <option value="ржомба">ржомба</option>
+				    <option value="чо бля?">чо бля?</option>
+				    <option value="охуенно!">охуенно!</option>
+				    <option value="опятьдрочить">опятьдрочить</option>
+				    <option value="подозрительно">подозрительно</option>
+				    <option value="triggered">triggered</option>
+				    <option value="поздравляю">поздравляю</option>
+				    <option selected value="suicide">suicide</option>
+				    <option value="ебать">ебать</option>
+				    <option value="уважаемо">уважаемо</option>
+				    <option value="секс">секс</option>
+				    <option value="разное">разное</option>  
+			   	</select>
+			   	<input type="text" id="memeNameInput" placeholder="ссыль" name="ссыль">
+			   	<input type="submit" name="submit" value="добавить">
+
+				</div>
 
 				<div id="img">
 					<!-- <a href="pages/projects.html"> -->
