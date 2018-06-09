@@ -30,6 +30,13 @@
      border-width:4px solid #fff;
 }
 /*...................................*/
+#create{
+  color: #fff;
+  font-size: 19px;
+  margin: 18px;
+  margin-top: -14px;
+}
+
 #memeImg{
   height: 402px;
 }
