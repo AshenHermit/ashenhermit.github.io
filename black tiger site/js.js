@@ -14,6 +14,7 @@ function createProject(name,image,url,delay,tSize) {
 createProject("sticker","img/icons/STICKER_ICO.png","pages/bt-sticker.html",0.1,30);
 createProject("quarter of life","img/icons/qol_logo.png","",0.2,25);
 createProject("unforgettable olympiad","img/icons/unfolimp.png","",0.3,20);
+createProject("memeserv","","",0.3,30);
 // createProject("sticker","img/icons/STICKER ICO.png","",0.3);
 // createProject("sticker","img/icons/STICKER ICO.png","",0.4);
 
