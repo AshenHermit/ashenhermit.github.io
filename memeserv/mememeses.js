@@ -101,6 +101,11 @@ addMeme("suicide","https://pp.userapi.com/c840321/v840321593/8a28d/Nf8_9tUWvck.j
 addMeme("разное","https://pp.userapi.com/c834102/v834102316/149cde/F_QkIK2aVWY.jpg");
 addMeme("ржомба","https://pp.userapi.com/c543100/v543100853/3ad87/lCu_IIypmF0.jpg");
 addMeme("секс","https://pp.userapi.com/c840134/v840134085/4b356/ZDzXG11yAbg.jpg");
+addMeme("triggered","https://pp.userapi.com/c830108/v830108756/11eb45/O8QG_MposSU.jpg");
+addMeme("suicide","https://sun1-3.userapi.com/c840537/v840537599/4349e/siGUwm20TgQ.jpg");
+addMeme("чо бля?","https://pp.userapi.com/c846320/v846320995/71a8a/qVxzWux4yPU.jpg");
+addMeme("чо бля?","https://pp.userapi.com/c846520/v846520545/75ba5/typlSI9Aomg.jpg");
+addMeme("ржомба","https://pp.userapi.com/c834203/v834203545/167aa5/sICHUSiVGVU.jpg");
 addMeme("опятьдрочить","");
 addMeme("опятьдрочить","");
 addMeme("опятьдрочить","");
