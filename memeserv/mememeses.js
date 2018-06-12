@@ -111,12 +111,28 @@ addMeme("разное","https://pp.userapi.com/c847221/v847221385/72546/Z0uYx81m
 addMeme("разное","https://pp.userapi.com/c845521/v845521298/6d6f6/lghWzrRAjPw.jpg");
 addMeme("разное","https://pp.userapi.com/c846016/v846016948/63d8f/cXYIcjMEz-c.jpg");
 addMeme("сложна","https://sun1-9.userapi.com/c840637/v840637679/899eb/FtoXcs1xstE.jpg");
-addMeme("опятьдрочить","");
-addMeme("опятьдрочить","");
-addMeme("опятьдрочить","");
-addMeme("опятьдрочить","");
-addMeme("опятьдрочить","");
-addMeme("опятьдрочить","");
+addMeme("чо бля?","https://pp.userapi.com/c845021/v845021809/78668/1Csb-kNgOto.jpg");
+addMeme("разное","https://pp.userapi.com/c846019/v846019226/709f2/4wM1EDBGRuQ.jpg");
+addMeme("ржомба","https://pp.userapi.com/c831508/v831508809/1297d4/v2pdTHqtEak.jpg");
+addMeme("пошел нахуй","https://pp.userapi.com/c845322/v845322880/6eb11/RIPERvR_9-A.jpg");
+addMeme("ржомба","https://pp.userapi.com/c846321/v846321809/74da6/MOtugW7RsGE.jpg");
+addMeme('разное','https://sun1-1.userapi.com/c840534/v840534576/3fff1/UHbqHnXcoiI.jpg');
+addMeme('чо бля?','https://pp.userapi.com/c840124/v840124062/52598/g1xvDwW2Kyo.jpg');
+addMeme('сложна','https://pp.userapi.com/c7002/v7002177/43236/WU3Absh1oZg.jpg');
+addMeme('ебать','https://pp.userapi.com/c844724/v844724202/67e4e/eQbWb5eBIqw.jpg');
+addMeme('разное','https://pp.userapi.com/c846122/v846122912/72895/nzNm4GT90V0.jpg');
+addMeme('ебать','https://sun1-9.userapi.com/c834401/v834401492/160f4e/kTp-pIZXBBQ.jpg');
+addMeme('разное','https://pp.userapi.com/c846122/v846122521/73050/AoAVulKVBTk.jpg');
+addMeme('сложна','https://pp.userapi.com/c824410/v824410531/12ee21/hmaNQNMbj7U.jpg');
+addMeme('пошел нахуй','https://pp.userapi.com/c834200/v834200912/15a748/l2H5DUcEdXo.jpg');
+addMeme('разное','https://pp.userapi.com/c850024/v850024952/1ac3/I6QmmfCIXwo.jpg');
+addMeme('чо бля?','https://pp.userapi.com/c834103/v834103798/162507/V8LklSEwbLs.jpg');
+addMeme('сложна','https://pp.userapi.com/c543101/v543101343/4b1a9/VWt2Sp3Z0jA.jpg');
+addMeme('подозрительно','https://pp.userapi.com/c849128/v849128425/3484/bguhUX6E8-k.jpg');
+addMeme('подозрительно','https://pp.userapi.com/c849336/v849336425/2a90/etYyzluA3Ao.jpg');
+addMeme('разное','https://pp.userapi.com/c830708/v830708564/113d79/UIfi_h29X_A.jpg');
+addMeme('чо бля?','https://sun1-5.userapi.com/c834201/v834201858/163242/lZEFRkJHuTY.jpg');
+addMeme('ржомба','https://pp.userapi.com/c846521/v846521025/76d5b/JKva6XUpG4k.jpg');
 addMeme("опятьдрочить","");
 
 
