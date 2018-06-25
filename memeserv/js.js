@@ -170,11 +170,11 @@ $('body').on('mousedown', '*[data-url="projects"]', function(e) {
 
 	if (!sideBar) {
 		sideBar = true;
+		$('.searchText').removeAttr('autofocus');
 		refresh_UI();
 
 	}else{
 		sideBar = false;
-		$('.searchText').removeAttr('autofocus');
 		refresh_UI();
 	}
 });
