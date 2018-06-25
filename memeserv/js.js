@@ -174,6 +174,7 @@ $('body').on('mousedown', '*[data-url="projects"]', function(e) {
 
 	}else{
 		sideBar = false;
+		$('.searchText').removeAttr('autofocus');
 		refresh_UI();
 	}
 });
