@@ -30,7 +30,7 @@ addMeme("чо бля?","https://pp.userapi.com/c543107/v543107808/4b2c2/9UkH2ItA
 addMeme("уважаемо","https://pp.userapi.com/c7003/v7003169/48d36/rwuHsvBGQbg.jpg");
 addMeme("секс","https://pp.userapi.com/c830408/v830408668/f0cb5/esW6EHMEckw.jpg");
 addMeme("охуенно!","https://pp.userapi.com/c846320/v846320257/63e3e/jqK9i46VAzg.jpg");
-addMeme("сложна","https://pp.userapi.com/c846320/v846320257/63e3e/jqK9i46VAzg.jpg");
+addMeme("грусна","https://pp.userapi.com/c846320/v846320257/63e3e/jqK9i46VAzg.jpg");
 addMeme("секс","https://sun1-5.userapi.com/c840731/v840731606/8e149/YgKXYSJznW4.jpg");
 addMeme("опятьдрочить","https://pp.userapi.com/c847120/v847120868/5e43c/H25Hg2csnrA.jpg");
 addMeme("пошел нахуй","http://turboportal.net/uploads/posts/2013-07/1374175032_nahui-poshel.jpg");
@@ -127,7 +127,7 @@ addMeme('сложна','https://pp.userapi.com/c824410/v824410531/12ee21/hmaNQNM
 addMeme('пошел нахуй','https://pp.userapi.com/c834200/v834200912/15a748/l2H5DUcEdXo.jpg');
 addMeme('разное','https://pp.userapi.com/c850024/v850024952/1ac3/I6QmmfCIXwo.jpg');
 addMeme('чо бля?','https://pp.userapi.com/c834103/v834103798/162507/V8LklSEwbLs.jpg');
-addMeme('сложна','https://pp.userapi.com/c543101/v543101343/4b1a9/VWt2Sp3Z0jA.jpg');
+addMeme('грусна','https://pp.userapi.com/c543101/v543101343/4b1a9/VWt2Sp3Z0jA.jpg');
 addMeme('подозрительно','https://pp.userapi.com/c849128/v849128425/3484/bguhUX6E8-k.jpg');
 addMeme('подозрительно','https://pp.userapi.com/c849336/v849336425/2a90/etYyzluA3Ao.jpg');
 addMeme('разное','https://pp.userapi.com/c830708/v830708564/113d79/UIfi_h29X_A.jpg');
