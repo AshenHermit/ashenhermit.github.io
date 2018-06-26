@@ -134,6 +134,6 @@ addMeme('подозрительно','https://pp.userapi.com/c849336/v849336425/
 addMeme('разное','https://pp.userapi.com/c830708/v830708564/113d79/UIfi_h29X_A.jpg',"мем ");
 addMeme('чо бля?','https://sun1-5.userapi.com/c834201/v834201858/163242/lZEFRkJHuTY.jpg',"мем ");
 addMeme('ржомба','https://pp.userapi.com/c846521/v846521025/76d5b/JKva6XUpG4k.jpg',"мем ");
-
+//ы
 
 
