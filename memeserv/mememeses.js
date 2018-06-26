@@ -1,31 +1,15 @@
 var memeses = [];
 var num = 0;
 
-function getWordsMassive(txtF){
-	var txt = txtF;
-	var lastIn = 0;
-	var massive = [];
-	var massIn = 0;
-	while(txt!=""){
-		var i = txt.search(" ");
-		massive[massIn] = txt.substring(lastIn,i);
-		//replaceAt(txt,i,"");
-		txt = txt.substring(i+1,txt.length);
-		massIn+=1;
-	};
-	console.log(massive);
-	return massive;
-};
-
 function addMeme(tag,src,search) {
 	memeses[num] = {};
 	memeses[num].tag = tag;
 	memeses[num].src = src;
-	memeses[num].search = getWordsMassive(search);
+	memeses[num].search = search.split(" ");
 	num+=1;
 };
 
-addMeme("пошел нахуй","https://pp.userapi.com/c846019/v846019595/6f346/3N1JTg8xKmg.jpg","мем пошол пошел нахуй нахер ");
+addMeme("пошел нахуй","https://pp.userapi.com/c846019/v846019595/6f346/3N1JTg8xKmg.jpg","мем пошол пошел нахуй нахер");
 addMeme("опятьдрочить","https://pp.userapi.com/c846419/v846419139/4246a/ToMTNPs2ubM.jpg","мем ");
 addMeme("подозрительно","https://pp.userapi.com/c841028/v841028153/72c2a/BP1krMnuTko.jpg","мем ");
 addMeme("triggered","https://pp.userapi.com/c841338/v841338189/49021/-MgUeCsN_0Y.jpg","мем ");
