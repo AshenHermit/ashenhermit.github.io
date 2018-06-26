@@ -9,7 +9,7 @@
  <link rel="shortcut icon" href="ico.png" type="image/png">
 
  <script type="text/javascript" src="jquery-3.2.1.js"></script>
-	
+
  <link rel="stylesheet" type="text/css" href="css.css">
 
 	<!-- index.html -->
@@ -31,39 +31,41 @@ overflow-x: hidden;">
 					<div id="text">теги</div>
 				</div>
 				<div class="memeCont">
-					
+
 				</div>
 
 			</div>
 		</div>
-
-		<div id="sideBar">
-			
-			<form>
-			      <input class="searchText" type="text" value="" placeholder="искац" autofocus> 
-			      <input type="button" value="x" title="Отменить поиск">
-			      <input type="submit" value=">" title="Начать поиск">
-			</form>
-
-		</div>
+		
 		<script type="text/javascript" 
 			src="mememeses.js">
 		</script>
 
 		<script type="text/javascript" 
 			src="js.js">
+				
+		<div id="sideBar">
+		
+			<form>
+			      <input id="searchText" type="text" value="" placeholder="искац"> 
+			      <input type="button" value="x" title="Отменить поиск">
+			      <input type="submit" value=">" title="Начать поиск" onclick="showSearchResult();">
+			</form>
+
+		</div>
+		
 		</script>
 		<footer>
 			<div>
 				такие дела...
 			</div>
 		</footer>
-		
-		
+
+
 
 	</body>
 
-	
+
   
   
 <html>
