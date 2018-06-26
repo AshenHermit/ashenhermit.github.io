@@ -135,6 +135,7 @@ function turnSideBar() {
 
 function showSearchResult(){
 	var text = $('#searchText').val();
+	$('.memeCont').html('');
 for(var i = 0; i<memeses.length;i++){
 		for(var s = 0; s<memeses[i].search.length;s++){
 			if(text.includes(memeses[i].search[w])){
