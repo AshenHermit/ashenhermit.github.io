@@ -110,7 +110,7 @@ function refresh_UI() {
 	if (sideBar) {
 		$('#sideBar').css('left', '0px');
 		$('.listLine').css('left', '0px');
-		
+
 		$('#mainBody').css('left', '53%');
 		$('body').css('background-position-x', '16px');
 	}else{
@@ -131,6 +131,22 @@ function turnSideBar() {
 		refresh_UI();
 	}
 }
+
+
+function showSearchResult(){
+	var text = $('#searchText').val();
+for(var i = 0; i<memeses.length;i++){
+		for(var s = 0; s<memeses[i].search.length;s++){
+			if(text.includes(memeses[i].search[w])){
+				$('.memeCont').append('<div class="meme"><a target="_blank" href="'+memeses[i].src+'"><img id="memeImg" src="'+memeses[i].src+'"></a></div>');
+				$('#title').html('memeserv - чет отрыл');
+			}else{
+				$('#title').html('memeserv - нихера не найдена')
+			};
+		};
+};
+};
+
 
 $('body').on('mousedown', '.listLine', function(e) {
 	e.preventDefault();
@@ -219,4 +235,3 @@ function update() {
 	var y = window.scrollY;
 	$('body').css('background-position-y', y+'px');
 }
-
