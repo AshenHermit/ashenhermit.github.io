@@ -136,7 +136,7 @@ $('body').on('mousedown', '#searchButton', function(e) {
 	e.preventDefault();
 	showSearchResult();
 });
-/*
+
 function showSearchResult(){
 	var num = 0;
 	var text = $('#searchText').val();
@@ -168,9 +168,9 @@ for(var m = 0; m<massive.length;m++){
 		$('#title').html('memeserv - нихера не найдено');
 	};
 };
-*/
-/////////////////////////////////////////////////////////////////////////////
 
+/////////////////////////////////////////////////////////////////////////////
+/*
 function showSearchResult(){
 	var num = 0;
 	var text = $('#searchText').val();
@@ -206,7 +206,7 @@ for(var m = 0; m<massive.length;m++){
 		$('#title').html('memeserv - нихера не найдено');
 	};
 };
-
+*/
 ////////////////////////////////////////////////////////////////////////////
 
 
