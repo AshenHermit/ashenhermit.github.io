@@ -132,6 +132,11 @@ function turnSideBar() {
 	};
 };
 
+$('body').on('mousedown', '#searchButton', function(e) {
+	e.preventDefault();
+	showSearchResult();
+});
+
 
 function showSearchResult(){
 	var num = 0;
