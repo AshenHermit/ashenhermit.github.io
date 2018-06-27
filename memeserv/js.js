@@ -104,7 +104,7 @@ var info = false;
 
 function destroy(elem) {
 	$(elem).removeAttr("style");
-}
+};
 
 function refresh_UI() {
 	if (sideBar) {
@@ -118,8 +118,8 @@ function refresh_UI() {
 		$('.listLine').css('left', '-267px');
 		$('#mainBody').css('left', '50%');
 		$('body').css('background-position-x', '0px');
-	}
-}
+	};
+};
 
 function turnSideBar() {
 	if (!sideBar) {
@@ -129,23 +129,32 @@ function turnSideBar() {
 	}else{
 		sideBar = false;
 		refresh_UI();
-	}
-}
+	};
+};
 
 
 function showSearchResult(){
+	var num = 0;
 	var text = $('#searchText').val();
 	$('.memeCont').html('');
+	var massive = [];
 for(var i = 0; i<memeses.length;i++){
 		for(var s = 0; s<memeses[i].search.length;s++){
 			if(text.includes(memeses[i].search[w])){
-				$('.memeCont').append('<div class="meme"><a target="_blank" href="'+memeses[i].src+'"><img id="memeImg" src="'+memeses[i].src+'"></a></div>');
-				$('#title').html('memeserv - чет отрыл');
-			}else{
-				$('#title').html('memeserv - нихера не найдена')
+				massive[num] = i;
 			};
 		};
+		num+=1;
 };
+
+if(massive!=[]){
+for(var m = 0; m<massive.length;m++){
+	$('.memeCont').append('<div class="meme"><a target="_blank" href="'+memeses[massive[m]].src+'"><img id="memeImg" src="'+memeses[massive[m]].src+'"></a></div>');
+	$('#title').html('memeserv - чет отрыл');
+};
+}else{
+		$('#title').html('memeserv - нихера не найдено');
+	};
 };
 
 
@@ -162,17 +171,17 @@ $('body').on('mousedown', '.listLine', function(e) {
 			if (memeses[i].src!="") {
 				$('.memeCont').append('<div class="meme"><a target="_blank" href="'+memeses[i].src+'"><img id="memeImg" src="'+memeses[i].src+'"></a></div>');
 				$('#title').html('memeserv - все');
-			}
-		}
+			};
+		};
 	}else{
 		for (var i = 0; i < memeses.length; i++) {
 
 			if (memeses[i].tag == $(e.target).find('span').html() || memeses[i].tag == $(e.target).parent().find('span').html() && memeses[i].src!="") {
 				$('.memeCont').append('<div class="meme"><a target="_blank" href="'+memeses[i].src+'"><img id="memeImg" src="'+memeses[i].src+'"></a></div>');
 				$('#title').html('memeserv - '+memeses[i].tag);
-			}
-		}
-	}
+			};
+		};
+	};
 });
 
 
@@ -193,7 +202,7 @@ $('body').on('mousedown', '*[data-url="projects"]', function(e) {
 	}else{
 		sideBar = false;
 		refresh_UI();
-	}
+	};
 });
 
 $('body').on('mousedown', '*[data-url="info"]', function(e) {
@@ -216,7 +225,7 @@ $('body').on('mousedown', '*[data-url="info"]', function(e) {
 		$('#mainBody').css('top', '0%');
 		info = false;
 		refresh_UI();
-	}
+	};
 });
 
 
@@ -235,4 +244,4 @@ $('#backButton').css('left', '0px');
 function update() {
 	var y = window.scrollY;
 	$('body').css('background-position-y', y+'px');
-}
+};
