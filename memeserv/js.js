@@ -154,9 +154,13 @@ for(var i = 0; i<memeses.length;i++){
 };
 
 if(massive!=[]){
-for(var m = 0; m<massive.length;m++){
-	$('.memeCont').append('<div class="meme"><a target="_blank" href="'+memeses[massive[m]].src+'"><img id="memeImg" src="'+memeses[massive[m]].src+'"></a></div>');
 	$('#title').html('memeserv - чет отрыл');
+for(var m = 0; m<massive.length;m++){
+	try{
+		$('.memeCont').append('<div class="meme"><a target="_blank" href="'+memeses[massive[m]].src+'"><img id="memeImg" src="'+memeses[massive[m]].src+'"></a></div>');
+	}catch(error){
+		
+	};
 };
 }else{
 		$('#title').html('memeserv - нихера не найдено');
