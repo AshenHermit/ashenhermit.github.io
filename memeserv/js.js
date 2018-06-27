@@ -142,6 +142,7 @@ function showSearchResult(){
 	var num = 0;
 	var text = $('#searchText').val();
 	$('.memeCont').html('');
+	$('#title').html('memeserv - нихера не найдено');
 	var massive = [];
 for(var i = 0; i<memeses.length;i++){
 		for(var s = 0; s<memeses[i].search.length;s++){
