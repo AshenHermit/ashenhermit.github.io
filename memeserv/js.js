@@ -146,7 +146,7 @@ function showSearchResult(){
 	var massive = [];
 for(var i = 0; i<memeses.length;i++){
 		for(var s = 0; s<memeses[i].search.length;s++){
-			if(text.includes(memeses[i].search[w])){
+			if(text.includes(memeses[i].search[s])){
 				massive[num] = i;
 			};
 		};
