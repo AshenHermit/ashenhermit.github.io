@@ -136,7 +136,7 @@ $('body').on('mousedown', '#searchButton', function(e) {
 	e.preventDefault();
 	showSearchResult();
 });
-
+/*
 function showSearchResult(){
 	var num = 0;
 	var text = $('#searchText').val();
@@ -150,7 +150,6 @@ for(var i = 0; i<memeses.length;i++){
 		for(var s = 0; s<memeses[i].search.length;s++){
 			if(text.includes(memeses[i].search[s])){
 				massive[num] = i;
-			};
 		};
 		//massive[num] = localNum;
 		num+=1;
@@ -169,9 +168,9 @@ for(var m = 0; m<massive.length;m++){
 		$('#title').html('memeserv - нихера не найдено');
 	};
 };
-
+*/
 /////////////////////////////////////////////////////////////////////////////
-/*
+
 function showSearchResult(){
 	var num = 0;
 	var text = $('#searchText').val();
@@ -207,7 +206,7 @@ for(var m = 0; m<massive.length;m++){
 		$('#title').html('memeserv - нихера не найдено');
 	};
 };
-*/
+
 ////////////////////////////////////////////////////////////////////////////
 
 
