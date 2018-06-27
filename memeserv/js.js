@@ -136,20 +136,22 @@ $('body').on('mousedown', '#searchButton', function(e) {
 	e.preventDefault();
 	showSearchResult();
 });
-
-
+/*
 function showSearchResult(){
 	var num = 0;
 	var text = $('#searchText').val();
+	text = text.toLowerCase();
+	text = text.replace(/ё/ig, "е");
 	$('.memeCont').html('');
 	$('#title').html('memeserv - нихера не найдено');
 	var massive = [];
 for(var i = 0; i<memeses.length;i++){
+		var localNum = -1;
 		for(var s = 0; s<memeses[i].search.length;s++){
 			if(text.includes(memeses[i].search[s])){
 				massive[num] = i;
-			};
 		};
+		//massive[num] = localNum;
 		num+=1;
 };
 
@@ -166,6 +168,46 @@ for(var m = 0; m<massive.length;m++){
 		$('#title').html('memeserv - нихера не найдено');
 	};
 };
+*/
+/////////////////////////////////////////////////////////////////////////////
+
+function showSearchResult(){
+	var num = 0;
+	var text = $('#searchText').val();
+	text = text.toLowerCase();
+	text = text.replace(/ё/ig, "е");
+	$('.memeCont').html('');
+	$('#title').html('memeserv - нихера не найдено');
+	var massive = [];
+for(var i = 0; i<memeses.length;i++){
+		var localNum = -1;
+		for(var s = 0; s<memeses[i].search.length;s++){
+			if(text.includes(memeses[i].search[s])){
+				localNum = i;
+			}else{
+				localNum = null;
+				break;
+			};
+		};
+		massive[num] = localNum;
+		num+=1;
+};
+
+if(massive!=[]){
+	$('#title').html('memeserv - чет отрыл');
+for(var m = 0; m<massive.length;m++){
+	try{
+		$('.memeCont').append('<div class="meme"><a target="_blank" href="'+memeses[massive[m]].src+'"><img id="memeImg" src="'+memeses[massive[m]].src+'"></a></div>');
+	}catch(error){
+		
+	};
+};
+}else{
+		$('#title').html('memeserv - нихера не найдено');
+	};
+};
+
+////////////////////////////////////////////////////////////////////////////
 
 
 $('body').on('mousedown', '.listLine', function(e) {
