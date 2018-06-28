@@ -32,7 +32,7 @@ addMeme("уважаемо","https://pp.userapi.com/c7003/v7003169/48d36/rwuHsvBG
 addMeme("секс","https://pp.userapi.com/c830408/v830408668/f0cb5/esW6EHMEckw.jpg","мем секс мистер mrbigsousage");
 addMeme("охуенно!","https://pp.userapi.com/c846320/v846320257/63e3e/jqK9i46VAzg.jpg","мем бля грусн груст слезы это охуен пиздат красив");
 addMeme("грусна","https://pp.userapi.com/c846320/v846320257/63e3e/jqK9i46VAzg.jpg","мем бля грусн груст слезы это охуен пиздат красив");
-addMeme("секс","https://sun1-5.userapi.com/c840731/v840731606/8e149/YgKXYSJznW4.jpg","мем воня секс ммм");
+addMeme("секс","https://sun1-5.userapi.com/c840731/v840731606/8e149/YgKXYSJznW4.jpg","мем воня familiar_eblo секс ммм");
 addMeme("опятьдрочить","https://pp.userapi.com/c847120/v847120868/5e43c/H25Hg2csnrA.jpg","мем оба порнушка");
 addMeme("пошел нахуй","http://turboportal.net/uploads/posts/2013-07/1374175032_nahui-poshel.jpg","мем пошел пошол нахуй нахер");
 addMeme("чо бля?","https://i.ytimg.com/vi/umhMcgTnIig/hqdefault.jpg","мем што чо че wat бабка");
@@ -73,7 +73,7 @@ addMeme("секс","https://pp.userapi.com/c636727/v636727100/5c8f/AQtqluEeNtQ.j
 addMeme("уважаемо","https://pp.userapi.com/c834201/v834201603/140184/vwpL6XOwlCs.jpg","мем почетно уважаемо честь");
 addMeme("разное","https://pp.userapi.com/c635103/v635103030/29022/EhR42aAA9mA.jpg","мем иди сталкер уходи не обращай внимания");
 addMeme("разное","https://pp.userapi.com/c847221/v847221531/41cc8/ttGNyeU7dgU.jpg","мем хули хуле аним мне");
-addMeme("чо бля?","https://pp.userapi.com/c824409/v824409069/12e59c/wdI09233X7Y.jpg","мем воня чо че шо бля");
+addMeme("чо бля?","https://pp.userapi.com/c824409/v824409069/12e59c/wdI09233X7Y.jpg","мем familiar_eblo воня чо че шо бля");
 addMeme("разное","https://pp.userapi.com/c824410/v824410449/136fc8/OBqcoajLHGE.jpg","мем нихуя воу все кровь");
 addMeme("разное","https://pp.userapi.com/c635100/v635100331/2ace0/9BRzHOed--k.jpg","мем удоли удали путин");
 addMeme("разное","https://pp.userapi.com/c844724/v844724037/754ea/BR0N3X-9Jms.jpg","мем неко ебать секс аним косплей");
@@ -94,7 +94,7 @@ addMeme("разное","https://pp.userapi.com/c840132/v840132361/840e5/7zjoZ9ZS
 addMeme("разное","https://pp.userapi.com/c830708/v830708668/97e9d/25M5NXv5cqo.jpg","мем легушька лягушка");
 addMeme("ебать","https://pp.userapi.com/c841522/v841522929/7c64f/8kkhJxLNaOE.jpg","мем ебать дебаты");
 addMeme("ебать","https://pp.userapi.com/c830309/v830309437/11bbdc/ffuBCP0n4rk.jpg","мем ебать нехоя нихуя залаз");
-addMeme("поясни","https://pp.userapi.com/c845418/v845418211/790e2/50F0u2Z7AhA.jpg","мем воня не понял поясни сложн");
+addMeme("поясни","https://pp.userapi.com/c845418/v845418211/790e2/50F0u2Z7AhA.jpg","мем familiar_eblo воня не понял поясни сложн");
 addMeme("ржомба","https://pp.userapi.com/c847016/v847016211/6ef90/TsQkTvWc8jc.jpg","мем яша яшка прекол");
 addMeme("ржомба","https://pp.userapi.com/c845220/v845220246/6643d/MJp4NFoCY-8.jpg","мем ржомба зритель смешно хех");
 addMeme("ржомба","https://pp.userapi.com/c831109/v831109820/10b2cc/7l1k45Vt7Fs.jpg","мем пес псина собака ебальник чипс");
@@ -140,7 +140,7 @@ addMeme("сложна","https://pp.userapi.com/c638219/v638219933/4cd8e/cGAKJkWl
 addMeme("пошел нахуй","https://pp.userapi.com/c844721/v844721076/7b424/OROedOvzD9k.jpg","мем стой остановис подумай стоп изыди хватит");
 addMeme("разное","https://pp.userapi.com/c845221/v845221354/775c5/O-t5w6V78cA.jpg","мем ага хуле чо че шо аним хули заебок заебись крут");
 addMeme("чо бля?","https://pp.userapi.com/c834301/v834301065/15ce9b/0Vf28_EfU2A.jpg","мем ты охуел ебать чо че шо аним иллия охуеть");
-addMeme("секс","https://pp.userapi.com/c849024/v849024031/5ee3/PssgQv7qV8w.jpg","мем хы воня ммм ... секс ржомба смешно");
+addMeme("секс","https://pp.userapi.com/c849024/v849024031/5ee3/PssgQv7qV8w.jpg","мем хы familiar_eblo воня ммм ... секс ржомба смешно");
 addMeme("разное","https://pp.userapi.com/c635100/v635100114/21904/mfuGAkw3Log.jpg","мем путин ммм ... што что лан ладн");
 addMeme("пошел нахуй","https://pp.userapi.com/c834300/v834300924/1695e3/J1vyHhC7Ebk.jpg","мем горит пердак жоп бомбит подгорает");
 addMeme("ржомба","https://pp.userapi.com/c633318/v633318810/45c89/qzUO2_J5J-g.jpg","мем хы смешно ржомба хех понял ммм");
