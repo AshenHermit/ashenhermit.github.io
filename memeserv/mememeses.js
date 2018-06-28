@@ -162,6 +162,6 @@ addMeme("уважаемо","https://pp.userapi.com/c834100/v834100822/16ab65/QsD
 addMeme("ржомба","https://pp.userapi.com/c635100/v635100832/23080/K5FC3DIyaCc.jpg","мем смейся зарежут давай смешно ржомба ржака");
 addMeme("разное","https://pp.userapi.com/c834204/v834204218/175663/_YvBKHIvGGg.jpg","мем да ес yes da");
 addMeme("triggered","https://sun1-1.userapi.com/c840720/v840720957/3d1e4/tnReishYDQw.jpg","мем ор кот triggered охуел");
-
+//ы
 
 
