@@ -1,3 +1,22 @@
+var deleteWords = [
+" ты ",
+" с ",
+" я ",
+" бы ",
+" за ",
+" на ",
+" в ",
+" под ",
+" из ",
+" что ",
+" не ",
+" как ",
+" и ",
+" щас ",
+" сейчас "
+];
+
+
 memeses = memeses.reverse();
 
 var _delay = 0.1;
@@ -142,6 +161,10 @@ function showSearchResult(){
 	var text = $('#searchText').val();
 	text = text.toLowerCase();
 	text = text.replace(/ё/ig, "е");
+	for(var d = 0; d<deleteWords; d++){
+		var reg = new RegExp(deleteWords[d],"gsi");
+		text = text.replace(reg," ");
+	};
 	var textMassive = text.split(" ");
 	$('.memeCont').html('');
 	$('#title').html('memeserv - нихера не найдено');
