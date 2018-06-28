@@ -144,10 +144,10 @@ addMeme("секс","https://pp.userapi.com/c849024/v849024031/5ee3/PssgQv7qV8w.j
 addMeme("разное","https://pp.userapi.com/c635100/v635100114/21904/mfuGAkw3Log.jpg","мем путин ммм ... што что лан ладн");
 addMeme("пошел нахуй","https://pp.userapi.com/c834300/v834300924/1695e3/J1vyHhC7Ebk.jpg","мем горит пердак жоп бомбит подгорает");
 addMeme("ржомба","https://pp.userapi.com/c633318/v633318810/45c89/qzUO2_J5J-g.jpg","мем хы смешно ржомба хех понял ммм");
-addMeme("уважаемо","https://pp.userapi.com/c845416/v845416958/81df3/G0A0XMjpt1c.jpg","мем  уважаемо почетно респект аним жыжа жожо jojo крут");
+addMeme("уважаемо","https://pp.userapi.com/c845416/v845416958/81df3/G0A0XMjpt1c.jpg","мем уважаемо почетно респект аним жыжа жожо jojo крут");
 addMeme("пошел нахуй","https://pp.userapi.com/c543104/v543104621/4ce51/yFVkRmOUhC4.jpg","мем пошол пошел нахуй нахер ух сука злой стрелять");
 addMeme("поясни","https://pp.userapi.com/c831308/v831308898/12f270/vVkdW_H01tk.jpg","мем человек нахуй сансаныч поясни чо че шо бля понял");
-addMeme("секс","https://pp.userapi.com/c846019/v846019299/7b376/-FN8J1fzG64.jpg","мем хы ммм ... сучка секс бомба обкуренный ");
+addMeme("секс","https://pp.userapi.com/c846019/v846019299/7b376/-FN8J1fzG64.jpg","мем хы ммм ... сучка секс бомба обкуренный");
 addMeme("пошел нахуй","https://pp.userapi.com/c543103/v543103743/30899/AS-TTByLd2c.jpg","мем чо бля шо че угаманись стоп остановись стой черт чорт нож ципленок");
 addMeme("ебать","https://pp.userapi.com/c845017/v845017236/7cdc4/NkTl64dNRVk.jpg","мем хуясе ебать аним нихуя нихера");
 addMeme("ебать","https://pp.userapi.com/c846419/v846419616/78c71/BbaO7zIHFH4.jpg","мем еее ура крут заебись заебок бадум тсс хы");
