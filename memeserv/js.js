@@ -136,24 +136,40 @@ $('body').on('mousedown', '#searchButton', function(e) {
 	e.preventDefault();
 	showSearchResult();
 });
-/*
+
 function showSearchResult(){
 	var num = 0;
 	var text = $('#searchText').val();
 	text = text.toLowerCase();
 	text = text.replace(/ё/ig, "е");
+	var textMassive = text.split(" ");
 	$('.memeCont').html('');
 	$('#title').html('memeserv - нихера не найдено');
 	var massive = [];
 for(var i = 0; i<memeses.length;i++){
 		var localNum = -1;
-		for(var s = 0; s<memeses[i].search.length;s++){
-			if(text.includes(memeses[i].search[s])){
-				massive[num] = i;
+		//console.log(memeses[i].search);
+	loop2:
+		for(var t  = 0; t<textMassive.length;t++){	
+		loop3:
+			for(var s = 0; s<memeses[i].search.length;s++){
+				if(textMassive[t].includes(memeses[i].search[s])){
+					localNum = i;
+					continue loop2;
+					//console.log(memeses[i].search[s]);
+				}else{
+					if(s==memeses[i].search.length-1){
+						localNum = -1;	
+						break loop2;						
+						//continue loop1;
+					}
+				}
+			};
 		};
-		//massive[num] = localNum;
+		massive[num] = localNum;
 		num+=1;
 };
+
 
 if(massive!=[]){
 	$('#title').html('memeserv - чет отрыл');
@@ -168,9 +184,8 @@ for(var m = 0; m<massive.length;m++){
 		$('#title').html('memeserv - нихера не найдено');
 	};
 };
-*/
 /////////////////////////////////////////////////////////////////////////////
-
+/*
 function showSearchResult(){
 	var num = 0;
 	var text = $('#searchText').val();
@@ -194,7 +209,6 @@ for(var i = 0; i<memeses.length;i++){
 };
 
 if(massive!=[]){
-	$('#title').html('memeserv - чет отрыл');
 for(var m = 0; m<massive.length;m++){
 	try{
 		$('.memeCont').append('<div class="meme"><a target="_blank" href="'+memeses[massive[m]].src+'"><img id="memeImg" src="'+memeses[massive[m]].src+'"></a></div>');
@@ -206,7 +220,7 @@ for(var m = 0; m<massive.length;m++){
 		$('#title').html('memeserv - нихера не найдено');
 	};
 };
-
+*/
 ////////////////////////////////////////////////////////////////////////////
 
 
