@@ -134,6 +134,34 @@ addMeme('подозрительно','https://pp.userapi.com/c849336/v849336425/
 addMeme('разное','https://pp.userapi.com/c830708/v830708564/113d79/UIfi_h29X_A.jpg',"мем succ sitt face лицо");
 addMeme('чо бля?','https://sun1-5.userapi.com/c834201/v834201858/163242/lZEFRkJHuTY.jpg',"мем ты охуел отчим чо че шо бля");
 addMeme('ржомба','https://pp.userapi.com/c846521/v846521025/76d5b/JKva6XUpG4k.jpg',"мем хех смешно ржака ржомба");
+addMeme('чо бля?','https://pp.userapi.com/c824604/v824604896/f3d36/oJBoAu8zkWo.jpg',"мем изыди че чо бля нахуй нахер");
+addMeme("охуенно!","https://pp.userapi.com/c846420/v846420455/778df/AQ_TFlOlv9M.jpg","мем ебать крут охуенн заебис прекрасн нихуя нихера");
+addMeme("сложна","https://pp.userapi.com/c638219/v638219933/4cd8e/cGAKJkWliy8.jpg","мем шо че чо сложн патрик ... ммм хмм");
+addMeme("пошел нахуй","https://pp.userapi.com/c844721/v844721076/7b424/OROedOvzD9k.jpg","мем стой остановис подумай стоп изыди хватит");
+addMeme("разное","https://pp.userapi.com/c845221/v845221354/775c5/O-t5w6V78cA.jpg","мем ага хуле чо че шо аним хули заебок заебись крут");
+addMeme("чо бля?","https://pp.userapi.com/c834301/v834301065/15ce9b/0Vf28_EfU2A.jpg","мем ты охуел ебать чо че шо аним иллия охуеть");
+addMeme("секс","https://pp.userapi.com/c849024/v849024031/5ee3/PssgQv7qV8w.jpg","мем хы воня ммм ... секс ржомба смешно");
+addMeme("разное","https://pp.userapi.com/c635100/v635100114/21904/mfuGAkw3Log.jpg","мем путин ммм ... што что лан ладн");
+addMeme("пошел нахуй","https://pp.userapi.com/c834300/v834300924/1695e3/J1vyHhC7Ebk.jpg","мем горит пердак жоп бомбит подгорает");
+addMeme("ржомба","https://pp.userapi.com/c633318/v633318810/45c89/qzUO2_J5J-g.jpg","мем хы смешно ржомба хех понял ммм");
+addMeme("уважаемо","https://pp.userapi.com/c845416/v845416958/81df3/G0A0XMjpt1c.jpg","мем  уважаемо почетно респект аним жыжа жожо jojo крут");
+addMeme("пошел нахуй","https://pp.userapi.com/c543104/v543104621/4ce51/yFVkRmOUhC4.jpg","мем пошол пошел нахуй нахер ух сука злой стрелять");
+addMeme("поясни","https://pp.userapi.com/c831308/v831308898/12f270/vVkdW_H01tk.jpg","мем человек нахуй сансаныч поясни чо че шо бля понял");
+addMeme("секс","https://pp.userapi.com/c846019/v846019299/7b376/-FN8J1fzG64.jpg","мем хы ммм ... сучка секс бомба обкуренный ");
+addMeme("пошел нахуй","https://pp.userapi.com/c543103/v543103743/30899/AS-TTByLd2c.jpg","мем чо бля шо че угаманись стоп остановись стой черт чорт нож ципленок");
+addMeme("ебать","https://pp.userapi.com/c845017/v845017236/7cdc4/NkTl64dNRVk.jpg","мем хуясе ебать аним нихуя нихера");
+addMeme("ебать","https://pp.userapi.com/c846419/v846419616/78c71/BbaO7zIHFH4.jpg","мем еее ура крут заебись заебок бадум тсс хы");
+addMeme("секс","https://pp.userapi.com/c824410/v824410473/aeb70/YeW_HAly42A.jpg","мем секс ммм ...сучка");
+addMeme("чо бля?","https://pp.userapi.com/c834403/v834403171/50dd7/ldCa0ocvCSw.jpg","мем чо че шо бля бандит source модель");
+addMeme("ржомба","https://pp.userapi.com/c837230/v837230599/55888/Wi5nCuQc17s.jpg","мем хы смешно ебать ржомба понял ммм tf team fortress");
+addMeme("чо бля?","https://pp.userapi.com/c824603/v824603087/14b051/CtcHhj2LzCU.jpg","мем чо че шо бандит охуел");
+addMeme("ебать","https://pp.userapi.com/c844720/v844720965/52a63/J4Oqj1xiCYM.jpg","мем бля пиздец ваще просто");
+addMeme("разное","https://pp.userapi.com/c845122/v845122137/7e81a/zGayc10an30.jpg","мем ыыы прикольн ... ммм");
+addMeme("ржомба","https://pp.userapi.com/c834403/v834403137/167acd/o5zycZ8cdQ4.jpg","мем дракон ебать ржака ржомба пиздец смешно ор");
+addMeme("уважаемо","https://pp.userapi.com/c834100/v834100822/16ab65/QsD8eWrefWA.jpg","здорово уважаемо заебись класс четко аним крут молодец");
+addMeme("ржомба","https://pp.userapi.com/c635100/v635100832/23080/K5FC3DIyaCc.jpg","мем смейся зарежут давай смешно ржомба ржака");
+addMeme("разное","https://pp.userapi.com/c834204/v834204218/175663/_YvBKHIvGGg.jpg","мем да ес yes da");
+addMeme("triggered","https://sun1-1.userapi.com/c840720/v840720957/3d1e4/tnReishYDQw.jpg","мем ор кот triggered охуел");
 
 
 
