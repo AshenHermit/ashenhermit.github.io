@@ -1,0 +1,62 @@
+
+::-webkit-scrollbar-thumb{
+    border-width:1px 1px 1px 2px;
+    border-color: #fff;
+    background-color: #fff;
+}
+::-webkit-scrollbar{
+    width:8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track{
+   border-width:4px solid #fff;
+}
+::-webkit-scrollbar-track:hover{
+     border-width:4px solid #fff;
+}
+
+
+#can{
+	height: 952px;
+	border: 1px solid #fff;
+	box-shadow: -5px 5px 4px 1px rgba(0,0,0,0.5);
+	background-color: #212121;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: pixelated;
+	-ms-interpolation-mode: nearest-neighbor;
+}
+
+@font-face{
+	font-family: comic;
+	src:url(comic.ttf);
+
+}
+
+div{
+	
+	/*user-select: none;*/
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+	font-family: comic;
+}
+
+::selection {
+	background: rgba(0,0,0,0);
+	color: #fff;
+
+}
+
+body{
+	cursor: url(blakes\cursor.png),url(blakes\cursor2.png), pro;
+	overflow: hidden;
+	image-rendering: pixelated;
+	color: #fff;
+	background-color: #212121;
+}
+
+
+
+
+
