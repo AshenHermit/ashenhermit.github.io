@@ -81,8 +81,8 @@ function Mupdate() {
 function update() {
 	Mupdate()
 
-	camXPosition = camXPosition+(TcamXPosition-camXPosition)/5;
-	screenDel = screenDel+(TscreenDel-screenDel)/5;
+	camXPosition = camXPosition+(TcamXPosition-camXPosition)/10;
+	screenDel = screenDel+(TscreenDel-screenDel)/10;
 	updateCanvases();
 }
 
