@@ -1,0 +1,82 @@
+
+::-webkit-scrollbar-thumb{
+    border-width:1px 1px 1px 2px;
+    border-color: #000;
+    background-color: #000;
+}
+::-webkit-scrollbar{
+    width:8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track{
+   border-width:4px solid #000;
+}
+::-webkit-scrollbar-track:hover{
+     border-width:4px solid #000;
+}
+canvas{
+	image-rendering: pixelated;
+	image-rendering: -moz-crisp-edges;
+}
+.text{
+display:  block;
+position: initial;
+height: 440px;
+width: -webkit-fill-available;
+resize:  none;
+margin: 0px;
+overflow-x: auto;
+white-space:  nowrap;
+right:  initial;
+width: -moz-available;
+color: #fff;
+font-size: 25px;
+}
+
+.butt{
+	color: #fff;
+position:  static;
+	
+height: 34px;
+	
+width: fit-content;
+	
+top: 0px;
+}
+
+#can{
+	width: 1578px;
+	border: 1px solid #fff;
+	box-shadow: -5px 5px 4px 1px rgba(0,0,0,0.5);
+	background-color: #58645c;
+	image-rendering: pixelated;
+	image-rendering: -moz-crisp-edges;
+
+}
+
+@font-face{
+	font-family: comic;
+	src:url(comic.ttf);
+
+}
+
+div{
+	
+	/*user-select: none;*/
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+	font-family: comic;
+}
+
+::selection {
+	background: #fff;
+	color: #000;
+}
+
+body{
+	image-rendering: pixelated;
+	color: #fff;
+	background-color: #111111;
+}
