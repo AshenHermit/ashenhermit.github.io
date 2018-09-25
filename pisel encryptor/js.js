@@ -71,6 +71,7 @@ function canvasLoadImage() {
 
 	var mapImg = new Image();
 	mapImg.src = window.URL.createObjectURL(curFiles[0]);
+	console.log(curFiles[0]);
 
 	ctx.drawImage(mapImg,0,0);
 }
