@@ -18,6 +18,9 @@ canvas{
 	image-rendering: pixelated;
 	image-rendering: -moz-crisp-edges;
 }
+textarea{
+	background-color: #000;
+}
 .text{
 display:  block;
 position: initial;
@@ -42,6 +45,7 @@ height: 34px;
 width: fit-content;
 	
 top: 0px;
+background-color: #000;
 }
 
 #can{
