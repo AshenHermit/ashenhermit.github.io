@@ -98,11 +98,13 @@ $('body').on('mousedown', '*[data-url="info"]', function(e) {
 
 
 
-$('#title').css('top', '0px');
+$(document).ready(function() {
+	$('#title').css('top', '0px');
 
-$('#page-image').css('margin-top', '0px');
-$('.page-scrn').css('bottom', '0px');
-$('#right-align').css('height', '405px');
-$('#backButton').css('left', '0px');
+	$('#page-image').css('margin-top', '0px');
+	$('.page-scrn').css('bottom', '0px');
+	$('#right-align').css('height', '405px');
+	$('#backButton').css('left', '0px');
+});
 
 //8px
