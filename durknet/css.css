@@ -111,6 +111,7 @@ A {
 }
 
 #foot{
+  background-color: #000;
   color: #911;
   font-size: 10px;
   position: fixed;
