@@ -50,19 +50,21 @@ A {
   top: 5px;
   background: #0F0F0F;
   box-shadow: 0px 4px 2px rgba(0, 0, 0, .9333333333333333);
+  color: #fff;
 }
 .buy{
   transition: top 0.3s;
   transition-timing-function: cubic-bezier(0.16, 0.79, 0.58, 1.54);
   position: relative;
   margin-bottom: -2%;
-  background: #000;
+  background: #fff;
   float: left;
   width: 28%;
   top: 12px;
   text-align: center;
   border-radius: 5px;
   padding: 7px;
+  color: #000;
   cursor: pointer;
 }
 .price{
@@ -133,8 +135,7 @@ A {
   color: #fff;
 }
 
-#link{
-  width: -webkit-fill-available;
+#link  width: -webkit-fill-available;
   margin: 0px;
   font-size: 30px;
 }
