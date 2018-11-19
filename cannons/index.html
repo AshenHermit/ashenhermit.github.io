@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+	<title>cannons</title>
+	<meta charset = "utf-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="shortcut icon" href="ico.ico" type="image/x-icon">
+	<link rel= "stylesheet" href="css_pc.css"/>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+	<body>
+		<canvas id="can" width="320" height="180"></canvas>
+		<script type="text/javascript" src="js.js"></script>
+		<div id="text">LMB-fire<br>MMB-create cannon</div>
+		<div id="par">parameters:
+			<div id="inputText">gravity: <input type="number" name="gravity" value=""></div>
+			<div id="inputText">fireSpeed: <input type="number" name="fireSpeed" value=""></div>
+			<div id="inputText">bulletType: 
+				<input type="radio" name="bulletType" value="bullet" checked>
+				<input type="radio" name="bulletType" value="rocket">
+			</div>
+		</div>
+	</body>
+</html>
