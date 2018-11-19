@@ -199,6 +199,11 @@ var drawGround = () => {
 //generateGround();
 
 //cannons.push(new Cannon(64,80));
+var createCannon = () => {
+	cannons.push(new Cannon(Math.round(mousePose.x),Math.round(mousePose.y)));
+	cannons[cannons.length-1].speed = parseFloat($('input[name="fireSpeed"]').val());
+}
+
 
 function update () {
 	if (isLoaded) {
@@ -237,6 +242,13 @@ document.addEventListener('mousedown', function(e) {
 		cannons[cannons.length-1].speed = parseFloat($('input[name="fireSpeed"]').val());
 	}
 });
+
+document.addEventListener('keydown', function(e) {
+    if(e.keyCode==32){
+		createCannon();
+	}
+});
+
 document.addEventListener('mouseup', function(e) {mouseDown = false;});
 
 document.addEventListener('mousemove', function(e) {
