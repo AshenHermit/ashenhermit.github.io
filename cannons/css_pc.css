@@ -15,6 +15,7 @@
      border-width:4px solid #fff;
 }
 input{
+	font-family: comic;
     background-color: #212121;
     color: #fff;
     border: 0px;
