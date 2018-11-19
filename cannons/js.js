@@ -21,6 +21,7 @@ const groundHeight = can.height - can.height/2;
 var gravity = 0.1;
 var initFireSpeed = 0.1;
 var initBulletType = "bullet";
+var initCannonLength = 6;
 
 const groundClr = "#191919";
 const fillClr = "rgba(32,32,32,0.2)";
@@ -129,7 +130,7 @@ function Cannon(x,y) {
 	this.angle = 0;
 	this.scale = 4;
 	this.clr = "#ffffff";
-	this.maxlength = 6;
+	this.maxlength = initCannonLength;
 	this.length = this.maxlength;
 	this.strength = 3;
 	this.speed = initFireSpeed;
@@ -137,8 +138,10 @@ function Cannon(x,y) {
 	this.nextFire = this.speed;
 
 	this.update = () => {
-		this.angle = getAngle(this.pos,mousePose);
 		this.speed = initFireSpeed;
+		this.maxlength = initCannonLength;
+		this.angle = getAngle(this.pos,mousePose);
+
 		if(Time<=this.nextFire){this.length = (this.maxlength/this.speed)*(Time-this.nextFire+this.speed);}else{this.length = this.maxlength}
 
 		let dir = getDirection(this.angle,this.length)
@@ -201,6 +204,7 @@ function update () {
 		gravity = parseFloat($('input[name="gravity"]').val());
 		initFireSpeed = parseFloat($('input[name="fireSpeed"]').val());
 		initBulletType = $('input[name="bulletType"]:checked').val();
+		initCannonLength = parseFloat($('input[name="cannonLength"]').val());
 	}
 
 	////////////////////////////////////
@@ -245,6 +249,7 @@ window.addEventListener('resize', function (e) {
 
 document,addEventListener('load', function(e) {
 	$('input[name="gravity"]').val(gravity);
-	$('input[name="fireSpeed"]').val(gravity);
+	$('input[name="fireSpeed"]').val(initFireSpeed);
+	$('input[name="cannonLength"]').val(initCannonLength);
 	isLoaded = true;
 })
