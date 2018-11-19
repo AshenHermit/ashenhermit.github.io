@@ -1,4 +1,5 @@
 var can = document.getElementById('can'); 
+can.oncontextmenu = function() {return false;}
 var ctx = can.getContext('2d');
 ctx.imageSmoothingEnabled= false;
 ctx.fillStyle = "#ffffff";
@@ -19,7 +20,7 @@ const height = can.height;
 const groundHeight = can.height - can.height/2;
 
 var gravity = 0.1;
-var initFireSpeed = 0.1;
+var initFireSpeed = 0.3;
 var initBulletType = "bullet";
 var initCannonLength = 6;
 
@@ -231,7 +232,7 @@ document.addEventListener('mousedown', function(e) {
 	if (e.button==0) {
 		mouseDown = true;
 	}else
-	if (e.button==1) {
+	if (e.button==2) {
 		cannons.push(new Cannon(Math.round(mousePose.x),Math.round(mousePose.y)));
 		cannons[cannons.length-1].speed = parseFloat($('input[name="fireSpeed"]').val());
 	}
