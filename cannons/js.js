@@ -23,6 +23,8 @@ var gravity = 0.1;
 var initFireSpeed = 0.3;
 var initBulletType = "bullet";
 var initCannonLength = 6;
+var initExplosionParticles = 10;
+var initColor = "#ffffff";
 
 const groundClr = "#191919";
 const fillClr = "rgba(32,32,32,0.2)";
@@ -49,15 +51,16 @@ function vector2(x,y) {
 	}
 }
 
+var targetMousePose = new vector2(0,0);
 var mousePose = new vector2(0,0);
 
 var drawLine = (x1,y1,x2,y2) => {
-	ctx.msImageSmoothingEnabled = false;
- 	ctx.imageSmoothingEnabled = false;
-	ctx.beginPath();
-	ctx.moveTo(x1,y1);
-	ctx.lineTo(x2,y2);
-	ctx.stroke();
+	for (var i = 0; i < 6; i++) {
+		ctx.beginPath();
+		ctx.moveTo(x1,y1);
+		ctx.lineTo(x2,y2);
+		ctx.stroke();
+	}
 }
 
 var getDirection = (angle,dist) => {
@@ -107,16 +110,17 @@ function Rocket(x,y,dir) {
 	this.update = () => {
 		if (Time>=this.spawnTime+this.lifeTime) {this.detonate();}
 
-		this.direction.add(getDirection(getAngle(this.pos,mousePose),this.speed));
+		this.direction.add(getDirection(getAngle(this.pos,targetMousePose),this.speed));
 		this.pos.add(this.direction);
 		ctx.fillStyle = this.clr;
 		ctx.fillRect(Math.round(this.pos.x)-this.scale/2,Math.round(this.pos.y)-this.scale/2,this.scale,this.scale);
 		this.direction.toZero(this.speed/3.14);
 	}
 	this.detonate = () => {
-		for (var b = 0; b < 12; b++) {
+		for (var b = 0; b < initExplosionParticles; b++) {
 			let randDir = getDirection(Math.random()*360,1);
 			bullets.push(new Bullet(this.pos.x,this.pos.y,randDir));
+			bullets[bullets.length-1].clr = this.clr;
 			bullets[bullets.length-1].direction.mul({x:Math.random()*this.explosionStrenth,y:Math.random()*this.explosionStrenth});
 			this.direction.mul({x:0.8,y:0.8});
 			bullets[bullets.length-1].direction.add(this.direction);
@@ -130,7 +134,7 @@ function Cannon(x,y) {
 	this.pos = new vector2(x,y)
 	this.angle = 0;
 	this.scale = 4;
-	this.clr = "#ffffff";
+	this.clr = initColor;
 	this.maxlength = initCannonLength;
 	this.length = this.maxlength;
 	this.strength = 3;
@@ -146,10 +150,10 @@ function Cannon(x,y) {
 		if(Time<=this.nextFire){this.length = (this.maxlength/this.speed)*(Time-this.nextFire+this.speed);}else{this.length = this.maxlength}
 
 		let dir = getDirection(this.angle,this.length)
-		ctx.lineWidth=this.scale/2;
+		ctx.lineWidth=(this.scale/2)-0.5;
 		ctx.fillStyle = this.clr;
 		ctx.fillRect(this.pos.x-this.scale/2,this.pos.y-this.scale/2,this.scale,this.scale);
-		ctx.strokeStyle = "#fff";
+		ctx.strokeStyle = this.clr;
 		drawLine(this.pos.x,this.pos.y,this.pos.x+dir.x,this.pos.y+dir.y);
 
 		this.fire();
@@ -162,6 +166,7 @@ function Cannon(x,y) {
 			if(initBulletType=="bullet"){bullets.push(new Bullet(this.pos.x+spawn.x,this.pos.y+spawn.y,dir));}else
 			if(initBulletType=="rocket"){bullets.push(new Rocket(this.pos.x+spawn.x,this.pos.y+spawn.y,dir));}
 			bullets[bullets.length-1].direction.mul({x:this.strength,y:this.strength});
+			bullets[bullets.length-1].clr = this.clr;
 			this.nextFire = Time+this.speed;
 			this.length = 0;
 		}
@@ -200,7 +205,7 @@ var drawGround = () => {
 
 //cannons.push(new Cannon(64,80));
 var createCannon = () => {
-	cannons.push(new Cannon(Math.round(mousePose.x),Math.round(mousePose.y)));
+	cannons.push(new Cannon(Math.round(targetMousePose.x),Math.round(targetMousePose.y)));
 	cannons[cannons.length-1].speed = parseFloat($('input[name="fireSpeed"]').val());
 }
 
@@ -211,8 +216,12 @@ function update () {
 		initFireSpeed = parseFloat($('input[name="fireSpeed"]').val());
 		initBulletType = $('input[name="bulletType"]:checked').val();
 		initCannonLength = parseFloat($('input[name="cannonLength"]').val());
+		initExplosionParticles = parseFloat($('input[name="explosionParticles"]').val());
+		initColor = $('input[name="color"]').val();
 	}
 
+	mousePose.x += (targetMousePose.x-mousePose.x)/10;
+	mousePose.y += (targetMousePose.y-mousePose.y)/10;
 	////////////////////////////////////
 	//ctx.clearRect(0, 0, width, height);
 	ctx.fillStyle = fillClr;
@@ -238,8 +247,7 @@ document.addEventListener('mousedown', function(e) {
 		mouseDown = true;
 	}else
 	if (e.button==2) {
-		cannons.push(new Cannon(Math.round(mousePose.x),Math.round(mousePose.y)));
-		cannons[cannons.length-1].speed = parseFloat($('input[name="fireSpeed"]').val());
+		createCannon();
 	}
 });
 
@@ -252,17 +260,19 @@ document.addEventListener('keydown', function(e) {
 document.addEventListener('mouseup', function(e) {mouseDown = false;});
 
 document.addEventListener('mousemove', function(e) {
-	mousePose.x = (width/can.clientWidth)*e.pageX;mousePose.x-=2;
-	mousePose.y = (height/can.clientHeight)*e.pageY;mousePose.y-=2;
+	targetMousePose.x = (width/can.clientWidth)*e.pageX;targetMousePose.x-=2;
+	targetMousePose.y = (height/can.clientHeight)*e.pageY;targetMousePose.y-=2;
 });
 
 window.addEventListener('resize', function (e) {
 	resize();
-})
+});
 
-document,addEventListener('load', function(e) {
+document.addEventListener('DOMContentLoaded', function(e) {
 	$('input[name="gravity"]').val(gravity);
 	$('input[name="fireSpeed"]').val(initFireSpeed);
 	$('input[name="cannonLength"]').val(initCannonLength);
+	$('input[name="explosionParticles"]').val(initExplosionParticles);
+	$('input[name="color"]').val(initColor);
 	isLoaded = true;
-})
+});
