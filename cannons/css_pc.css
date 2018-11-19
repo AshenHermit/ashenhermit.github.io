@@ -23,11 +23,13 @@ input{
 #text{
 	color: #8e8e8e;
 	position: absolute;
+    margin-left: 5px;
 }
 #par{
 	position: absolute;
     right: 0px;
     margin-right: 10px;
+    text-align: right;
 }
 #can{
 	position: absolute;
@@ -58,8 +60,8 @@ div{
 }
 
 ::selection {
-	background: rgba(0,0,0,1);
-	color: #fff;
+	background-color: #fff;
+	color: #000;
 
 }
 
@@ -70,4 +72,8 @@ body{
 	color: #fff;
 	background-color: #212121;
 }
+
+
+
+
 
