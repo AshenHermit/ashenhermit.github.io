@@ -11,8 +11,10 @@
 	<body>
 		<canvas id="can" width="320" height="180"></canvas>
 		<script type="text/javascript" src="js.js"></script>
-		<div id="text">LMB-fire<br>RMB or Space-create cannon</div>
+		<div id="text">LMB-fire and drag cannons<br>MMB-drag all<br>RMB or Space-create cannon<br>wheel-zoom</div>
+		<div id="del">for delete press DEL</div>
 		<div id="par">parameters:
+			<div id="inputText">zoom: <input type="number" name="zoom" value=""></div>
 			<div id="inputText">gravity: <input type="number" name="gravity" value=""></div>
 			<div id="inputText">fire speed: <input type="number" name="fireSpeed" value=""></div>
 			<div id="inputText">bullet type: 
@@ -21,7 +23,10 @@
 			</div>
 			<div id="inputText">cannon length: <input type="number" name="cannonLength" value=""></div>
 			<div id="inputText">explosion particles count: <input type="number" name="explosionParticles" value=""></div>
+			<div id="inputText">rocket life time (-1=∞): <input type="number" name="rocketLifeTime" value=""></div>
 			<div id="inputText">next color: <input type="text" name="color" value=""></div>
+			<div id="button" data-func="clearBullets">delete bullets only</div>
+			<div id="button" data-func="clear">clear all</div>
 		</div>
 	</body>
 </html>
