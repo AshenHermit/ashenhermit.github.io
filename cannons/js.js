@@ -7,23 +7,27 @@ ctx.fillStyle = "#ffffff";
 const fps = 60;
 var scale = 5;
 var Time = 0;
+var width = can.width;
+var height = can.height;
 
 var resize = () => {
 	can.width = can.clientWidth/scale;
 	can.height = can.clientHeight/scale;
+	width = can.width;
+	height = can.height;
 }
 resize();
 
 const distortion = 2;
-const width = can.width;
-const height = can.height;
 const groundHeight = can.height - can.height/2;
 
+var selectedCannon = -1;
 var gravity = 0.1;
 var initFireSpeed = 0.3;
 var initBulletType = "bullet";
 var initCannonLength = 6;
 var initExplosionParticles = 10;
+var initRocketLifeTime = 2;
 var initColor = "#ffffff";
 
 const groundClr = "#191919";
@@ -36,12 +40,14 @@ var bullets = [];
 var cannons = [];
 
 var mouseDown = false;
+var middleDown = false;
 var isLoaded = false;
 
 function vector2(x,y) {
 	this.x = x;
 	this.y = y;
 
+	this.set = (v) => {	this.x=v.x; this.y=v.y; }
 	this.add = (v) => {	this.x+=v.x; this.y+=v.y; }
 	this.mul = (v) => {	this.x*=v.x; this.y*=v.y; }
 	this.round = (v) => { this.x=Math.round(this.x); this.y=Math.round(this.y); }
@@ -49,9 +55,14 @@ function vector2(x,y) {
 		if(this.x>0){this.x-=n}else if(this.x<0){this.x+=n}
 		if(this.y>0){this.y-=n}else if(this.y<0){this.y+=n}
 	}
+	this.isOverlap = (v,w,h) => {
+		if (this.x>v.x-1 && this.x<v.x+w+1 && this.y>v.y-1 && this.y<v.y+h+1) {return true;}
+		return false;
+	}
 }
 
 var targetMousePose = new vector2(0,0);
+var lastMousePose = new vector2(0,0);
 var mousePose = new vector2(0,0);
 
 var drawLine = (x1,y1,x2,y2) => {
@@ -103,12 +114,12 @@ function Rocket(x,y,dir) {
 	this.scale = 2;
 	this.clr = "#ffffff";
 	this.speed = 0.2;
-	this.lifeTime = 2;
+	this.lifeTime = initRocketLifeTime;
 	this.spawnTime = Time;
 	this.explosionStrenth = 2;
 
 	this.update = () => {
-		if (Time>=this.spawnTime+this.lifeTime) {this.detonate();}
+		if (Time>=this.spawnTime+this.lifeTime && this.lifeTime!=-1) {this.detonate();}
 
 		this.direction.add(getDirection(getAngle(this.pos,targetMousePose),this.speed));
 		this.pos.add(this.direction);
@@ -160,7 +171,7 @@ function Cannon(x,y) {
 	}
 
 	this.fire = () => {
-		if(mouseDown && Time>=this.nextFire){
+		if(mouseDown && selectedCannon==-1 && Time>=this.nextFire){
 			let spawn = getDirection(this.angle,this.length);
 			let dir = getDirection(this.angle,1);
 			if(initBulletType=="bullet"){bullets.push(new Bullet(this.pos.x+spawn.x,this.pos.y+spawn.y,dir));}else
@@ -209,23 +220,37 @@ var createCannon = () => {
 	cannons[cannons.length-1].speed = parseFloat($('input[name="fireSpeed"]').val());
 }
 
+function updateEdtor() {
+	if (mouseDown && selectedCannon != -1) {
+		cannons[selectedCannon].pos.set(targetMousePose);
+		cannons[selectedCannon].pos.round();
+		$("#del").css('opacity', '1');
+	}else{
+		$("#del").css('opacity', '0');
+	}
+}
+
 
 function update () {
 	if (isLoaded) {
+		scale = parseFloat($('input[name="zoom"]').val());
 		gravity = parseFloat($('input[name="gravity"]').val());
 		initFireSpeed = parseFloat($('input[name="fireSpeed"]').val());
 		initBulletType = $('input[name="bulletType"]:checked').val();
 		initCannonLength = parseFloat($('input[name="cannonLength"]').val());
 		initExplosionParticles = parseFloat($('input[name="explosionParticles"]').val());
+		initRocketLifeTime = parseFloat($('input[name="rocketLifeTime"]').val());
 		initColor = $('input[name="color"]').val();
 	}
 
-	mousePose.x += (targetMousePose.x-mousePose.x)/10;
-	mousePose.y += (targetMousePose.y-mousePose.y)/10;
+	mousePose.x += (targetMousePose.x-mousePose.x)/5;
+	mousePose.y += (targetMousePose.y-mousePose.y)/5;
 	////////////////////////////////////
 	//ctx.clearRect(0, 0, width, height);
 	ctx.fillStyle = fillClr;
 	ctx.fillRect(0,0,width,height);
+	updateEdtor();
+
 	for (var b = 0; b < bullets.length; b++) {
 		bullets[b].arrId = b;
 		bullets[b].update();
@@ -234,8 +259,7 @@ function update () {
 		cannons[c].update();
 	}
 
-
-	drawGround();
+	//drawGround();
 	Time+=(1000/fps)/1000;
 };
 
@@ -243,11 +267,25 @@ setInterval(update,1000/fps);
 
 
 document.addEventListener('mousedown', function(e) {
-	if (e.button==0) {
+	if (e.button==0 && !$("input").is(":focus")) {
 		mouseDown = true;
-	}else
+	}
+	if (e.button==1) {
+		middleDown = true;
+	}
 	if (e.button==2) {
 		createCannon();
+	}
+
+	if (selectedCannon == -1) {
+		for (var c = 0; c < cannons.length; c++) {
+			if (targetMousePose.isOverlap({x:cannons[c].pos.x-cannons[c].scale/2,y:cannons[c].pos.y-cannons[c].scale/2},cannons[c].scale,cannons[c].scale)) {
+				selectedCannon = c;
+				break;
+			}else{
+				selectedCannon = -1;
+			}
+		}
 	}
 });
 
@@ -255,13 +293,33 @@ document.addEventListener('keydown', function(e) {
     if(e.keyCode==32){
 		createCannon();
 	}
+	if (selectedCannon!=-1 && e.keyCode==46) {
+		cannons.splice(selectedCannon,1);
+		selectedCannon = -1;
+		mouseDown = false;
+	}
 });
 
-document.addEventListener('mouseup', function(e) {mouseDown = false;});
+document.addEventListener('mouseup', function(e) {
+	mouseDown = false;
+	middleDown = false;
+	selectedCannon = -1;
+});
 
 document.addEventListener('mousemove', function(e) {
+	lastMousePose.set(targetMousePose);
 	targetMousePose.x = (width/can.clientWidth)*e.pageX;targetMousePose.x-=2;
 	targetMousePose.y = (height/can.clientHeight)*e.pageY;targetMousePose.y-=2;
+
+	if (middleDown) {
+		let v = {x:Math.round(targetMousePose.x-lastMousePose.x), y:Math.round(targetMousePose.y-lastMousePose.y)};
+		for (var c = 0; c < cannons.length; c++) {
+			cannons[c].pos.add(v);
+		}
+		for (var c = 0; c < bullets.length; c++) {
+			bullets[c].pos.add(v);
+		}
+	}
 });
 
 window.addEventListener('resize', function (e) {
@@ -269,10 +327,34 @@ window.addEventListener('resize', function (e) {
 });
 
 document.addEventListener('DOMContentLoaded', function(e) {
+	$('input[name="zoom"]').val(scale);
 	$('input[name="gravity"]').val(gravity);
 	$('input[name="fireSpeed"]').val(initFireSpeed);
 	$('input[name="cannonLength"]').val(initCannonLength);
 	$('input[name="explosionParticles"]').val(initExplosionParticles);
+	$('input[name="rocketLifeTime"]').val(initRocketLifeTime);
 	$('input[name="color"]').val(initColor);
 	isLoaded = true;
+});
+
+$(document).on('click', '#button', function(e) {
+	if ($(e.target).attr('data-func')=="clear") {
+		bullets = [];
+		cannons = [];
+		ctx.clearRect(0, 0, width, height);
+	}
+	if ($(e.target).attr('data-func')=="clearBullets") {
+		bullets = [];
+		ctx.clearRect(0, 0, width, height);
+	}
+});
+$(document).on('change', 'input[name="zoom"]', function(e) {
+	resize();
+});
+
+$('#can').on('mousewheel', function(e) {
+	if (e.originalEvent.deltaY<0) {scale+=0.2;}else
+	if (e.originalEvent.deltaY>0 && scale>0.5) {scale-=0.2;}
+	$('input[name="zoom"]').val(scale);
+	resize();
 });
