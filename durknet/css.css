@@ -33,6 +33,10 @@ A {
 .name{
 
 }
+#active{
+  background-color: #fff;
+  color: #0F0F0F;
+}
 .advice{
   margin-top: -30px;
 }
@@ -106,7 +110,6 @@ A {
 }
 .item{
   color: #fff;
-  text-shadow: 0 0 0px #000;
   user-select: none;
   transition: margin-left 0.3s;
   transition-timing-function: cubic-bezier(0.16, 0.79, 0.58, 1.54);
@@ -116,12 +119,10 @@ A {
 .item:hover{
   /*color: #EF9;*/
   margin-left: 10px;
-  text-shadow: -2px 2px 1px #000;
   cursor: pointer;
 }
 .item:active{
   margin-left: 10px;
-  text-shadow: -2px 2px 1px #000;
   cursor: pointer;
   background-color: #252525;
 }
