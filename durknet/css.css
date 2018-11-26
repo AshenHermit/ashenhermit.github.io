@@ -24,7 +24,6 @@ body{
 
 A {
   text-decoration: none;
-	
 }
 .date{
   color: #808080;
@@ -33,6 +32,9 @@ A {
 }
 .name{
 
+}
+.advice{
+  margin-top: -30px;
 }
 .preview{
   border: 3px solid #fff;
@@ -103,6 +105,7 @@ A {
   margin-bottom: 39px;
 }
 .item{
+  color: #fff;
   text-shadow: 0 0 0px #000;
   user-select: none;
   transition: margin-left 0.3s;
