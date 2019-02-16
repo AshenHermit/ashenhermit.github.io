@@ -1,0 +1,129 @@
+::-webkit-scrollbar{
+    width: 0px;
+}
+
+:root {
+  --main-text-color: #a5d649;
+}
+
+body{
+	background-color: #101010;
+}
+
+nav{
+	background-color: rgba(9, 12, 10, 0.89);
+}
+
+.titleLine{
+	width: 80vw;
+	text-align: center;
+	text-shadow: 0 0 10px #000,0 0 10px #000;
+}
+
+.pictureItem{
+    margin-bottom: 7vh;
+    display: block;
+}
+.shopItem{
+   	max-width: 32%;
+   	display: inline-block;
+   	margin: 2%;
+   	box-shadow: 0 0 44px 0px #000;
+   	border-radius: 7px;
+   	padding: 2%;
+   	background-color: #1f1f1f;
+   	margin-left: 0;
+   	padding-top: 0.6%;
+}
+.shopItemImg{
+	border-radius: 10px;
+	border: 4px rgba(255, 255, 255, 0.12) solid;
+	width: 100%;
+	user-select: none;
+}
+.shopItemDate{
+	color: rgba(255, 255, 255, 0.15) !important;
+	margin-bottom: -1vw;
+	text-align: left;
+	margin-right: 0%;
+	font-weight: 500;
+	margin-top: 1vh;
+}
+.shopItemBuyBlock{
+    padding: 3%;
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+}
+.shopItemButton{
+	transition: top 0.2s;
+  	transition-timing-function: cubic-bezier(0, 0.48, 0.26, 0.99);
+
+    font-weight: bold;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 9px;
+    margin-left: 5%;
+    padding-top: 0.5%;
+    position: relative;
+    user-select: none;
+    top: 0px;
+}
+.shopItemButton:hover{
+	background-color: #1f1f1f;
+	color: #fff !important;
+	top: -6px;
+	cursor: pointer;
+}
+.shopItemButton:active{
+	top: -3px;
+	cursor: pointer;
+}
+.shopItemName, .shopItemPrice{
+	font-size: 1.2em;
+	font-weight: 400;
+}
+.shopItemPrice{
+color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.wow {
+  visibility: hidden;
+}
+
+.bg{
+	/*position: absolute;*/
+	background-size: cover;
+	-webkit-background-size: cover;
+	height: 29vh;
+	box-shadow: inset 0 0 35px 8px rgba(0, 0, 0, 0.76);
+	padding-top: 6vh;
+}
+.content{
+	text-align: center;
+	width: 90vw;
+	margin-left: 5vw;
+	padding: 2%;
+}
+.content-line{
+	padding: 2%;
+	/*background-color: rgba(9, 12, 10, 1);*/
+}
+
+
+::selection {
+	background-color: var(--main-text-color);
+	color: #fff;
+}
+
+@media (max-width: 960px) {
+.shopItem{
+    min-width: 100% !important;
+
+}
+.shopItemImg{
+	width: 100% !important;
+}
+.content{
+	padding-top: 12%;
+}
+}
