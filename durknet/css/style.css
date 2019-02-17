@@ -96,7 +96,7 @@ color: rgba(255, 255, 255, 0.7) !important;
 	-webkit-background-size: cover;
 	height: 29vh;
 	box-shadow: inset 0 0 35px 8px rgba(0, 0, 0, 0.76);
-	padding-top: 6vh;
+	padding-top: 10vh;
 }
 .content{
 	text-align: center;
