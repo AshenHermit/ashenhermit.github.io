@@ -58,26 +58,32 @@ function checkPage() {
 
 
 function loadJsonGoods(json) {
-	$.get("json/goods.json", function(data) { 
-		console.log(data);
-	    	let goods = JSON.parse(data);
-
-	    goods.forEach(function(item) {
-	    	document.getElementsByClassName('content')[0].innerHTML+=
-			'<div class="wow animated fast flex-center fadeInUp shopItem">'+ ((item.name!=undefined) ? '<h2 class="flex-center animated fadeInDown mb-8 white-text shopItemName">'+item.name+'</h2>' : "") +((item.description!=undefined) ? '<h6 class="flex-center animated fadeInDown mb-8 white-text text-muted" style="color: rgba(255, 255, 255, 0.5) !important;">'+item.description+'</h6>' : "")+((item.price!=undefined) ? '<div class="d-flex flex-row shopItemBuyBlock"><h5 class="flex-center animated fadeInDown mb-8 white-text text-muted shopItemPrice">'+item.price+'<span style="text-decoration: line-through;">щ</span></h5><div class="animated fadeInDown waves-effect waves-light black-text shopItemButton">заказать</div></div>' : "")+'<img class="shopItemImg" alt="'+ ((item.name!=undefined) ? item.name : "параша какая т")+'" src="'+item.imgUrl+'"></img>'+((item.date!=undefined) ? '<h6 class=" animated fadeInDown mb-8 white-text text-muted shopItemDate">'+item.date+'</h6>' : "")+'</div>'
-		});
-	},"json");
+	var j = $.getJSON("json/goods.json");
+	var waiting = setInterval(function(){
+		if(j.readyState>3){
+			let goods = JSON.parse(j.responseText);
+ 
+		    goods.forEach(function(item) {
+		    	document.getElementsByClassName('content')[0].innerHTML+=
+				'<div class="wow animated fast flex-center fadeInUp shopItem">'+ ((item.name!=undefined) ? '<h2 class="flex-center animated fadeInDown mb-8 white-text shopItemName">'+item.name+'</h2>' : "") +((item.description!=undefined) ? '<h6 class="flex-center animated fadeInDown mb-8 white-text text-muted" style="color: rgba(255, 255, 255, 0.5) !important;">'+item.description+'</h6>' : "")+((item.price!=undefined) ? '<div class="d-flex flex-row shopItemBuyBlock"><h5 class="flex-center animated fadeInDown mb-8 white-text text-muted shopItemPrice">'+item.price+'<span style="text-decoration: line-through;">щ</span></h5><div class="animated fadeInDown waves-effect waves-light black-text shopItemButton">заказать</div></div>' : "")+'<img class="shopItemImg" alt="'+ ((item.name!=undefined) ? item.name : "параша какая т")+'" src="'+item.imgUrl+'"></img>'+((item.date!=undefined) ? '<h6 class=" animated fadeInDown mb-8 white-text text-muted shopItemDate">'+item.date+'</h6>' : "")+'</div>'
+			});
+			clearInterval(waiting);
+		}
+	},100);
 }
 function loadJsonPictures(json) {
-	// $.get("json/goods.json", function(data) { 
-		console.log(json);
-	    let goods = JSON.parse(json);
-
-	    goods.forEach(function(item) {
-	    	document.getElementsByClassName('content')[0].innerHTML+=
-			'<div class="wow animated fast flex-center fadeInUp pictureItem">'+'<img alt="'+ ((item.name!=undefined) ? item.name : "параша какая т")+'" style="height: 100%;width: auto;" class="shopItemImg" src="'+item.imgUrl+'"></img>'+ ((item.name!=undefined) ? '<h2 class="flex-center animated fadeInDown mb-8 white-text shopItemName ">'+item.name+'</h2>' : "") +((item.description!=undefined) ? '<h6 class="flex-center animated fadeInDown mb-8 white-text text-muted" style="color: rgba(255, 255, 255, 0.5) !important;">'+item.description+'</h6>' : "")+((item.price!=undefined) ? '<div class="d-flex flex-row shopItemBuyBlock"><h5 class="flex-center animated fadeInDown mb-8 white-text text-muted shopItemPrice">'+item.price+'<span style="text-decoration: line-through;">щ</span></h5><div class="animated fadeInDown waves-effect waves-light black-text shopItemButton">заказать</div></div>' : "")+((item.date!=undefined) ? '<h6 class=" animated fadeInDown mb-8 white-text text-muted shopItemDate">'+item.date+'</h6>' : "")+'</div>'
-		});
-	// },"json");
+	var j = $.getJSON("json/goods.json");
+	var waiting = setInterval(function(){
+		if(j.readyState>3){
+			let goods = JSON.parse(j.responseText);
+ 
+		    goods.forEach(function(item) {
+		    document.getElementsByClassName('content')[0].innerHTML+=
+				'<div class="wow animated fast flex-center fadeInUp pictureItem">'+'<img alt="'+ ((item.name!=undefined) ? item.name : "параша какая т")+'" style="height: 100%;width: auto;" class="shopItemImg" src="'+item.imgUrl+'"></img>'+ ((item.name!=undefined) ? '<h2 class="flex-center animated fadeInDown mb-8 white-text shopItemName ">'+item.name+'</h2>' : "") +((item.description!=undefined) ? '<h6 class="flex-center animated fadeInDown mb-8 white-text text-muted" style="color: rgba(255, 255, 255, 0.5) !important;">'+item.description+'</h6>' : "")+((item.price!=undefined) ? '<div class="d-flex flex-row shopItemBuyBlock"><h5 class="flex-center animated fadeInDown mb-8 white-text text-muted shopItemPrice">'+item.price+'<span style="text-decoration: line-through;">щ</span></h5><div class="animated fadeInDown waves-effect waves-light black-text shopItemButton">заказать</div></div>' : "")+((item.date!=undefined) ? '<h6 class=" animated fadeInDown mb-8 white-text text-muted shopItemDate">'+item.date+'</h6>' : "")+'</div>'
+			});
+			clearInterval(waiting);
+		}
+	},100);
 }
 
 
