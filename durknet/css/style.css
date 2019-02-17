@@ -44,7 +44,7 @@ nav{
 .shopItemImg{
 	border-radius: 10px;
 	border: 4px rgba(255, 255, 255, 0.12) solid;
-	width: 100%;
+	max-width: 100%;
 	user-select: none;
 }
 .shopItemDate{
