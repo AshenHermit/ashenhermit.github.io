@@ -72,7 +72,7 @@ function loadJsonGoods(json) {
 	},100);
 }
 function loadJsonPictures(json) {
-	var j = $.getJSON("json/goods.json");
+	var j = $.getJSON("json/pictures.json");
 	var waiting = setInterval(function(){
 		if(j.readyState>3){
 			let goods = JSON.parse(j.responseText);
