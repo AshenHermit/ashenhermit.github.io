@@ -116,21 +116,23 @@ function drawPointerCircle(x,y,i) {
 	ctx.drawImage(circleImg,x-s/2,y-s/2,s,s);
 }
 
-setInterval(function() {
-	ctx.clearRect(0,0,width,height);
-	drawCircle();
-	drawAbilities();
-	for (var i = 0; i < abLevelsAnim.length; i++){
-		if(i*4<time) abLevelsAnim[i]+=(abilities[i][1]-abLevelsAnim[i])/6;//animate
-		abCirclesAnim[i].c+=(abCirclesAnim[i].t-abCirclesAnim[i].c)/4;
-	}
-	time++;
-	$('#info').css({
-		left: Number.parseInt($('#info').css('left'))+(mousePos.x-Number.parseInt($('#info').css('left')))/3,
-		top: Number.parseInt($('#info').css('top'))+(mousePos.y-Number.parseInt($('#info').css('top')))/3
-	});
-	$('#info').css('opacity',(infoShow) ? '0.5' : '0');
-},1000/60);
+$(document).ready(function($) {
+	setInterval(function() {
+		ctx.clearRect(0,0,width,height);
+		drawCircle();
+		drawAbilities();
+		for (var i = 0; i < abLevelsAnim.length; i++){
+			if(i*4<time) abLevelsAnim[i]+=(abilities[i][1]-abLevelsAnim[i])/6;//animate
+			abCirclesAnim[i].c+=(abCirclesAnim[i].t-abCirclesAnim[i].c)/4;
+		}
+		time++;
+		$('#info').css({
+			left: Number.parseInt($('#info').css('left'))+(mousePos.x-Number.parseInt($('#info').css('left')))/3,
+			top: Number.parseInt($('#info').css('top'))+(mousePos.y-Number.parseInt($('#info').css('top')))/3
+		});
+		$('#info').css('opacity',(infoShow) ? '0.5' : '0');
+	},1000/60);
+});
 
 
 document.addEventListener('mousemove',function(e){
