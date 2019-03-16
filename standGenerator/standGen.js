@@ -19,7 +19,6 @@ function generateAbility()
 		var description = powerDescription;
 		
 		//link to the power page and display Stand information
-		$('#description').html('<span style="color: #fff;font-weight: 500;font-size: 1.5em">Описание:<span><br>'+description);
+		$('#description').html('<span style="color: #fff;font-weight: 500;font-size: 1.5em">Описание:</span><br>'+description);
 	});
 }
-generateAbility();
