@@ -21,6 +21,7 @@ var abilities = [];
 var abilityCount = 7;
 
 function generate() {
+	time = 0;
 	abilities = [];
 	var tmpAb = abilityNames.concat();
 	console.log(tmpAb);
