@@ -24,7 +24,6 @@ function generate() {
 	time = 0;
 	abilities = [];
 	var tmpAb = abilityNames.concat();
-	console.log(tmpAb);
 	for (var i = 0; i < abilityCount; i++) {
 		var rand = Math.floor((Math.random() * tmpAb.length));
 		abilities.push([tmpAb[rand],Math.round((Math.random() * maxPoints))]);
@@ -158,4 +157,4 @@ function resize() {
 	r=height/7;
 	ctx.lineWidth = 5;
 }
-window.addEventListener('resize',resize);
+// window.addEventListener('resize',resize);
