@@ -13,11 +13,11 @@ body {background: #101010; height: 1500px;}
 }
 
 body{
-	background-color: #101010;
+	background-color: #0f1017;
 }
 
 nav{
-	background-color: rgba(9, 12, 10, 0.89);
+	background-color: rgba(15, 16, 23, 0.85);
 }
 
 .titleLine{
@@ -37,7 +37,7 @@ nav{
    	box-shadow: 0 0 44px 0px #000;
    	border-radius: 7px;
    	padding: 2%;
-   	background-color: #1f1f1f;
+   	background-color: #181b24;
    	margin-left: 0;
    	padding-top: 0.6%;
 }
@@ -68,14 +68,13 @@ nav{
     width: 100%;
     background-color: #fff;
     border-radius: 9px;
-    margin-left: 5%;
     padding-top: 0.5%;
     position: relative;
     user-select: none;
     top: 0px;
 }
 .shopItemButton:hover{
-	background-color: #1f1f1f;
+	background-color: #181b24;
 	color: #fff !important;
 	top: -6px;
 	cursor: pointer;
@@ -115,6 +114,9 @@ color: rgba(255, 255, 255, 0.7) !important;
 	/*background-color: rgba(9, 12, 10, 1);*/
 }
 
+a{
+	display: contents;
+}
 
 ::selection {
 	background-color: var(--main-text-color);
