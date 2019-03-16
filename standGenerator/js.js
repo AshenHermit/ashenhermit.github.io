@@ -2,34 +2,34 @@ var time = 0;
 
 var can = document.getElementById('can');
 var ctx = can.getContext('2d');
-can.width = window.innerWidth;
-can.height = window.innerHeight;
+var width;
+var height;
+resize();
 
 const DOTCLR = "#ffffff",
            ENMCLR = "#F17E7E",
 BCKCLR = "rgba(0, 0, 0, .25)";
 
 const circle = 2*Math.PI;
-const width = can.width;
-const height = can.height;
 var circleImg = new Image(); circleImg.src = "circle.png";
 var mousePos = {x:0,y:0};
-var infoShow = false;
+var pointerPos = {x:0,y:0};
 var maxPoints = 10;
 
 var abilities = [
-	["влажность",Math.floor((Math.random() * maxPoints))],
-	["умность",Math.floor((Math.random() * maxPoints))],
-	["выносливость",Math.floor((Math.random() * maxPoints))],
-	["стояк",Math.floor((Math.random() * maxPoints))],
-	["метаболизм",Math.floor((Math.random() * maxPoints))],
-	["скорость",Math.floor((Math.random() * maxPoints))],
-	["дальность",Math.floor((Math.random() * maxPoints))]
+	["влажность",0],
+	["умность",0],
+	["выносливость",0],
+	["стояк",0],
+	["метаболизм",0],
+	["скорость",0],
+	["дальность",0]
 ]
 function generate() {
-	abilities.forEach(function(ab) {ab[1] = Math.floor((Math.random() * maxPoints));});
+	abilities.forEach(function(ab) {ab[1] = Math.round((Math.random() * maxPoints));});
 	$('#description').html('<span style="color: #fff;font-weight: 500;font-size: 1.5em">Описание:<span><br>...Погодь...');
 	generateAbility();
+	turnInfo(false);
 }
 //animations
 var abLevelsAnim = [];// levels animation
@@ -43,7 +43,6 @@ abilities.forEach(function(ab){
 ctx.strokeStyle = "#5c665f";
 ctx.fillStyle = "#2d2d2d";
 ctx.lineCap = "round";
-ctx.lineWidth = 5;
 
 var r=height/8;
 
@@ -57,7 +56,6 @@ var cellAng = circle/abilities.length;
 function drawCircle() {
 	ctx.globalAlpha = 1;
 	//circle shadow
-	ctx.fillStyle = "#2d2d2d";
 	ctx.fillStyle = "#11141a";
 	ctx.beginPath();
 	ctx.arc(width/2,height/2+10,r,0,circle);
@@ -107,10 +105,12 @@ function drawAbilities(){
 function drawPointerCircle(x,y,i) {
 	let s = r/8;
 	if (distanceToMouse(x,y)<16) {
-		abCirclesAnim[i].t = 1;infoShow=true;
+		abCirclesAnim[i].t = 1;
+		turnInfo(true);
+		pointerPos.x = x; pointerPos.y = y;
 		$('#ability').html(abilities[i][0]);
 		$('#level').html(abilities[i][1]+'/'+maxPoints);
-	}else{abCirclesAnim[i].t = 0.3;$('#info').css('opacity','0');};
+	}else{abCirclesAnim[i].t = 0.3;};
 	ctx.globalAlpha=abCirclesAnim[i].c;
 	s+=(ctx.globalAlpha-0.3)*8;
 	ctx.drawImage(circleImg,x-s/2,y-s/2,s,s);
@@ -127,13 +127,15 @@ $(document).ready(function($) {
 		}
 		time++;
 		$('#info').css({
-			left: Number.parseInt($('#info').css('left'))+(mousePos.x-Number.parseInt($('#info').css('left')))/3,
-			top: Number.parseInt($('#info').css('top'))+(mousePos.y-Number.parseInt($('#info').css('top')))/3
+			left: Number.parseInt($('#info').css('left'))+(pointerPos.x-Number.parseInt($('#info').css('left')))/3,
+			top: Number.parseInt($('#info').css('top'))+(pointerPos.y-Number.parseInt($('#info').css('top')))/3
 		});
-		$('#info').css('opacity',(infoShow) ? '0.5' : '0');
 	},1000/60);
 });
 
+function turnInfo(v) {
+	$('#info').css('opacity',v ? '0.5' : '0');
+}
 
 document.addEventListener('mousemove',function(e){
 	mousePos.x = e.pageX;
@@ -144,3 +146,13 @@ function distanceToMouse(x,y) {
 	var y = Math.abs(mousePos.y-y);
 	return Math.sqrt(Math.pow(x,2)+Math.pow(y,2));
 }
+
+generate();//generate
+
+function resize() {
+	can.width = width = window.innerWidth;
+	can.height = height = window.innerHeight;
+	r=height/7;
+	ctx.lineWidth = 5;
+}
+window.addEventListener('resize',resize);
