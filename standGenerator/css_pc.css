@@ -84,9 +84,6 @@ input{
 	position: absolute;
 	height: 100%;
 	background-color: #1a1d26;
-	image-rendering: -webkit-optimize-contrast;
-	image-rendering: pixelated;
-	-ms-interpolation-mode: nearest-neighbor;
 }
 div{
     text-shadow: 0px 0px 18px #000, 0px 0px 18px #000;
