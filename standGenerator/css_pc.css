@@ -56,9 +56,10 @@ input{
     text-align: center;
     height: 30%;
     color: #d7d7d7;
-    font-size: 1.8em;
+    font-size: 103%;
     padding-left: 16%;
     padding-right: 16%;
+    line-height: 1.7;
 }
 #ability,#level{
     position: relative;
@@ -99,11 +100,10 @@ div{
 
 body{
 	cursor: url(blakes\cursor.png),url(blakes\cursor2.png), pro;
-	overflow: hidden;
 	image-rendering: pixelated;
 	color: #fff;
-    margin: 0;
-	background-color: #0A0A0A;
+	margin: 0;
+	background-color: #1a1d26;
 }
 
 
