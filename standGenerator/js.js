@@ -16,17 +16,19 @@ var mousePos = {x:0,y:0};
 var pointerPos = {x:0,y:0};
 var maxPoints = 10;
 
-var abilities = [
-	["влажность",0],
-	["умность",0],
-	["выносливость",0],
-	["стояк",0],
-	["метаболизм",0],
-	["скорость",0],
-	["дальность",0]
-]
+var abilityNames = ["влажность","умность","выносливость","стояк","метаболизм","скорость","дальность","эмпатия","привлекательность","аккуратность","агрессивность","надежность","смелость"];
+var abilities = [];
+var abilityCount = 7;
+
 function generate() {
-	abilities.forEach(function(ab) {ab[1] = Math.round((Math.random() * maxPoints));});
+	abilities = [];
+	var tmpAb = abilityNames.concat();
+	console.log(tmpAb);
+	for (var i = 0; i < abilityCount; i++) {
+		var rand = Math.floor((Math.random() * tmpAb.length));
+		abilities.push([tmpAb[rand],Math.round((Math.random() * maxPoints))]);
+		tmpAb.splice(rand,1);
+	}
 	$('#description').html('<span style="color: #fff;font-weight: 500;font-size: 1.5em">Описание:<span><br>...Погодь...');
 	generateAbility();
 	turnInfo(false);
@@ -34,10 +36,10 @@ function generate() {
 //animations
 var abLevelsAnim = [];// levels animation
 var abCirclesAnim = [];// levels animation
-abilities.forEach(function(ab){
+for (var i = 0; i < abilityCount; i++) {
 	abLevelsAnim.push(0);
 	abCirclesAnim.push({c:0,t:0.3});
-});
+}
 //end animations
 
 ctx.strokeStyle = "#5c665f";
@@ -52,7 +54,7 @@ function drawOneSircle() {
 	ctx.arc(width/2,height/2,r,0,circle);
 }
 
-var cellAng = circle/abilities.length;
+var cellAng = circle/abilityCount;
 function drawCircle() {
 	ctx.globalAlpha = 1;
 	//circle shadow
@@ -64,7 +66,7 @@ function drawCircle() {
 	drawOneSircle();
 	ctx.fill();
 
-	for(var l = 1; l<abilities.length+1;l++){
+	for(var l = 1; l<abilityCount+1;l++){
 		//cells
 		ctx.strokeStyle = "#3f464a";
 		ctx.beginPath();
@@ -87,7 +89,7 @@ function drawAbilities(){
 	let am = r/maxPoints; //ability line multiplier
 	ctx.moveTo(Math.sin(cellAng*0)*abLevelsAnim[0]*am+width/2,
 			   Math.cos(cellAng*0)*abLevelsAnim[0]*am+height/2);
-	for(var l = 0; l<abilities.length;l++){
+	for(var l = 0; l<abilityCount;l++){
 		let x = Math.sin(cellAng*(l))*abLevelsAnim[l]*am+width/2;
 		let y = Math.cos(cellAng*(l))*abLevelsAnim[l]*am+height/2;
 		ctx.lineTo(x,y);
@@ -117,6 +119,7 @@ function drawPointerCircle(x,y,i) {
 }
 
 $(document).ready(function($) {
+	generate();//generate
 	setInterval(function() {
 		ctx.clearRect(0,0,width,height);
 		drawCircle();
@@ -131,6 +134,7 @@ $(document).ready(function($) {
 			top: Number.parseInt($('#info').css('top'))+(pointerPos.y-Number.parseInt($('#info').css('top')))/3
 		});
 	},1000/60);
+	resize();
 });
 
 function turnInfo(v) {
@@ -146,8 +150,6 @@ function distanceToMouse(x,y) {
 	var y = Math.abs(mousePos.y-y);
 	return Math.sqrt(Math.pow(x,2)+Math.pow(y,2));
 }
-
-generate();//generate
 
 function resize() {
 	can.width = width = window.innerWidth;
