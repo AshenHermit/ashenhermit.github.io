@@ -308,8 +308,8 @@ document.addEventListener('mouseup', function(e) {
 
 document.addEventListener('mousemove', function(e) {
 	lastMousePose.set(targetMousePose);
-	targetMousePose.x = (width/can.clientWidth)*e.pageX;targetMousePose.x-=2;
-	targetMousePose.y = (height/can.clientHeight)*e.pageY;targetMousePose.y-=2;
+	targetMousePose.x = (width/can.clientWidth)*e.pageX;
+	targetMousePose.y = (height/can.clientHeight)*e.pageY;
 
 	if (middleDown) {
 		let v = {x:Math.round(targetMousePose.x-lastMousePose.x), y:Math.round(targetMousePose.y-lastMousePose.y)};
