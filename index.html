@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>pixels to simbols</title>
+	<!-- <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet"> -->
+	<style type="text/css">
+		*{font-family: 'Comfortaa', cursive;}
+		body{display: grid;grid-template-columns: 1fr;padding: 2%;margin: 0;overflow: hidden;}
+		textarea{
+			resize: none;
+			border:0;
+			padding: 1%;
+		}
+		.block{display: grid;}
+		input{max-width: 56%;margin-left: 8px;border: 0;background-color: #eaeaea;padding: 5%;box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);}
+		input:focus, textarea:focus, *[contenteditable="true"]:focus {
+		    outline: none;
+		}
+		.propLine{
+		    display: -webkit-inline-box;
+		    margin: 4px;
+		}
+		.label{
+			padding: 0.5em;
+			text-shadow: 0 0 7px rgba(0, 0, 0, 0.32);
+		}
+		canvas{
+    width: 30%;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+    }
+		button{
+		    border: 0;
+		    padding: 9%;
+		    background-color: #eaeaea;
+		}
+		button:active{
+		    background-color: #888;
+		}
+		button:focus{
+		    outline: none;
+		}
+		.color{
+			cursor: pointer;
+			padding: 2px;
+		}
+
+	</style>
+</head>
+<body>
+	<!-- ░▒▓█ -->
+
+	<div class="block">
+		<div class="propLine">
+			<div onclick="changeColor(0)" class="color">▒</div>
+			<div onclick="changeColor(1)" class="color">▓</div>
+			<div onclick="changeColor(2)" class="color">█</div>
+		</div>
+		<div class="propLine"><div class="label">width: </div><input type="number" name="width" id="width" value="16"></div>
+		<div class="propLine"><div class="label">height: </div><input type="number" name="height" id="height" value="16"></div>
+		<div class="propLine">
+			<button onclick="convert()" id="convert">convert</button>
+			<button onclick="resize()" id="resize">resize</button>
+		</div>
+	</div>
+	<div class="block" style="display: inline-table;">
+		<canvas id="can"></canvas>
+		<textarea id="text"></textarea>
+	</div>
+
+	<script type="text/javascript" src="js.js"></script>
+
+</body>
+</html>

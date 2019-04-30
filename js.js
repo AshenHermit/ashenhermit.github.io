@@ -1,103 +1,109 @@
-////////////////////////////////////////////////
-//системные перемнные (глобальные)
-for (var i = 0; i < document.getElementsByTagName('canvas').length; i++) {
-	document.getElementsByTagName('canvas')[i].width  = window.innerWidth;
-	document.getElementsByTagName('canvas')[i].height  = window.innerHeight;
-}
-
-var touchDown = false;
-var mousePos = {x:0,y:0}
-
 var can = document.getElementById('can');
+can.oncontextmenu = function(){return false;}
 var ctx = can.getContext('2d');
+var output = document.getElementById('text');	
 
-var canback = document.getElementById('canback');
-var ctxback = canback.getContext('2d');
 
-var initDel = 8;
-var initScreenDel = 1.5;
-var initCamXPosition = 0;
+var widthInput = document.getElementById('width');
+var heightInput = document.getElementById('height');
+can.width = parseInt(widthInput.value);
+can.height = parseInt(heightInput.value);
 
-var camXPosition = 0;
-var camYPosition = 0;
-var del = 8;
-var screenDel = 1.5;
+var map = Map(can.width,can.height,'rgba(0,0,0,0)');
 
-function drawScene(context) {
-	context.clearRect(0, 0, window.innerWidth, window.innerHeight)
-	context.strokeStyle = "#bc6cff";
-	context.lineWidth=3;
+var isPainting = false,
+	isErasing = false,
+	mousePos = {x:0,y:0},
+	canvasChanged = true,
+	currentColor="#000";
 
-	var rp = window.innerWidth/del;
-	var hcenter = window.innerHeight/screenDel;
+var colors = ['rgba(0,0,0,0.2)','rgba(0,0,0,0.8)','#000']
+function changeColor(id){
+	currentColor = colors[id];
+}
 
-	for (var p = -rp*2; p < rp*2; p++) {
-		var pwc = p; //(point with cam) position
-		
-		context.beginPath();
+function updateMap(){
+	ctx.clearRect(0,0,can.width,can.height);
 
-		context.moveTo(pwc*rp+camXPosition,window.innerHeight);
-		context.lineTo((window.innerWidth)/2*pwc/50+window.innerWidth/2,hcenter);	
+	if(isPainting) map[mousePos.x][mousePos.y] = currentColor;
+	if(isErasing) map[mousePos.x][mousePos.y] = 'rgba(0,0,0,0)';
 
-		context.stroke();
+	for (var x = 0; x < map.length; x++) {
+		for (var y = 0; y < map[x].length; y++) {
+			ctx.fillStyle=map[x][y];
+			ctx.fillRect(x,y,1,1);
+		}
 	}
-
-	for (var l = 1; l < hcenter/10; l++) {
-		var ldel = l*l/5;
-		context.beginPath();
-
-		context.moveTo(0,hcenter+l*ldel);
-		context.lineTo(window.innerWidth,hcenter+l*ldel);	
-
-		context.stroke();
-	}
-
-	context.clearRect(0, 0, window.innerWidth, hcenter)
-
-	var sun = new Image();
-	sun.src = "src/sun.png";
-	imgDel = 3;
-	sun.width = ((sun.width/imgDel)*window.innerWidth/1500);
-	sun.height = ((sun.height/imgDel)*window.innerWidth/1500);
-	context.drawImage(sun,(window.innerWidth/2-sun.width/2)+(window.innerWidth/2-camXPosition)/50,hcenter-sun.height,sun.width,sun.height);
+	ctx.fillStyle=currentColor;
+	ctx.fillRect(mousePos.x,mousePos.y,1,1);
 }
 
-function updateCanvases() {
-	drawScene(ctxback);
-	drawScene(ctx);
+function updateMousePos(x,y){
+	mousePos.x = Math.round((can.width/can.clientWidth)*(x-10));
+	mousePos.y = Math.round((can.height/can.clientHeight)*(y-10));
 }
+can.addEventListener('mousemove',function(e){
+	updateMousePos(e.layerX,e.layerY)
+	updateMap();
+});
+can.addEventListener('mousedown',function(e){
+	updateMousePos(e.layerX,e.layerY)
+	if(e.button==0) isPainting = true;
+	if(e.button==2) isErasing = true;
+	if(isPainting) map[mousePos.x][mousePos.y] = currentColor;
+	if(isErasing) map[mousePos.x][mousePos.y] = 'rgba(0,0,0,0)';
+	updateMap();
 
-var TcamXPosition = 0;
-var TscreenDel = 1.5;
-
-updateCanvases();
-
-function Mupdate() {
-	TcamXPosition = (window.innerWidth)-mousePos.x;
-	TscreenDel = ((window.innerHeight*1.3)-mousePos.y)/300;
-}
-
-
-function update() {
-	Mupdate()
-
-	camXPosition = camXPosition+(TcamXPosition-camXPosition)/5;
-	screenDel = screenDel+(TscreenDel-screenDel)/5;
-	updateCanvases();
-}
-
-function updateMousePos(e) {
-	mousePos.x = e.pageX;
-	mousePos.y = e.pageY;
-}
-
-setInterval(update,1000/60);
-$(document).mousemove(updateMousePos);
-document.addEventListener('touchmove', updateMousePos);
-$(document).mousedown(function(e) {
-	touchDown = true;
+});
+can.addEventListener('mouseup',function(e){
+	if(e.button==0) isPainting = false;
+	if(e.button==2) isErasing = false;
 });
 
-$(document).mousedown(function(e) {
-	touchDown = true;
-});
+function Map(sizeX,sizeY,defVal = 0,oldMap) {
+	let array = new Array(sizeX);
+	for (var x = 0; x < array.length; x++) {
+		array[x] = new Array(sizeY);
+		for (var y = 0; y < sizeY; y++) {
+			array[x][y] = defVal;
+			try{if(oldMap[x][y]!=undefined) array[x][y] = oldMap[x][y];}catch(err){}
+		}
+	}
+	return array;
+}
+
+setInterval(function(){
+	if(canvasChanged){
+		canvasChanged = false;
+		updateMap();
+	}
+},1000/60);
+
+function convert(){
+	output.value = "";
+	for (var x = 0; x < map.length; x++) {
+		for (var y = 0; y < map[x].length; y++) {
+			if(map[y][x]=='#000') output.value+="██";	
+			else if(map[y][x]=='rgba(0,0,0,0)') output.value+="░░";
+			else if(map[y][x]=='rgba(0,0,0,0.2)') output.value+="▒▒";
+			else if(map[y][x]=='rgba(0,0,0,0.8)') output.value+="▓▓";
+		}
+		output.value+="\n";
+	}
+}
+
+function resize(){
+	can.width = parseInt(widthInput.value);
+	can.height = parseInt(heightInput.value);
+	map = Map(can.width,can.height,'rgba(0,0,0,0)',oldMap=map);
+	canvasChanged = true;
+}
+
+output.addEventListener('focus',function(){this.select();});
+window.addEventListener('resize',onWinResize);
+
+function onWinResize(){
+	output.style.width = can.clientWidth+"px";
+	output.style.height = can.clientHeight+"px";
+}
+onWinResize();
