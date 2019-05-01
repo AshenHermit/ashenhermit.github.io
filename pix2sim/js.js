@@ -34,8 +34,8 @@ function updateMap(){
 			ctx.fillRect(x,y,1,1);
 		}
 	}
-	ctx.fillStyle=currentColor;
-	ctx.fillRect(mousePos.x,mousePos.y,1,1);
+	//ctx.fillStyle=currentColor;
+	//ctx.fillRect(mousePos.x,mousePos.y,1,1);
 }
 
 function updateMousePos(x,y){
