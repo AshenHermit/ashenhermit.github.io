@@ -48,7 +48,10 @@ can.addEventListener('mousemove',function(e){
 });
 can.addEventListener('mousedown',function(e){
 	updateMousePos(e.layerX,e.layerY)
-	if(e.button==0) isPainting = true;
+	if(e.button==0) {
+		if(map[mousePos.x][mousePos.y]=="rgba(0,0,0,0)") isPainting = true;
+		else isErasing = true;
+	}
 	if(e.button==2) isErasing = true;
 	if(isPainting) map[mousePos.x][mousePos.y] = currentColor;
 	if(isErasing) map[mousePos.x][mousePos.y] = 'rgba(0,0,0,0)';
@@ -56,7 +59,7 @@ can.addEventListener('mousedown',function(e){
 
 });
 can.addEventListener('mouseup',function(e){
-	if(e.button==0) isPainting = false;
+	if(e.button==0) {isErasing = false; isPainting = false;}
 	if(e.button==2) isErasing = false;
 });
 
