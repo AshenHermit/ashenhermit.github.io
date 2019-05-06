@@ -5,7 +5,13 @@
 	<link href="https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe" rel="stylesheet">
 	<style type="text/css">
 		*{font-family: 'ZCOOL KuaiLe'}
-		body{display: grid;grid-template-columns: 1fr;padding: 2%;margin: 0;overflow: hidden;}
+		body{
+			display: grid;
+			grid-template-columns: 1fr;
+			padding: 2%;
+			margin: 0;
+			overflow: auto;
+		}
 		textarea{
 			resize: none;
 			border:0;
@@ -58,10 +64,11 @@
 			<div onclick="changeColor(1)" class="color">▓</div>
 			<div onclick="changeColor(2)" class="color">█</div>
 		</div>
-		<div class="propLine"><div class="label">width: </div><input type="number" name="width" id="width" value="10"></div>
-		<div class="propLine"><div class="label">height: </div><input type="number" name="height" id="height" value="10"></div>
+		<div class="propLine"><div class="label">width: </div><input type="number" name="width" id="width" value="9"></div>
+		<div class="propLine"><div class="label">height: </div><input type="number" name="height" id="height" value="9"></div>
 		<div class="propLine">
 			<button onclick="resize()" id="resize">resize</button>
+			<button onclick="clear()" id="clear">clear</button>
 			<button onclick="convert()" id="convert">convert</button>
 		</div>
 	</div>
