@@ -39,8 +39,8 @@ function updateMap(){
 }
 
 function updateMousePos(x,y){
-	mousePos.x = Math.round((can.width/can.clientWidth)*(x-10));
-	mousePos.y = Math.round((can.height/can.clientHeight)*(y-10));
+	mousePos.x = Math.round((can.width/can.clientWidth)*(x-(can.clientWidth/can.width)/2));
+	mousePos.y = Math.round((can.height/can.clientHeight)*(y-(can.clientHeight/can.height)/2));
 }
 can.addEventListener('mousemove',function(e){
 	updateMousePos(e.layerX,e.layerY)
@@ -58,7 +58,7 @@ can.addEventListener('mousedown',function(e){
 	updateMap();
 
 });
-can.addEventListener('mouseup',function(e){
+document.addEventListener('mouseup',function(e){
 	if(e.button==0) {isErasing = false; isPainting = false;}
 	if(e.button==2) isErasing = false;
 });
@@ -82,25 +82,31 @@ setInterval(function(){
 	}
 },1000/60);
 
+//----------------------button functions
 function convert(){
 	output.value = "";
-	for (var x = 0; x < map.length; x++) {
-		for (var y = 0; y < map[x].length; y++) {
-			if(map[y][x]=='#000') output.value+="██";	
-			else if(map[y][x]=='rgba(0,0,0,0)') output.value+="░░";
-			else if(map[y][x]=='rgba(0,0,0,0.2)') output.value+="▒▒";
-			else if(map[y][x]=='rgba(0,0,0,0.8)') output.value+="▓▓";
+	for (var y = 0; y < map[0].length; y++) {
+		for (var x = 0; x < map.length; x++) {
+			if(map[x][y]=='#000') output.value+="██";
+			else if(map[x][y]=='rgba(0,0,0,0)') output.value+="░░";
+			else if(map[x][y]=='rgba(0,0,0,0.2)') output.value+="▒▒";
+			else if(map[x][y]=='rgba(0,0,0,0.8)') output.value+="▓▓";
 		}
 		output.value+="\n";
 	}
 }
-
 function resize(){
 	can.width = parseInt(widthInput.value);
 	can.height = parseInt(heightInput.value);
 	map = Map(can.width,can.height,'rgba(0,0,0,0)',oldMap=map);
 	canvasChanged = true;
 }
+function clear(){
+	map = Map(can.width,can.height,'rgba(0,0,0,0)');
+	canvasChanged = true;
+}
+//
+document.getElementById('clear').onclick = clear;
 
 output.addEventListener('focus',function(){this.select();});
 window.addEventListener('resize',onWinResize);
