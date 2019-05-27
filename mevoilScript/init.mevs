@@ -1,0 +1,39 @@
+#-- init -----------------------------------------------------------
+/bpm 180
+/npb 16
+
+/nl note
+"0:G3","1:G4","2:G#4","2:C5","3:D#5"
+/nl bass
+"0:C2","1:G#1","2:F1","3:G1"
+#-- init end -------------------------------------------------------
+
+#-- instruments --------
+/inst sawer 8bit
+/eff sawer reverb 0.5
+
+/inst bass 8bit
+/eff bass osc sawtooth
+#-- instruments end ----
+
+#-- patterns
+/ptrn p note {
+	sawer : ???-?-?-?-?-?-?
+}
+/ptrn bass bass {
+	bass : 0000000000000000
+}
+/ptrn bass2 bass {
+	bass : 1111111111111111
+}
+/ptrn bass3 bass {
+	bass : 2222222233333333
+}
+#-- patterns
+
+/play{
+	[p][p]
+	[p][bass]
+	[p][bass2]
+	[p][bass3]
+}

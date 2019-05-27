@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ъеаъе</title>
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, shrink-to-fit=no">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+	<link rel="stylesheet" href="css.css">
+	<script src="https://unpkg.com/tone"></script>
+</head>
+<body>
+	<tone-demo autoplay=""></tone-demo>
+	
+	<div class="main">
+
+		<div class="ui form" style="height: 94%;">
+		  <div class="field" style="height: 97%;">
+		    <label style="color: #7b7b7b;letter-spacing: 5px;">mevoil script</label>
+		    <div id="script">#-- init -----------------------------------------------------------
+/bpm 140
+/npb 16
+
+/nl note
+"0:G3","1:G4","2:G#4","3:C5","4:D#5"
+/nl bass
+"0:C2","1:G#1","2:F1","3:G1"
+#-- init end -------------------------------------------------------
+
+#-- instruments --------
+/inst sawer 8bit
+/eff sawer reverb 0.2
+
+/inst bass 8bit
+/eff bass osc sawtooth
+#-- instruments end ----
+
+/ptrn p note {
+	sawer: ?1?-?-?-?-?-?-?0
+}
+/ptrn bass1 bass {
+	bass : 0000000000000000
+}
+/ptrn bass2 bass {
+	bass : 1111111111111111
+}
+/ptrn bass3 bass {
+	bass : 2222222233333333
+}
+
+
+/play{
+	[p][p]
+	[p][bass1]
+	[p][bass2]
+	[p][bass3]
+}</div>
+		  </div>
+		</div>
+
+		<div style="padding: 14px;text-align: center;">
+			<button style="background-color: #cc2d6a;" onclick="run();" class="ui primary button">run</button>
+			<button onclick="stop();" class="ui button">stop</button>
+		</div>
+
+	</div>
+
+	<script src="ace/ace.js" type="text/javascript"></script>
+	<script src="ace/aceConfig.js" type="text/javascript"></script>
+	<script src="js.js" type="text/javascript"></script>
+
+</body></html>
