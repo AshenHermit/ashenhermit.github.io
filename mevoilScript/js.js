@@ -9,8 +9,8 @@ window.onload = function() {
 			.replace(/%-2/g,"\n")
 			.replace(/%-3/g,'{')
 			.replace(/%-4/g,'}')
-			.replace(/%20/g," ")
-			.replace(/%22/g,'"'));
+			.replace(/%-5/g,'"')
+			.replace(/%20/g," "));
 	}
 }
 
@@ -43,7 +43,8 @@ function run(){
 		.replace(/\t/g,"%-1")
 		.replace(/\n/g,"%-2")
 		.replace(/{/g, "%-3")
-		.replace(/}/g, "%-4");
+		.replace(/}/g, "%-4")
+		.replace(/"/g, "%-5");
 }
 
 function init(st){
