@@ -1,39 +1,55 @@
+# MEGALOVANIA
+
 #-- init -----------------------------------------------------------
-/bpm 180
+/bpm 220
 /npb 16
 
 /nl note
-"0:G3","1:G4","2:G#4","2:C5","3:D#5"
+"0:D5","1:A4","2:G#4","3:G4","4:F4","5:D4"
 /nl bass
-"0:C2","1:G#1","2:F1","3:G1"
+"0:D3","1:C3","2:B2","3:A#2"
+/nl drum
+"0:D1","1:D2","2:D3","3:D4"
 #-- init end -------------------------------------------------------
 
 #-- instruments --------
 /inst sawer 8bit
-/eff sawer reverb 0.5
+/eff sawer reverb 0.4
+/eff sawer osc square
 
 /inst bass 8bit
 /eff bass osc sawtooth
+/eff bass reverb 0.4
+
+/inst drum drum
+/eff drum reverb 0.1
 #-- instruments end ----
 
-#-- patterns
+
 /ptrn p note {
-	sawer : ???-?-?-?-?-?-?
+	sawer: 550-1--2-3-4-543
 }
-/ptrn bass bass {
+/ptrn bass1 bass {
 	bass : 0000000000000000
 }
 /ptrn bass2 bass {
 	bass : 1111111111111111
 }
 /ptrn bass3 bass {
-	bass : 2222222233333333
+	bass : 2222222222222222
 }
-#-- patterns
+/ptrn bass4 bass {
+	bass : 3333333311111111
+}
+# drums
+/ptrn drums drum {
+	drum : 001-0-10-010-010
+	drum : 3-3-3-3-3-3-3-3-
+}
 
 /play{
-	[p][p]
-	[p][bass]
-	[p][bass2]
-	[p][bass3]
+	[p][bass1][drums]
+	[p][bass2][drums]
+	[p][bass3][drums]
+	[p][bass4][drums]
 }

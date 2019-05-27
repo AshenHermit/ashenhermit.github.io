@@ -16,7 +16,12 @@ window.onload = function() {
 
 Tone.Master.volume.value = -8;
 
-// synth.triggerAttackRelease('D#4',0.1);
+var drumInstPreload = new Tone.Sampler({
+			"D1" : "samples/kick.mp3",
+			"D2" : "samples/snare.mp3",
+			"D3" : "samples/hat.mp3",
+			"D4" : "samples/ride.mp3"
+		},function(){})
 
 
 /////////////
@@ -130,7 +135,8 @@ var init_NL = function(st) {
 //instrument
 var init_INST = function(st) {
 	let comm = st.substring(carret+1,st.indexOf("\n",carret)).split(" ");
-	let inst = {envelope:{
+	let inst = {type:comm[2].trim(),
+				envelope:{
 						attack:0.01,
 						decay:0.1,
 						sustain:0.5,
@@ -141,6 +147,10 @@ var init_INST = function(st) {
 	inst.filter = new Tone.Filter(0, "lowpass").connect(inst.reverb);
 	//
 	if(comm[2].trim()=="8bit") inst.synth = new Tone.PolySynth({envelope: inst.envelope}).connect(inst.reverb);
+	if(comm[2].trim()=="drum") {
+		inst.synth = drumInstPreload.connect(inst.reverb);
+	}
+
 	//
 	config.instruments[comm[1].trim()] = inst;
 	moveCarret(1,st);
@@ -220,7 +230,8 @@ var play = function() {
 						note = Object.keys(config.noteLines[config.patterns[pat].nl])[rand];
 					}
 					note = config.noteLines[config.patterns[pat].nl][note]
-					config.instruments[inst.inst].synth.triggerAttackRelease(note,0.1);
+					if(config.instruments[inst.inst].type=="drum") config.instruments[inst.inst].synth.triggerAttackRelease(note);
+					else config.instruments[inst.inst].synth.triggerAttackRelease(note,0.1);
 				}
 			});
 		});
