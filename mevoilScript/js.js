@@ -34,7 +34,7 @@ var config = {instruments:{}};
 function stop() {
 	Tone.Transport.stop();
 	Tone.Transport.cancel();
-	
+	drumInstPreload.disconnect()
 }
 function run(){
 	stop();
