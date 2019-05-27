@@ -7,6 +7,8 @@ window.onload = function() {
 		editor.setValue(location.href.substring(location.href.indexOf("?script=")+"?script=".length)
 			.replace(/%-1/g,"\t")
 			.replace(/%-2/g,"\n")
+			.replace(/%-3/g,'{')
+			.replace(/%-4/g,'}')
 			.replace(/%20/g," ")
 			.replace(/%22/g,'"'));
 	}
@@ -37,7 +39,11 @@ function run(){
 	play();
 
 	location.href = location.href.substring(0,location.href.indexOf("?script="))+"?script="+
-		editor.getValue().replace(/\t/g,"%-1").replace(/\n/g,"%-2");
+		editor.getValue()
+		.replace(/\t/g,"%-1")
+		.replace(/\n/g,"%-2")
+		.replace(/{/g, "%-3")
+		.replace(/}/g, "%-4");
 }
 
 function init(st){
