@@ -432,7 +432,7 @@ function Open(jsonText) {
 }
 
 
-var slashSpan = '<span style="padding: 5px;background-color: rgba(255, 255, 255, 0.11);">'
+var slashSpan = '<span style="padding: 2px;background-color: rgba(255, 255, 255, 0.11);">'
 function html2t(text){
 	while(text.indexOf(slashSpan)!=-1){
 		text = text.replace(slashSpan,"/*");
