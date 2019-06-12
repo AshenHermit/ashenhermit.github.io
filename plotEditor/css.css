@@ -234,6 +234,8 @@ border-radius: 4px;
     position: fixed;
     top: 42px;
     pointer-events: none;
+    text-shadow: 0 0 11px #000, 0 0 20px #000;
+    z-index: 0;
 }
 .spoiler > div {
     -webkit-transition: all 0.2s ease;
