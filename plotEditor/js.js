@@ -81,7 +81,7 @@ $(document).on('dblclick','.content',function(e) {
 	let nodeId = parseInt($(e.target).parent().parent().attr('data-id'));
 	let promptOut = sNodePrompt("Node", nodes[nodeId].title, nodes[nodeId].content).then(function(out){
 		nodes[nodeId].title = out[0];
-		nodes[nodeId].content = out[1].replace(/\n/g,"<br>");
+		nodes[nodeId].content = out[1];
 
 		$(nodes[nodeId].dom).children(".window").children(".title").html(nodes[nodeId].title);
 		$(nodes[nodeId].dom).children(".window").children(".content").html(nodes[nodeId].content);
@@ -312,7 +312,7 @@ async function sNodePrompt(title,outTitle="",outContent=""){
 	  title: title,
 	  html:
 	    '<input id="swal-input1" class="swal2-input" value="'+outTitle+'">' +
-	    '<textarea style="height: calc(100vh / 2); resize: none;" id="swal-input2" class="swal2-textarea">'+outContent.replace(/<br>/g,"\n")+'</textarea>',
+	    '<textarea style="height: calc(100vh / 2); resize: none;" id="swal-input2" class="swal2-textarea">'+t2html(outContent)+'</textarea>',
 	  focusConfirm: false,
 	  preConfirm: () => {
 	    return [
@@ -323,7 +323,7 @@ async function sNodePrompt(title,outTitle="",outContent=""){
 	})
 
 	if(formValues[0]!=undefined) outTitle = formValues[0];
-	if(formValues[1]!=undefined) outContent = formValues[1];
+	if(formValues[1]!=undefined) outContent = html2t(formValues[1])
 	return [outTitle,outContent];
 }
 
@@ -331,10 +331,10 @@ async function sCommentPrompt(title,outContent=""){
 	let {value: formValue} = await Swal.fire({
 	  title: title,
 	  html:
-	    '<textarea style="height: calc(100vh / 2); resize: none;" id="swal-input2" class="swal2-textarea">'+outContent.replace(/<br>/g,"\n")+'</textarea>',
+	    '<textarea style="height: calc(100vh / 2); resize: none;" id="swal-input2" class="swal2-textarea">'+t2html(outContent)+'</textarea>',
 	  focusConfirm: false,
 	  preConfirm: () => {
-		return document.getElementById('swal-input2').value.replace(/\n/g,"<br>");
+		return html2t(document.getElementById('swal-input2').value);
 	  }
 	})
 
@@ -429,6 +429,14 @@ function Open(jsonText) {
 				updateNodeCurves(node.id);
 		});
 	},300);
+}
+
+
+function t2html(text){
+	return text.replace(/<br>/g,"\n").replace(/&nbsp;/g," ");
+}
+function html2t(text){
+	return text.replace(/\n/g,"<br>").replace(new RegExp(" ", "g"),"&nbsp;");
 }
 
 
