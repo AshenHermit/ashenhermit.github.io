@@ -433,5 +433,3 @@ function Open(jsonText) {
 
 
 //TODO: ???
-
-addNode();
