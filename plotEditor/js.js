@@ -358,7 +358,7 @@ async function sAsk(txt,txt2,ans,callback){
 
 function Save() {
 	sPrompt("file name",fileName).then(function(filename){
-		nodes.forEach(function(node){if(node!=undefined){
+		nodes.forEach(function(node){if(node!=null){
 			node.position={};
 			node.position.x = node.dom[0].getClientRects()[0].x;
 			node.position.y = node.dom[0].getClientRects()[0].y;
@@ -366,8 +366,14 @@ function Save() {
 
 		let nodesCopy = JSON.parse(JSON.stringify(nodes));
 
-		var filename = filename+".enm";
+		nodesCopy.forEach(function(node){if(node!=null){
+			node.dom = null;
+			node.outputs.forEach(function(out){
+				out.dom = null;
+			});
+		}});
 
+		var filename = filename+".enm";
 		var blob = new Blob([JSON.stringify(nodesCopy)], {
 			type: "text/plain;charset=utf-8"
 		});
@@ -432,11 +438,16 @@ function Open(jsonText) {
 }
 
 
-var slashSpan = '<span style="padding: 2px;background-color: rgba(255, 255, 255, 0.11);">'
+var slashSpan = '<span style="padding: 2px;background-color: rgba(255, 255, 255, 0.11);">';
+var slashLine = '<div class="slashLine">-</div>';
 function html2t(text){
 	while(text.indexOf(slashSpan)!=-1){
 		text = text.replace(slashSpan,"/*");
 	}
+	while(text.indexOf(slashLine)!=-1){
+		text = text.replace(slashLine,"///");
+	}
+
 	return text
 			.replace(/<br>/g,"\n")
 
@@ -444,7 +455,6 @@ function html2t(text){
 			.replace(/&nbsp;&nbsp;&nbsp;&nbsp;/g,"--")
 
 			.replace(new RegExp('</span>',"g"),"*/")
-
 }
 function t2html(text){
 	return text
@@ -456,6 +466,7 @@ function t2html(text){
 			.replace(/\/\*/g,slashSpan)
 			.replace(/\*\//g,'</span>')
 
+			.replace(/\/\/\//g, slashLine)
 }
 
 

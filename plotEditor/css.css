@@ -247,3 +247,15 @@ border-radius: 4px;
 li{
     margin-bottom: 6px;
 }
+
+span{
+	pointer-events: none;
+}
+
+
+.slashLine{
+    background-color: #1e222c;
+    width: 100%;
+    height: 6px;
+    color: #00000000;
+}
