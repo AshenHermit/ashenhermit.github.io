@@ -97,10 +97,11 @@ body {
 	height: 13px;
 	left: -15px;
 	width: 7px;
-	background-color: #ff7171;
+	background-color: #ff7171a6;
 	margin-bottom: -13px;
 	user-select: none;
 	cursor: pointer;
+	border-radius: 4px;
 }
 .swal2-popup {
 	width: 77em !important;
