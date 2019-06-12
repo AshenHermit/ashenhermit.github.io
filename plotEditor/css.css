@@ -241,7 +241,7 @@ border-radius: 4px;
     margin-left:0%;
 }
 .spoilerbutton[value="Hide"] + .spoiler {
-    margin-left:-100%;
+    margin-left: -1000px;
 }
 
 li{
