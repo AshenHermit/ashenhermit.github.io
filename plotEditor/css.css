@@ -50,6 +50,7 @@ body {
 	background-color: #171a23;
 	border: 3px solid #3b4956;
 	border-radius: 6px;
+	cursor: pointer;
 }
 .outputs {
 	margin-top: 6px;
@@ -241,7 +242,7 @@ border-radius: 4px;
     margin-left:0%;
 }
 .spoilerbutton[value="Hide"] + .spoiler {
-    margin-left: -1000px;
+    margin-left: -1100px;
 }
 
 li{

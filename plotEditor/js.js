@@ -128,9 +128,11 @@ $(document).on('click','.comment-delete-button',function(e) {
 });
 
 $(document).on('mousedown', '.add-output', function(e) {
-	sPrompt("New output name", "").then(function(name){
-		addOutputToNode(parseInt($(e.target).parent().parent().attr("data-id")),name);
-	});
+	if(e.button==0){
+		sPrompt("New output name", "").then(function(name){
+			addOutputToNode(parseInt($(e.target).parent().parent().attr("data-id")),name);
+		});
+	}
 });
 
 $(document).on('click', '.delete-output', function(e) {
@@ -174,6 +176,14 @@ $(document).on('mousemove', function(e) {
 				left: el.getClientRects()[0].x+e.originalEvent.movementX/window.devicePixelRatio,
 				top:  el.getClientRects()[0].y+e.originalEvent.movementY/window.devicePixelRatio
 			});
+			let clientRect = el.getClientRects()[0];
+			if(clientRect.x>window.innerWidth||
+				clientRect.y>window.innerHeight||
+				clientRect.x+clientRect.width<0||
+				clientRect.y+clientRect.height<0){
+
+				el.style.display = "hidden";
+			}else{el.style.visibility = "visible";}
 		});
 		$(document.body).css({
 			backgroundPositionX: parseFloat($(document.body).css('background-position-x'))+e.originalEvent.movementX/window.devicePixelRatio,
@@ -208,24 +218,34 @@ $(document).on('mousemove', function(e) {
 });
 
 
+$(document).on('click', '.inputBox', function(e) {
+	let nodeId = parseInt($(e.target).parent().attr('data-id'));
+	let cont = $(e.target).parent().children('.window').children('.content');
+	cont.css('display', (cont.css('display')=="block")?"none":"block");
+
+	if(nodes[nodeId].inputNodeIds.length!=0) nodes[nodeId].inputNodeIds.forEach(function(id){updateNodeCurves(id);});
+	updateNodeCurves(nodeId);
+});
+
 $(document).on('mousedown', '.output-line-box', function(e) {
-	console.log(nodes[getOutBoxNodeId(e.target)].outputs[getOutBoxId(e.target)].curve);
-	if(nodes[getOutBoxNodeId(e.target)].outputs[getOutBoxId(e.target)].curve!=null)
-		$(nodes[getOutBoxNodeId(e.target)].outputs[getOutBoxId(e.target)].curve).remove();
-		nodes[getOutBoxNodeId(e.target)].outputs[getOutBoxId(e.target)].curve = null;
+	if(e.button==0){
+		console.log(nodes[getOutBoxNodeId(e.target)].outputs[getOutBoxId(e.target)].curve);
+		if(nodes[getOutBoxNodeId(e.target)].outputs[getOutBoxId(e.target)].curve!=null)
+			$(nodes[getOutBoxNodeId(e.target)].outputs[getOutBoxId(e.target)].curve).remove();
+			nodes[getOutBoxNodeId(e.target)].outputs[getOutBoxId(e.target)].curve = null;
 
-	curve = document.createElementNS('http://www.w3.org/2000/svg',"path");
-	curveStart.x = e.target.getClientRects()[0].x+e.target.getClientRects()[0].width/2;
-	curveStart.y = e.target.getClientRects()[0].y+e.target.getClientRects()[0].height/2;
+		curve = document.createElementNS('http://www.w3.org/2000/svg',"path");
+		curveStart.x = e.target.getClientRects()[0].x+e.target.getClientRects()[0].width/2;
+		curveStart.y = e.target.getClientRects()[0].y+e.target.getClientRects()[0].height/2;
 
-	$(curve).attr({
-		stroke: '#f3ffc7',
-		'stroke-width': '4',
-		fill: 'transparent'
-	});
-	document.getElementsByTagName('svg')[0].append(curve);
-	selectedOut = e.target;
-	
+		$(curve).attr({
+			stroke: '#f3ffc7',
+			'stroke-width': '4',
+			fill: 'transparent'
+		});
+		document.getElementsByTagName('svg')[0].append(curve);
+		selectedOut = e.target;
+	}
 });
 
 $(document).on('mouseup', '.inputBox', function(e) {
