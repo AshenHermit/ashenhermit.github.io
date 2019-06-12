@@ -312,7 +312,7 @@ async function sNodePrompt(title,outTitle="",outContent=""){
 	  title: title,
 	  html:
 	    '<input id="swal-input1" class="swal2-input" value="'+outTitle+'">' +
-	    '<textarea style="height: calc(100vh / 2); resize: none;" id="swal-input2" class="swal2-textarea">'+t2html(outContent)+'</textarea>',
+	    '<textarea style="height: calc(100vh / 2); resize: none;" id="swal-input2" class="swal2-textarea">'+html2t(outContent)+'</textarea>',
 	  focusConfirm: false,
 	  preConfirm: () => {
 	    return [
@@ -323,7 +323,7 @@ async function sNodePrompt(title,outTitle="",outContent=""){
 	})
 
 	if(formValues[0]!=undefined) outTitle = formValues[0];
-	if(formValues[1]!=undefined) outContent = html2t(formValues[1])
+	if(formValues[1]!=undefined) outContent = t2html(formValues[1])
 	return [outTitle,outContent];
 }
 
@@ -331,10 +331,10 @@ async function sCommentPrompt(title,outContent=""){
 	let {value: formValue} = await Swal.fire({
 	  title: title,
 	  html:
-	    '<textarea style="height: calc(100vh / 2); resize: none;" id="swal-input2" class="swal2-textarea">'+t2html(outContent)+'</textarea>',
+	    '<textarea style="height: calc(100vh / 2); resize: none;" id="swal-input2" class="swal2-textarea">'+html2t(outContent)+'</textarea>',
 	  focusConfirm: false,
 	  preConfirm: () => {
-		return html2t(document.getElementById('swal-input2').value);
+		return t2html(document.getElementById('swal-input2').value);
 	  }
 	})
 
@@ -432,11 +432,30 @@ function Open(jsonText) {
 }
 
 
-function t2html(text){
-	return text.replace(/<br>/g,"\n").replace(/&nbsp;/g," ");
-}
 function html2t(text){
-	return text.replace(/\n/g,"<br>").replace(new RegExp(" ", "g"),"&nbsp;");
+	let slashSpan = '<span style="padding: 5px;background-color: rgba(255, 255, 255, 0.11);">'
+	while(text.indexOf(slashSpan)!=-1){
+		text = text.replace(slashSpan,"/*");
+	}
+	return text
+			.replace(/<br>/g,"\n")
+
+			.replace(/&#8194;/g," ")
+			.replace(/&nbsp;&nbsp;&nbsp;&nbsp;/g,"--")
+
+			.replace(new RegExp('</span>',"g"),"*/")
+
+}
+function t2html(text){
+	return text
+			.replace(/\n/g,"<br>")
+
+			.replace(new RegExp(" ", "g"),"&#8194;")
+			.replace(/--/g,"&nbsp;&nbsp;&nbsp;&nbsp;")
+
+			.replace(/\/\*/g,slashSpan)
+			.replace(/\*\//g,'</span>')
+
 }
 
 
