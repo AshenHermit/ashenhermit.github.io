@@ -219,7 +219,7 @@ $(document).on('mousedown', '.output-line-box', function(e) {
 	curveStart.y = e.target.getClientRects()[0].y+e.target.getClientRects()[0].height/2;
 
 	$(curve).attr({
-		stroke: 'white',
+		stroke: '                                        ',
 		'stroke-width': '4',
 		fill: 'transparent'
 	});
@@ -410,7 +410,7 @@ function Open(jsonText) {
 					nodes[lastId-1].outputs[outCount].curve = document.createElementNS('http://www.w3.org/2000/svg',"path");
 					$('svg')[0].append(nodes[lastId-1].outputs[outCount].curve);
 					$(nodes[lastId-1].outputs[outCount].curve).attr({
-						stroke: 'white',
+						stroke: '#f3ffc7',
 						'stroke-width': '4',
 						fill: 'transparent'
 					});

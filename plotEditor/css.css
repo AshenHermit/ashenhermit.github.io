@@ -2,7 +2,7 @@
 	font-family: 'Ubuntu Mono', monospace;
 }
 body {
-	background-color: #232323;
+	background-color: #0e1016;
 	margin: 0;
 	overflow: hidden;
 	background-image: url("grid.png");
@@ -17,16 +17,16 @@ body {
 }
 .window {
 	user-select: none;
-	background-color: #232323;
+	background-color: #242832;
 	border-radius: 6px;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 	/* border: 4px solid #ffffff21; */
 }
 .title {
-	color: #fff;
+	color: #fcffcd;
 	padding: 1em;
 	text-align: center;
-	background-color: #151515;
+	background-color: #171a23;
 	border-radius: 6px;
 	border-bottom-left-radius: 0px;
 	border-bottom-right-radius: 0px;
@@ -36,7 +36,7 @@ body {
 	letter-spacing: 2px;
 }
 .content {
-	color: rgba(255, 255, 255, 0.63);
+	color: #fbffec6e;
 	padding: 2em;
 	cursor: pointer;
 	font-size: 1.1em;
@@ -46,21 +46,21 @@ body {
 	top: 8px;
 	width: 12px;
 	height: 12px;
-	background-color: #252525;
-	border: 3px solid #404040;
+	background-color: #171a23;
+	border: 3px solid #3b4956;
 	border-radius: 6px;
 }
 .outputs {
 	margin-top: 6px;
 	width: calc(100% - 50px);
 	padding: 0.8em;
-	background-color: #232323;
+	background-color: #242832;
 	color: #fff;
 	box-shadow: 0 8px 9px rgba(0, 0, 0, 0.21);
 }
 .output-line {
 	padding: 0.5em;
-	background-color: #212121;
+	background-color: #292d39;
 	margin-top: 10px;
 	text-align: left;
 	animation-name: scale-in;
@@ -68,7 +68,7 @@ body {
 }
 .output-line-text {
 	text-align: left;
-	color: #ffffffa3;
+	color: #f8fff0ad;
 	user-select: none;
 	cursor: pointer;
 	margin-right: 44px;
@@ -79,8 +79,8 @@ body {
 	right: calc(-100% + 9px);
 	width: 7px;
 	height: 7px;
-	background-color: #252525;
-	border: 3px solid #404040;
+	background-color: #242832;
+	border: 3px solid #3f454a;
 	border-radius: 6px;
 	margin-top: -15px;
 	cursor: pointer;
@@ -89,7 +89,7 @@ body {
 .add-output {
 	margin-top: 4%;
 	cursor: pointer;
-	background-color: rgb(21, 21, 21);
+	background-color: #171a23;
 	user-select: none;
 }
 .delete-output {
@@ -97,7 +97,7 @@ body {
 	height: 13px;
 	left: -15px;
 	width: 7px;
-	background-color: #ff7171a6;
+	background-color: #ff627a8a;
 	margin-bottom: -13px;
 	user-select: none;
 	cursor: pointer;
@@ -105,13 +105,13 @@ body {
 }
 .swal2-popup {
 	width: 77em !important;
-	background: #212121 !important;
+	background: #242832!important;
 }
 .swal2-file, .swal2-input, .swal2-textarea {
 	transition: box-shadow 0.3s !important;
 	transition-timing-function: ease !important;
 	border: 0px solid #d9d9d9 !important;
-	background-color: #272727 !important;
+	background-color: #2f3441 !important;
 	color: #d8d8d8 !important;
 	outline: none !important;
 	box-shadow: 0 0 0px rgba(0, 0, 0, .4) !important;
@@ -129,7 +129,7 @@ svg {
 .top-bar {
 	position: fixed;
 	width: 100%;
-	background-color: #353535;
+	background-color: #242832;
 	border-bottom: 3px solid rgba(255, 255, 255, 0.15);
 	z-index: 2;
 }
@@ -143,7 +143,7 @@ svg {
 	outline: none;
 	padding: 0.7em;
 	margin-left: 0px;
-	background-color: #454545;
+	background-color: #3b4051;
 	color: rgba(255, 255, 255, 0.67);
 	font-weight: 800;
 	font-size: 1em;
@@ -151,10 +151,10 @@ svg {
 	animation-duration: 0.3s;
 }
 .top-bar-button:hover {
-	background-color: #565656;
+	background-color: #4E5365;
 }
 .top-bar-button:active {
-	background-color: #3B3B3B;
+	background-color: #2C303C;
 }
 
 @keyframes scale-in {
@@ -177,30 +177,18 @@ input[type="file"] {
 .comment{
 	animation-name: scale-in;
 	animation-duration: 0.3s;
-	
-position: absolute;
-	
-text-align: center;
-	
-background-color: rgba(0, 0, 0, 0.16);
-	
-color: rgba(255, 255, 255, 0.55);
-	
-padding: 1.5em;
-	
-border-radius: 6px;
-	
-font-size: 1.1em;
-	
-border: 4px solid rgba(255, 255, 255, 0.28);
-	
-border-right: none;
-	
-border-left: none;
-	
-cursor: all-scroll;
-	
-user-select: none;
+	position: absolute;
+	text-align: center;
+	background-color: #cddbff12;
+	color: rgba(255, 255, 255, 0.66);
+	padding: 1.5em;
+	border-radius: 6px;
+	font-size: 1.1em;
+	/* border: 4px solid #f3ffc742; */
+	border-right: none;
+	border-left: none;
+	cursor: all-scroll;
+	user-select: none;
 }
 
 .comment-delete-button{
@@ -209,7 +197,7 @@ position: relative;
 	
 height: 12px;
 	
-background-color: rgba(255, 98, 98, 0.37);
+background-color: #ff62695e;
 	
 width: 12px;
 	
