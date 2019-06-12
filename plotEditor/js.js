@@ -219,7 +219,7 @@ $(document).on('mousedown', '.output-line-box', function(e) {
 	curveStart.y = e.target.getClientRects()[0].y+e.target.getClientRects()[0].height/2;
 
 	$(curve).attr({
-		stroke: '                                        ',
+		stroke: '#f3ffc7',
 		'stroke-width': '4',
 		fill: 'transparent'
 	});
@@ -433,3 +433,5 @@ function Open(jsonText) {
 
 
 //TODO: ???
+
+addNode();
