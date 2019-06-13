@@ -14,6 +14,7 @@ body {
 	text-align: -webkit-center;
 	animation-name: scale-in;
 	animation-duration: 0.3s;
+	display: table;
 }
 .window {
 	user-select: none;
