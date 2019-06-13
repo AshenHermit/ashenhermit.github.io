@@ -465,10 +465,13 @@ function Open(jsonText) {
 
 					outCount++;
 				});
+				nodes[lastId-1].visible = (node.visible!=undefined) ? node.visible : true;
+				console.log(nodes[lastId-1].visible);
+				$(nodes[lastId-1].dom).children('.window').children('.content')
+					.css('display', nodes[lastId-1].visible ? "block" : "none");
 			}else{
 				addLoadNode("", node.content, node.inputNodeIds, node.position, true);
 			}
-			toggleContentDisplay(lastId-1,(node.visible) ? node.visible : true);
 		}
 	});
 
