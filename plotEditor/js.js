@@ -317,20 +317,30 @@ function updateNodeCurves(nodeId){
 function toggleContentDisplay(nodeId,state){
 	nodes[nodeId].visible = state;
 	if(!nodes[nodeId].isComment){
+		if(state){
+			$(nodes[nodeId].dom).css('animation','none');
+			$(nodes[nodeId].dom).appendTo(document.body);
+			$('.comment').css('animation','none');
+			$('.comment').appendTo(document.body);
+		}
+
 		let cont = $(nodes[nodeId].dom).children('.window').children('.content');
 
 		let rect = $(cont).parent().parent()[0].getClientRects()[0];
 		let firstTitleRect = $(cont).parent().children('.title')[0].getClientRects()[0];
+		let contRect = cont[0].getClientRects()[0];
 
 		cont.css({
 			display: state ? "block":"none"
 		});
 
 		let secondTitleRect = $(cont).parent().children('.title')[0].getClientRects()[0];
-		$(cont).parent().parent().css({
-			left: state ? (rect.x-(secondTitleRect.width-firstTitleRect.width)/2) : (rect.x+(firstTitleRect.width-secondTitleRect.width)/2)
-		});
+		/*$(cont).parent().parent().css({
+			left: state ? (rect.x-(firstTitleRect.width)/2) : (rect.x+(secondTitleRect.width)/2)
+		});*/
 
+		$(nodes[nodeId].dom).css('width', state ? "auto" : contRect.width);
+		
 		if(nodes[nodeId].inputNodeIds.length!=0) nodes[nodeId].inputNodeIds.forEach(function(id){updateNodeCurves(id);});
 		updateNodeCurves(nodeId);
 	}
@@ -465,10 +475,13 @@ function Open(jsonText) {
 
 					outCount++;
 				});
+
 				nodes[lastId-1].visible = (node.visible!=undefined) ? node.visible : true;
-				console.log(nodes[lastId-1].visible);
+
+				let rect = $(nodes[lastId-1].dom).children('.window').children('.content')[0].getClientRects()[0];
 				$(nodes[lastId-1].dom).children('.window').children('.content')
 					.css('display', nodes[lastId-1].visible ? "block" : "none");
+				$(nodes[lastId-1].dom).css('width', nodes[lastId-1].visible ? "auto" : rect.width);
 			}else{
 				addLoadNode("", node.content, node.inputNodeIds, node.position, true);
 			}
