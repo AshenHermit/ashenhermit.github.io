@@ -10,5 +10,17 @@
 		"description":"тип кк в жожо дада",
 		"preview":"https://pp.userapi.com/c855624/v855624540/447b/Eq96uuaxWt4.jpg",
 		"url":"https://blacktiger54.github.io/standGenerator/"
+	},
+	{
+		"name": "Mind Game",
+		"description":"мультиплеерное текстовое рпг",
+		"preview":"https://pp.userapi.com/c856036/v856036010/2d948/q9-R874F8kk.jpg",
+		"url":"https://github.com/blacktiger54/mindGame"
+	},
+	{
+		"name": "редактор всего ветвистого",
+		"description":"удобно строить сюжеты",
+		"preview":"https://pp.userapi.com/c850132/v850132107/168ba1/L2yf7KH3obc.jpg",
+		"url":"https://blacktiger54.github.io/plotEditor/"
 	}
 ]
