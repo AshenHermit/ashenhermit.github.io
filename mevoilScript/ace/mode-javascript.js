@@ -59,7 +59,7 @@ var identifierRe = "[a-zA-Z\\$_\u00a1-\uffff][a-zA-Z\\d\\$_\u00a1-\uffff]*";
 var JavaScriptHighlightRules = function(options) {
     var keywordMapper = this.createKeywordMapper({
         "variable.language":
-            "osc|reverb|release|attack|", // Pseudo
+            "osc|reverb|release|attack|lowpass|highpass|filterRolloff|volume|", // Pseudo
         "keyword":
             "bpm|nl|npb|inst|eff|ptrn|play|",
         "storage.type":
