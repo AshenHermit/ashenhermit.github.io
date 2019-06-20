@@ -14,6 +14,7 @@ window.onload = function() {
 	}
 }
 
+Tone.context.lookAhead = 1;
 Tone.Master.volume.value = -8;
 
 var drumInstPreload = new Tone.Sampler({
@@ -37,6 +38,11 @@ function stop() {
 	drumInstPreload.disconnect()
 }
 function run(){
+	$(".ev-loading").removeClass('anim');
+	setTimeout(function(){
+		$(".ev-loading").addClass('anim');
+	},100);
+
 	stop();
 	let scriptText = editor.getValue();
 	scriptText+="\n";
