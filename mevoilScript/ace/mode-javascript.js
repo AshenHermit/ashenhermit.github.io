@@ -707,7 +707,7 @@ oop.inherits(Mode, TextMode);
 
 (function() {
 
-    this.lineCommentStart = "//";
+    this.lineCommentStart = "#";
     this.blockComment = {start: "/*", end: "*/"};
     this.$quotes = {'"': '"', "'": "'", "`": "`"};
 
