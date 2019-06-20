@@ -188,7 +188,7 @@ var init_PTRN = function(st) {
 	obj.nl   = comm[2].trim().replace("{","");
 
 	inner.split("\n").forEach(function(line){
-		if(line.trim()!=""){
+		if(line.trim()!="" && line.trim().charAt(0)!="#"){
 			let lineComm = line.split(":");
 			let instPat = {};
 			instPat.inst = lineComm[0].trim();
@@ -207,7 +207,7 @@ var init_PLAY = function(st) {
 
 	inner.split("\n").forEach(function(line){
 		line = line.trim();
-		if(line.trim()!=""){
+		if(line.trim()!="" && line.trim().charAt(0)!="#"){
 			let rowArray = [];
 			line.split("][").forEach(function(col){
 				col = col.replace("[","").replace("]","").trim();
