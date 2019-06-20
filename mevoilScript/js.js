@@ -18,10 +18,10 @@ Tone.context.lookAhead = 1;
 Tone.Master.volume.value = -8;
 
 var drumInstPreload = new Tone.Sampler({
-			"D1" : "samples/kick.mp3",
-			"D2" : "samples/snare.mp3",
-			"D3" : "samples/hat.mp3",
-			"D4" : "samples/ride.mp3"
+			"D1" : "samples/kick.wav",
+			"D2" : "samples/snare.wav",
+			"D3" : "samples/hat.wav",
+			"D4" : "samples/ride.wav"
 		},function(){})
 
 
@@ -174,6 +174,9 @@ var init_EFF = function(st) {
 		config.instruments[comm[1].trim()].synth.set({envelope:{release: +comm[3].trim()}});
 	}
 	if(comm[2].trim()=="attack"){
+		config.instruments[comm[1].trim()].synth.set({envelope:{attack: +comm[3].trim()}});
+	}
+	if(comm[2].trim()=="lowpass"){
 		config.instruments[comm[1].trim()].synth.set({envelope:{attack: +comm[3].trim()}});
 	}
 
