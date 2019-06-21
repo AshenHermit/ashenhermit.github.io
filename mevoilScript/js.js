@@ -159,7 +159,8 @@ var init_INST = function(st) {
 		inst.synth = inst.tone.connect(inst.filter);
 	}
 	if(comm[2].trim()=="drum") {
-		inst.synth = drumInstPreload.connect(inst.reverb);
+		inst.tone = drumInstPreload;
+		inst.synth = inst.tone.connect(inst.filter);
 	}
 
 	//
