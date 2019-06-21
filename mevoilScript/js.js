@@ -237,9 +237,10 @@ var init_PLAY = function(st) {
 
 	inner.split("\n").forEach(function(line){
 		line = line.trim();
-		if(line.trim()!="" && line.trim().charAt(0)!="#"){
+		console.log(line);
+		if(line!="" && line.charAt(0)!="#"){
 			let rowArray = [];
-			line.split("][").forEach(function(col){
+			line.replace(new RegExp(" ", "g"),"").split("][").forEach(function(col){
 				col = col.replace("[","").replace("]","").trim();
 				rowArray.push(col);
 			});
