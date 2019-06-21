@@ -152,8 +152,12 @@ var init_INST = function(st) {
 	inst.volume = new Tone.Volume().toMaster();
 	inst.reverb = new Tone.Freeverb(0).connect(inst.volume);inst.reverb.wet = 0.2;
 	inst.filter = new Tone.Filter(0, "highpass").connect(inst.reverb);
+	inst.distortion = new Tone.Distortion(0).connect(inst.filter);
 	//
-	if(comm[2].trim()=="8bit") inst.synth = new Tone.PolySynth({envelope: inst.envelope}).connect(inst.filter);
+	if(comm[2].trim()=="8bit") {
+		inst.tone = new Tone.PolySynth({envelope: inst.envelope});
+		inst.synth = inst.tone.connect(inst.filter);
+	}
 	if(comm[2].trim()=="drum") {
 		inst.synth = drumInstPreload.connect(inst.reverb);
 	}
@@ -168,19 +172,21 @@ var init_EFF = function(st) {
 
 	if(comm[2].trim()=="reverb")
 		config.instruments[comm[1].trim()].reverb.set({roomSize: +comm[3].trim()});
+	if(comm[2].trim()=="reverbWet")
+		config.instruments[comm[1].trim()].reverb.wet.value = +comm[3].trim();
 
 	if(comm[2].trim()=="volume")
 		config.instruments[comm[1].trim()].volume.set({volume: +comm[3].trim()});
 
 
 	if(comm[2].trim()=="osc"){
-		config.instruments[comm[1].trim()].synth.set({oscillator:{type:comm[3].trim()}});
+		config.instruments[comm[1].trim()].tone.set({oscillator:{type:comm[3].trim()}});
 	}
 	if(comm[2].trim()=="release"){
-		config.instruments[comm[1].trim()].synth.set({envelope:{release: +comm[3].trim()}});
+		config.instruments[comm[1].trim()].tone.set({envelope:{release: +comm[3].trim()}});
 	}
 	if(comm[2].trim()=="attack"){
-		config.instruments[comm[1].trim()].synth.set({envelope:{attack: +comm[3].trim()}});
+		config.instruments[comm[1].trim()].tone.set({envelope:{attack: +comm[3].trim()}});
 	}
 
 
@@ -194,7 +200,11 @@ var init_EFF = function(st) {
 		config.instruments[comm[1].trim()].filter.set({rolloff: +comm[3].trim()});
 	}
 
-
+	if(comm[2].trim()=="distortion"){
+		let inst = config.instruments[comm[1].trim()];
+		inst.synth = inst.tone.connect(inst.distortion);
+		config.instruments[comm[1].trim()].distortion.set({distortion: +comm[3].trim()});
+	}
 
 	moveCarret(1,st);
 }
