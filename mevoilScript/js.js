@@ -1,6 +1,6 @@
 window.onload = function() {
 	var context = new AudioContext();
-	context.resume();
+	// context.resume();
 	Tone.start();
 
 	if(location.href.indexOf("?script=")!=-1){
@@ -13,9 +13,6 @@ window.onload = function() {
 			.replace(/%20/g," "));
 	}
 }
-
-Tone.context.lookAhead = 1;
-Tone.Master.volume.value = -8;
 
 var drumInstPreload = new Tone.Sampler({
 			"D1" : "samples/kick.wav",
@@ -36,6 +33,11 @@ function stop() {
 	Tone.Transport.stop();
 	Tone.Transport.cancel();
 	drumInstPreload.disconnect()
+	
+	Tone.context.close()
+	Tone.context = new AudioContext();
+	Tone.context.lookAhead = 1;
+	Tone.Master.volume.value = -8;
 }
 function run(){
 	$(".ev-loading").removeClass('anim');
