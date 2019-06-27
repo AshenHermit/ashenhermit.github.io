@@ -26,7 +26,7 @@ function onFileSelected(el){
 				can.width = genCan.width = img.naturalWidth;
 				can.height = genCan.height = img.naturalHeight;
 				ctx.drawImage(img,0,0);
-				clearImage = ctx.getImageData(0,0,img.naturalWidth,img.naturalHeight).data;
+				setTimeOut(function(){clearImage = ctx.getImageData(0,0,img.naturalWidth,img.naturalHeight).data;},100);
 
 				newDepthMap(img.naturalWidth, img.naturalHeight);
 			}
@@ -124,7 +124,7 @@ can.addEventListener('mousedown', function(e){
 		mouseDown = true;
 		draw();
 	}else if(e.button==2){
-		//can.requestFullscreen();
+		// can.requestFullscreen();
 	}
 });
 
