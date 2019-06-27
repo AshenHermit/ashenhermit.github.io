@@ -115,7 +115,6 @@ function updateMousePos(e){
 }
 
 can.addEventListener('mousedown', function(e){
-	console.log(e);
 	if(e.button==0){
 		updateMousePos(e);
 
