@@ -20,6 +20,14 @@ nav{
 	background-color: rgba(15, 16, 23, 0.85);
 }
 
+.clickable{
+	transition: all 0.06s;
+	transition-timing-function: ease;
+}
+.clickable:active{
+	transform: scale(0.9);
+}
+
 .titleLine{
 	width: 80vw;
 	text-align: center;
@@ -61,7 +69,7 @@ nav{
     border-radius: 10px;
 }
 .shopItemButton{
-	transition: top 0.2s;
+	transition: transform 0.2s, -moz-transform 0.2s;
   	transition-timing-function: cubic-bezier(0, 0.48, 0.26, 0.99);
 
     font-weight: bold;
@@ -76,11 +84,13 @@ nav{
 .shopItemButton:hover{
 	background-color: #181b24;
 	color: #fff !important;
-	top: -6px;
+	transform: translateY(-6px);
+	-moz-transform: translateY(-6px);
 	cursor: pointer;
 }
 .shopItemButton:active{
-	top: -3px;
+	transform: translateY(-3px);
+	-moz-transform: translateY(-3px);
 	cursor: pointer;
 }
 .shopItemName, .shopItemPrice{
