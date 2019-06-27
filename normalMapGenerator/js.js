@@ -124,7 +124,7 @@ can.addEventListener('mousedown', function(e){
 		mouseDown = true;
 		draw();
 	}else if(e.button==2){
-		can.requestFullscreen();
+		//can.requestFullscreen();
 	}
 });
 
