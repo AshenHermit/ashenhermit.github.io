@@ -82,7 +82,13 @@ function loadJsonProjects() {
 	getJson("json/projects.json",function(projects) {
 	    projects.forEach(function(item) {
 	    	document.getElementsByClassName('content')[0].innerHTML+=
-			'<div class="wow animated fast flex-center fadeInUp shopItem">'+ ((item.name!=undefined) ? '<h2 class="flex-center animated fadeInDown mb-8 white-text shopItemName">'+item.name+'</h2>' : "") +((item.description!=undefined) ? '<h6 class="flex-center animated fadeInDown mb-8 white-text text-muted" style="color: rgba(255, 255, 255, 0.5) !important;">'+item.description+'</h6>' : "")+'<div class="d-flex flex-row shopItemBuyBlock"><a target="_blank" href="'+item.url+'"><div class="animated fadeInDown waves-effect waves-light black-text shopItemButton">го</div></a></div><img class="shopItemImg" alt="'+ ((item.name!=undefined) ? item.name : "параша какая т")+'" src="'+item.preview+'"></img></div>'
+			`<div class="wow animated fast flex-center fadeInUp shopItem">`+ ((item.name!=undefined) ? `
+				<h2 class="flex-center animated fadeInDown mb-8 white-text shopItemName">`+item.name+`</h2>` : "") 
+				+((item.description!=undefined) ? `
+					<h6 class="flex-center animated fadeInDown mb-8 white-text text-muted" style="color: rgba(255, 255, 255, 0.5) !important;">`
+					+item.description+`</h6>` : "")+`
+				<a target="_blank" href="`+item.url+`">
+				<img class="shopItemImg clickable" alt="`+ ((item.name!=undefined) ? item.name : "параша какая т")+`" src="`+item.preview+`"></img></a></div>`
 		});
 	});
 }
