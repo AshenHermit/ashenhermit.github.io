@@ -21,6 +21,8 @@
 
 		}
 		.button{
+			transition: all 0.1s;
+			transition-timing-function: ease;
 			cursor: pointer;
 			padding: 1em;
 			background-color: #efefef;
@@ -32,7 +34,12 @@
 			user-select: none;
 			-moz-user-select: none;
 			font-size: 0.9em;
+			outline: none;
 		}
+		.button:active{
+			transform: scale(0.9);
+		}
+
 		#file-upload{
 			display: none;
 		}
