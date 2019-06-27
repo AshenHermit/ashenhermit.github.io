@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+	<style type="text/css">
+
+		*{
+			font-family: 'Josefin Sans', sans-serif;
+			image-rendering: -webkit-optimize-contrast;
+			image-rendering: pixelated;
+			-ms-interpolation-mode: nearest-neighbor;
+			image-rendering: crisp-edges;
+		}
+		body{
+			margin: 0;
+			background-color: #211f24;
+			padding: 70px;
+			text-align: center;
+		}
+		.toolbar{
+
+		}
+		.button{
+			cursor: pointer;
+			padding: 1em;
+			background-color: #efefef;
+			/*! border-radius: 7px; */
+			border: 0;
+			margin-right: 3px;
+			color: #3b3b3b;
+			font-weight: bold;
+			user-select: none;
+			-moz-user-select: none;
+			font-size: 0.9em;
+		}
+		#file-upload{
+			display: none;
+		}
+		canvas{
+			width: 31%;
+			margin: 26px;
+			background-color: #28262c;
+		}
+		.tmp{
+			display: none;
+		}
+		input{
+			background-color: #28262c;
+			border: 0;
+			padding: 15px;
+			margin-top: 13px;
+		}
+		span{
+			color: #fff;
+			margin-right: 15px;
+		}
+	
+	</style>
+
+	<title>pixel normal map generator</title>
+</head>
+<body>
+	<div class="toolbar">
+		<canvas width="32" height="32" id="view"></canvas>
+		<canvas width="32" height="32" id="gen"></canvas>
+	</div>
+
+	<div class="toolbar">
+		<button onclick="document.getElementById('file-upload').click();" class="button">Load Sprite</button>
+		<input onchange="onFileSelected(this)" id="file-upload" type="file"/>
+
+		<button style="background-color: #e34e82;color: #fff;}" onclick="Generate();" class="button">Generate</button>
+	</div>
+
+	<div class="toolbar">
+		<span>quality: </span>
+		<input value="5" type="text" id="quality-input" name="quality">
+	</div>
+	<div class="toolbar">
+		<span>&nbsp;&nbsp;noise: </span>
+		<input value="0.02" type="text" id="noise-input" name="noise">
+	</div>
+
+	<script type="text/javascript" src="js.js"></script>
+</body>
+</html>
