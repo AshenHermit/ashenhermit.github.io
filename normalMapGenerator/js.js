@@ -22,13 +22,14 @@ function onFileSelected(el){
 		reader.readAsDataURL(file);
 		reader.onload = function(read){
 			if( read.target.readyState == FileReader.DONE) {
+				img.onload = function(){
+					can.width = genCan.width = img.width;
+					can.height = genCan.height = img.height;
+					ctx.drawImage(img,0,0);
+					clearImage = ctx.getImageData(0,0,img.width,img.height).data;
+					newDepthMap(img.width, img.height);
+				}
 				img.src = read.target.result;
-				can.width = genCan.width = img.naturalWidth;
-				can.height = genCan.height = img.naturalHeight;
-				ctx.drawImage(img,0,0);
-				setTimeOut(function(){clearImage = ctx.getImageData(0,0,img.naturalWidth,img.naturalHeight).data;},100);
-
-				newDepthMap(img.naturalWidth, img.naturalHeight);
 			}
 		}
 	} else {
@@ -37,6 +38,7 @@ function onFileSelected(el){
 }
 
 function newDepthMap(w,h){
+	depthMap = null;
 	depthMap = new Array(w);
 	for (var x = 0; x < w; x++) {
 		depthMap[x] = [];
@@ -49,12 +51,12 @@ function newDepthMap(w,h){
 newDepthMap(32, 32);
 
 function Generate(){
-	if(img.src=="") {img.naturalWidth=32;img.naturalHeight=32}
+	if(img.src=="") {img.width=32;img.height=32}
 	q = parseInt(document.getElementById('quality-input').value);
 	noise = parseFloat(document.getElementById('noise-input').value);
 
 	genCtx.fillStyle = "rgb(128,128,255)";
-	genCtx.fillRect(0,0,img.naturalWidth,img.naturalHeight);
+	genCtx.fillRect(0,0,img.width,img.height);
 
 	for (var x = 0; x < depthMap.length; x++) {
 		for (var y = 0; y < depthMap[x].length; y++) {
@@ -88,7 +90,7 @@ function getNeighbourCount(px,py,size){
 			//console.log("x:"+x+"; y:"+y+";");
 			if((x!=px || y!=py) &&
 			x>=0 && y>=0 &&
-			x<img.naturalWidth && y<img.naturalHeight &&
+			x<img.width && y<img.height &&
 			depthMap[x][y]==1){
 				count++;
 				vec.x+=x-px;
@@ -105,14 +107,15 @@ function getNeighbourCount(px,py,size){
 
 function updateMousePos(e){
 	let rect = can.getBoundingClientRect();
-	let x = e.layerX;
-	let y = e.layerY;
+	let x = e.layerX-((navigator.userAgent.indexOf("Firefox") != -1)?rect.x:0);
+	let y = e.layerY-((navigator.userAgent.indexOf("Firefox") != -1)?rect.y:0);
 
 	mousePos.x = Math.round((can.width/can.clientWidth)*(x-(can.clientWidth/can.width)/2));
 	mousePos.y = Math.round((can.height/can.clientHeight)*(y-(can.clientHeight/can.height)/2));
 }
 
 can.addEventListener('mousedown', function(e){
+	console.log(e);
 	if(e.button==0){
 		updateMousePos(e);
 
