@@ -49,6 +49,7 @@ function newDepthMap(w,h){
 newDepthMap(32, 32);
 
 function Generate(){
+	if(img.src=="") {img.naturalWidth=32;img.naturalHeight=32}
 	q = parseInt(document.getElementById('quality-input').value);
 	noise = parseFloat(document.getElementById('noise-input').value);
 
@@ -104,11 +105,11 @@ function getNeighbourCount(px,py,size){
 
 function updateMousePos(e){
 	let rect = can.getBoundingClientRect();
-	let x = e.layerX-rect.x;
-	let y = e.layerY-rect.y;
+	let x = e.layerX;
+	let y = e.layerY;
 
-	mousePos.x = Math.round((can.width/rect.width)*(x-(rect.width/can.width)/2));
-	mousePos.y = Math.round((can.height/rect.height)*(y-(rect.height/can.height)/2));
+	mousePos.x = Math.round((can.width/can.clientWidth)*(x-(can.clientWidth/can.width)/2));
+	mousePos.y = Math.round((can.height/can.clientHeight)*(y-(can.clientHeight/can.height)/2));
 }
 
 can.addEventListener('mousedown', function(e){
@@ -144,7 +145,7 @@ function draw(){
 		}
 		else{
 			depthMap[mousePos.x][mousePos.y] = 0;
-			if(img.src) ctx.fillStyle = getColor(img,mousePos.x,mousePos.y);
+			if(img.src!="") ctx.fillStyle = getColor(img,mousePos.x,mousePos.y);
 			else ctx.fillStyle = "#28262c";
 			ctx.fillRect(mousePos.x,mousePos.y,1,1);
 		}
