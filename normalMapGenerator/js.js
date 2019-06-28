@@ -147,8 +147,9 @@ function draw(){
 		}
 		else{
 			depthMap[mousePos.x][mousePos.y] = 0;
+			ctx.clearRect(mousePos.x,mousePos.y,1,1);
 			if(img.src!="") ctx.fillStyle = getColor(img,mousePos.x,mousePos.y);
-			else ctx.fillStyle = "#28262c";
+			else ctx.fillStyle = "rgba(0,0,0,0)";
 			ctx.fillRect(mousePos.x,mousePos.y,1,1);
 		}
 	}
