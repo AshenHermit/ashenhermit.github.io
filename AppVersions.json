@@ -1,5 +1,8 @@
 {
   "AppVersions":{
-    "creepyFinder": 0.02
+    "creepyFinder": {
+      "version": 0.03,
+      "download": "https://drive.google.com/open?id=1ne2KgXoxr8dDjmtfuqmdaHN4TYzVNhg5"
+    }
   }
 }
