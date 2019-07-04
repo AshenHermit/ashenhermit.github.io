@@ -3,11 +3,14 @@
 <head>
 	<title>EVOIL version loader</title>
 	<meta charset = "utf-8">
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<style type="text/css">
 		@font-face {
-			font-family: Text;
+			font-family: Text2;
 			src: url(Font.ttf);
+		}
+		@font-face {
+			font-family: Text;
+			src: url(FontOld.ttf);
 		}
 		*{
 			font-family: 'Text';
@@ -21,6 +24,8 @@
 		    font-size: 1.3em;
 		}
 		.loading{
+			transition: all 0.3s;
+			transition-timing-function: ease;
 			width: 80px;
 			animation: loading 1s infinite cubic-bezier(0.62, 0, 0.21, 0.96);
 		}
@@ -36,21 +41,40 @@
 </head>
 <body>
 	<img class="loading" src="loading.png">
-	<div style="margin-top: 11px;">ща, погодь, ищу версию...</div>
+	<div id="text" style="margin-top: 11px;">ща погодь, ищу версию...</div>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
 
 
 		var j = $.getJSON('https://raw.githubusercontent.com/blacktiger54/blacktiger54.github.io/master/AppVersions.json');
-		var waiting = setInterval(function(){
-		    if(j.readyState>3){
-		        let data = JSON.parse(j.responseText);
-		        data = data.AppVersions[window.location.hash.substring(1)]
-		        console.log(data);
-		        window.open(data.download,"_self")
+        if(window.location.hash==""){
+        	$('.loading').css('opacity', '0');
+        	$('#text').html('ахуенно<br>искать то че?<br>не, мне тип не сложно вот так просто потупить, но бля...<br>не прикольно какт');
+        }else{
+			var waiting = setInterval(function(){
+	        	let appName = window.location.hash.substring(1);
+			    if(j.readyState>3){
+			        let data = JSON.parse(j.responseText);
+			        let appObj = data.AppVersions[appName];
+			        console.log(data);
+			        try{
+			        	window.open(appObj.download,"_self");
+			        	$('.loading').css('opacity', '0');
+			        	$('#text').html("еее~ нашел");
+			        }catch(err){
+			        	$('.loading').css('opacity', '0');
+			        	let list = "";
+			        	Object.keys(data.AppVersions).forEach(function(app){
+			        		list+="<br><span style='font-family:Text2;'>- "+app+"</span><br>";
+			        	});
+			        	$('#text').html('приложения "'+appName+'" походу нет...<br>ввел правильно?<br>на списочек:<br>'+list);
+			        }
 
-		        clearInterval(waiting);
-		    }
-		},100);
+			        clearInterval(waiting);
+			    }
+			},100);
+        }
 	</script>
 </body>
 </html>
