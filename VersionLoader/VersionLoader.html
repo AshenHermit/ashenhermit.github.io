@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EVOIL version loader</title>
+	<meta charset = "utf-8">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<style type="text/css">
+		@font-face {
+			font-family: Text;
+			src: url(Font.ttf);
+		}
+		*{
+			font-family: 'Text';
+		}
+		body{
+		    margin: 0;
+		    padding-top: 44vh;
+		    text-align: center;
+		    background-color: #000;
+		    color: #fff;
+		    font-size: 1.3em;
+		}
+		.loading{
+			width: 80px;
+			animation: loading 1s infinite cubic-bezier(0.62, 0, 0.21, 0.96);
+		}
+		@keyframes loading {
+			0% {
+				transform: rotateZ(0deg);
+			}
+			100% {
+				transform: rotateZ(360deg);
+			}
+		}
+	</style>
+</head>
+<body>
+	<img class="loading" src="loading.png">
+	<div style="margin-top: 11px;">ща погодь, гружу версию</div>
+	<script type="text/javascript">
+
+
+		var j = $.getJSON('https://raw.githubusercontent.com/blacktiger54/blacktiger54.github.io/master/AppVersions.json');
+		var waiting = setInterval(function(){
+		    if(j.readyState>3){
+		        let data = JSON.parse(j.responseText);
+		        data = data.AppVersions[window.location.hash.substring(1)]
+		        console.log(data);
+		        window.open(data.download,"_self")
+
+		        clearInterval(waiting);
+		    }
+		},100);
+	</script>
+</body>
+</html>
