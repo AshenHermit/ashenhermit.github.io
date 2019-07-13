@@ -83,7 +83,7 @@ $(document).ready(function() {
 	checkPage();	
 
 
-	if(window.location.href.indexOf("index")==-1){
+	if(window.location.href.indexOf(".html")!=-1){
 		let html = document.getElementsByClassName('content')[0].innerHTML
 		// .replace(/\n/gim,"<br>")
 		// .replace(/\t/gim,"&nbsp;&nbsp;&nbsp;&nbsp;")
@@ -111,9 +111,9 @@ $(document).ready(function() {
 			z+=String.fromCharCode(Math.floor(Math.random()*65534));
 		}
 		$('.content').append(z);
-		$('a').not('#nl').addClass('link').attr('target', '_blank');
 		hljs.initHighlighting();
 	}
+	$('a').not('#nl').addClass('link').attr('target', '_blank');
 });
 
 $('.menu-line').on('click', function(event) {
