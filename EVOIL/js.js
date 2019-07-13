@@ -89,7 +89,7 @@ $(document).ready(function() {
 		// .replace(/\n/gim,"<br>")
 		// .replace(/\t/gim,"&nbsp;&nbsp;&nbsp;&nbsp;")
 		// .replace(/  /gim,"&#8194;")
-		.replace(/\/\*/gim,'<span style="background-color: #ffffff38;color: #e6e6e6;padding: 10px;padding-top: 0px;padding-bottom: 1px;">')
+		.replace(/\/\*/gim,'<span style="background-color: rgba(255,255,255,0.22);color: #e6e6e6;padding: 10px;padding-top: 0px;padding-bottom: 1px;">')
 		.replace(/\*\//gim,'</span>')
 
 		.replace(/\/\^/gim,'<span style="font-style: italic;">')
