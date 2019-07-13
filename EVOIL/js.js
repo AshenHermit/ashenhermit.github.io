@@ -3,9 +3,8 @@ var targetX=0, targetY=0;
 
 function checkPage(){
 	let hash = window.location.hash;
-	if(window.location.href.indexOf("index")==-1) hash = "not index"
-	if(hash!='' && hash!='not index') $('.content').html("");
-	if(hash=='' || hash=='#'){
+	if(hash=='') $('.content').html("");
+	if(hash=='#home'){
 		checkLink("#");
 		$('.contact').css('display', 'block');
 		$('.content').html(`
@@ -56,7 +55,7 @@ function checkLink(href) {
 }
 
 function loadArticles(){
-	getJson('pages/artices.json', function(articles){
+	getJson('pages/articles.json', function(articles){
 		articles.forEach(function(article){
 			$('.content').append(`
 			<a href="`+article.url+`"><div class="list-element underline clickable left-underline">
