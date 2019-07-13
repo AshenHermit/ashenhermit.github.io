@@ -3,7 +3,7 @@ var targetX=0, targetY=0;
 
 function checkPage(){
 	let hash = window.location.hash;
-	if(hash=='') $('.content').html("");
+	if(hash=='' && window.location.href.indexOf(".html")==-1) $('.content').html("");
 	if(hash=='#home'){
 		checkLink("#");
 		$('.contact').css('display', 'block');
