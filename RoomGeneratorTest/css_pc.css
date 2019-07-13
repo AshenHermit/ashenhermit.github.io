@@ -1,0 +1,115 @@
+
+::-webkit-scrollbar-thumb{
+    border-width:1px 1px 1px 2px;
+    border-color: #fff;
+    background-color: #fff;
+}
+::-webkit-scrollbar{
+    width:8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track{
+   border-width:4px solid #fff;
+}
+::-webkit-scrollbar-track:hover{
+     border-width:4px solid #fff;
+}
+
+@font-face{
+    font-family: Font;
+    src: url("Font.ttf");
+}
+
+*{
+    font-family: Font;
+    font-size: 21px;
+}
+body{
+    margin: 0;
+}
+input{
+    background-color: #262626;
+    color: #fff;
+    border: 0px;
+    border-bottom: 2px #fff solid;
+}
+#button{
+    background-color: #262626;
+    text-align: center;
+    border-bottom: 2px #fff solid;
+}
+#par{
+    right: 0px;
+    margin-right: 10px;
+    /* text-align: right; */
+    width: fit-content;
+    margin-top: 21px;
+    color: #a2a2a2;
+}
+/*#canvas{
+    display: inline-block;
+    max-height: 100%;
+    max-width: 100%;
+    width: 50vh;
+    background-image: url(grid.png);
+    background-size: 118px;
+    background-color: #212121;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+    image-rendering: crisp-edges;
+}
+*/
+
+canvas {
+    display: inline-block;
+    max-height: 100%;
+    max-width: 100%;
+    width: 57vh;
+    background-image: url(grid.png);
+    background-size: 118px;
+    background-color: #212121;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+    image-rendering: crisp-edges;
+    margin: 18px;
+}
+
+.clickable{
+    transition: all 0.06s;
+    transition-timing-function: ease;
+}
+.clickable:active{
+    transform: scale(0.9);
+}
+
+
+div{
+    
+    /*user-select: none;*/
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+}
+
+::selection {
+    background-color: #fff;
+    color: #000;
+
+}
+
+body{
+    cursor: url(blakes\cursor.png),url(blakes\cursor2.png), pro;
+    /* overflow: hidden; */
+    image-rendering: pixelated;
+    color: #fff;
+    background-color: #0A0A0A;
+    padding: 2em;
+}
+
+
+
+
+
