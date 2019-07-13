@@ -50,7 +50,7 @@ footer{
 	height: 100%;
 	text-align: right;
 	top: 0em;
-	background-color: #0a0a0af0;
+	background-color: rgba(10,10,10,0.92);
 	left: 0;
 	height: 50%;
 	top: 25%;
@@ -83,13 +83,13 @@ footer{
 	color: #b7b7b7;
 	font-size: 1.5em;
 	padding: 1em;
-	background-color: #ffffff14;
+	background-color: rgba(255,255,255,0.08);
 	transform: scale(1);
 	margin-bottom: 0.5em;
 	text-decoration: none !important;
 }
 .menu-line:hover{
-	background-color: #ffffff29;
+	background-color: rgba(255,255,255,0.16);
 }
 .underline.clickable::before{
 	position: absolute;
@@ -114,12 +114,12 @@ footer{
 
 
 .menu-line.checked{
-	background-color: #ffffffde;
+	background-color: rgba(255,255,255,0.87);
 	color: #000;
 }
 
 .menu-line.checked:hover{
-	background-color: #ffffffde;
+	background-color: rgba(255,255,255,0.87);
 }
 .checked{
 
@@ -257,5 +257,5 @@ pre{
 
 hr{
     border: 0;
-    border-bottom: 4px solid #ffffff2e;
+    border-bottom: 4px solid rgba(255,255,255,0.18);
 }
