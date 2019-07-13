@@ -5,7 +5,7 @@ function checkPage(){
 	let hash = window.location.hash;
 	if(hash=='' && window.location.href.indexOf(".html")==-1) $('.content').html("");
 	if(hash=='#home'){
-		checkLink("#");
+		checkLink("#home");
 		$('.contact').css('display', 'block');
 		$('.content').html(`
 			<div id="center-element" style="position: initial;padding: 3em;max-width: 393px;">
