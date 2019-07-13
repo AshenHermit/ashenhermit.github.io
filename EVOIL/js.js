@@ -30,6 +30,7 @@ function checkPage(){
 		$('.contact').css('display', 'none');
 	}
 	if(hash=='#articles'){
+		$('.content').html("");
 		checkLink("#articles");
 		loadArticles();
 	}
