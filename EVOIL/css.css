@@ -169,6 +169,8 @@ text-align: center;
 	top: 10vh;
 	position: relative;
 	margin-bottom: 26vh;
+	padding-left: calc((6vw - 27px) * 6);
+	padding-right: calc((6vw - 27px) * 6);
 }
 
 .contact{
@@ -207,15 +209,11 @@ width: 0.9em;
 .article-content{
 	
 margin-top: 3em;
-	
-padding-left: calc((6vw - 27px) * 6);
-	
-padding-right: calc((6vw - 27px) * 6);
 }
 
 h2{
 	
-margin-left: calc(-35px + (100vw - 101vw));
+margin-left: calc(-10px);
 	
 font-size: 1.3em;
 	
