@@ -13,7 +13,7 @@ window.onload = function() {
 			.replace(/%20/g," "));
 	}else
 	if(location.href.indexOf("?base64script=")!=-1){
-		editor.setValue(atob(location.href.substring(location.href.indexOf("?base64script=")+"?base64script=".length)))
+		editor.setValue(window.atob(location.href.substring(location.href.indexOf("?base64script=")+"?base64script=".length)));
 	}
 }
 
@@ -54,8 +54,7 @@ function run(){
 	init(scriptText);
 	play();
 
-	location.href = location.href.substring(0,location.href.indexOf("?base64script="))+"?base64script="+
-		btoa(editor.getValue())
+	history.pushState({}, "Mevoil Script", location.href.substring(0,location.href.indexOf("?base64script="))+"?base64script="+window.btoa(editor.getValue()));
 }
 
 function init(st){
