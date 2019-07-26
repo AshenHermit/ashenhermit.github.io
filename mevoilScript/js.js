@@ -11,6 +11,9 @@ window.onload = function() {
 			.replace(/%-4/g,'}')
 			.replace(/%-5/g,'"')
 			.replace(/%20/g," "));
+	}else
+	if(location.href.indexOf("?base64script=")!=-1){
+		editor.setValue(atob(location.href.substring(location.href.indexOf("?base64script=")+"?base64script=".length)))
 	}
 }
 
@@ -35,8 +38,8 @@ var config = {instruments:{}};
 function stop() {
 	Tone.Transport.stop();
 	Tone.Transport.cancel();
-	drumInstPreload.disconnect()
-	// Tone.context.close()
+	drumInstPreload.disconnect();
+	// Tone.context.close();
 	// Tone.context = new AudioContext();
 }
 function run(){
@@ -51,13 +54,8 @@ function run(){
 	init(scriptText);
 	play();
 
-	location.href = location.href.substring(0,location.href.indexOf("?script="))+"?script="+
-		editor.getValue()
-		.replace(/\t/g,"%-1")
-		.replace(/\n/g,"%-2")
-		.replace(/{/g, "%-3")
-		.replace(/}/g, "%-4")
-		.replace(/"/g, "%-5");
+	location.href = location.href.substring(0,location.href.indexOf("?base64script="))+"?base64script="+
+		btoa(editor.getValue())
 }
 
 function init(st){
