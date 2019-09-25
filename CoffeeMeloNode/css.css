@@ -252,7 +252,7 @@ border-radius: 4px;
     margin-left:0%;
 }
 .spoilerbutton[value="Hide"] + .spoiler {
-    margin-left: -55vw;
+    margin-left: -100%;
 }
 
 li{
