@@ -427,3 +427,12 @@ input {
     position: relative;
     top: 52px;
 }
+
+.hover{
+	transition: opacity 0.1s;
+	transition-timing-function: ease;
+}
+
+.hover:hover{
+	opacity: 0.95 !important;
+}
