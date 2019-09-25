@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>evoil - Mini Synth Lab</title>
+	<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono&display=swap" rel="stylesheet"> -->
+	<link rel= "stylesheet" href="css.css"/>
+	<link rel="icon" type="image/png" href="ico.png" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="Tone.min.js"></script>
+	<!-- <script type="text/javascript" src="https://unpkg.com/tone"></script> -->
+
+	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script> -->
+</head>
+<body>
+	<svg width="5000" height="3000" xmlns="http://www.w3.org/2000/svg"></svg>
+
+	<div class="top-bar">
+		<button style="margin-left: 14px;" onclick="Save();" class="top-bar-button">Save</button>
+		<!-- <button  class="top-bar-button" onclick="Open();">Open</button> -->
+		<label for="file-upload" class="top-bar-button">Open</label>
+		<input onchange="onFileSelected(this.files)" id="file-upload" type="file"/>
+
+
+		<!-- <button onclick="addComment();" class="top-bar-button">Create Comment</button> -->
+
+		<button onclick="this.value=this.value=='Show'?'Hide':'Show';" value="Hide" style="margin-left: 40px;" class="top-bar-button spoilerbutton">Read this</button>
+		<div class="spoiler content"><div>
+			<span class="help-title">nodes:</span>
+			<ul>
+				<li>You can create node with right mouse button.</li>
+				<li>You can drag a node using the node header.</li>
+				<li>You can delete a node by double clicking on node header.</li>
+			</ul>
+
+			<span class="help-title">edit:</span>
+			<ul>
+				<li>To add item in list press "+".</li>
+				<li>You can apply entered list item value by pressing "Enter".</li>
+				<li>You can delete the list item leaving the field blank and pressing "Enter".</li>
+				<li>You can select note input box and change it with note keyboard next to the "Read this" (changes apply immediately).</li>
+				<li>You can spin parameter wheel by dragging it up/down.</li>
+			</ul>
+
+			<!-- <span class="help-title">comments:</span>
+			<ul>
+				<li>You can change content of a comment by double clicking on content of comment.</li>
+			</ul> -->
+
+			<span class="help-title">other:</span>
+			<ul>
+				<li>You can drag the view with middle mouse button.</li>
+			</ul>
+
+			<span class="help-title">primitive using:</span>
+			<ul>
+				<li>list of notes -> random midi -> oscillator -> reverb -> mix</li>
+			</ul>
+		</div></div>
+		<button onclick="this.value=this.value=='Show'?'Hide':'Show';" value="Hide" style="margin-left: 40px;" class="top-bar-button spoilerbutton">Keyboard</button>
+		<div class="spoiler content"><div class="top-bar-param">octave: <input id="bpmInput" type="number" name="octave" value="4" style="width: 3em;"></div><div>
+			<div class="keyboard-key keyboard-key-white"><div class="keyboard-key-white-text">C</div></div>
+			<div class="keyboard-key keyboard-key-black"><div class="keyboard-key-black-text">C#</div></div>
+			<div class="keyboard-key keyboard-key-white"><div class="keyboard-key-white-text">D</div></div>
+			<div class="keyboard-key keyboard-key-black"><div class="keyboard-key-black-text">D#</div></div>
+			<div class="keyboard-key keyboard-key-white"><div class="keyboard-key-white-text">E</div></div>
+			<div class="keyboard-key keyboard-key-white"><div class="keyboard-key-white-text">F</div></div>
+			<div class="keyboard-key keyboard-key-black"><div class="keyboard-key-black-text">F#</div></div>
+			<div class="keyboard-key keyboard-key-white"><div class="keyboard-key-white-text">G</div></div>
+			<div class="keyboard-key keyboard-key-black"><div class="keyboard-key-black-text">G#</div></div>
+			<div class="keyboard-key keyboard-key-white"><div class="keyboard-key-white-text">A</div></div>
+			<div class="keyboard-key keyboard-key-black"><div class="keyboard-key-black-text">A#</div></div>
+			<div class="keyboard-key keyboard-key-white"><div class="keyboard-key-white-text">B</div></div>
+		</div></div>
+		<!-- <div class="top-bar-param">bpm: <input id="bpmInput" type="number" name="bpm" value="120" style="width: 3em;"></div> -->
+	</div>
+
+
+	<div class="context-menu">
+		<div class="context-menu-line">
+			<div data-type="note_array" onclick="addNodeFromContenxt(ListOfNotes)" class="context-menuline-img">List Of Notes</div>
+		</div>
+		<br><div class="slashLine">-</div>
+		<div class="context-menu-line">
+			<div data-type="midi" onclick="addNodeFromContenxt(RandomMIDI)" class="context-menuline-img">Random Midi</div>
+			<div data-type="midi" onclick="addNodeFromContenxt(ArpegioMIDI)" class="context-menuline-img">Arpegio MIDI</div>
+		</div>
+		<br><div class="slashLine">-</div>
+		<div class="context-menu-line">
+			<div data-type="synth" onclick="addNodeFromContenxt(Oscillator)" class="context-menuline-img">Oscillator</div>
+		</div>
+		<br><div class="slashLine">-</div>
+		<div class="context-menu-line">
+			<div data-type="synth" onclick="addNodeFromContenxt(Reverb)" class="context-menuline-img">Reverb</div>
+			<div data-type="synth" onclick="addNodeFromContenxt(Delay)" class="context-menuline-img">Delay</div>
+			<div data-type="synth" onclick="addNodeFromContenxt(Distortion)" class="context-menuline-img">Distortion</div>
+		</div>
+		<br><div class="slashLine">-</div>
+		<div class="context-menu-line">
+			<div onclick="addNodeFromContenxt(Mix)" class="context-menuline-img">Mix</div>
+		</div>
+	</div>
+
+	
+	<script type="text/javascript" src="FileSaver.js"></script>
+	<script type="text/javascript" src="lib/controls.js"></script>
+	<script type="text/javascript" src="lib/nodes.js"></script>
+	<script type="text/javascript" src="lib/js.js" charset="utf-8"></script>
+</body>
+</html>
