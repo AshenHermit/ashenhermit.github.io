@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>raycast</title>
+
+	<style type="text/css">
+		body{
+			background-color: #29282D;
+			padding: 0;
+			margin: 0;
+		}
+		canvas{
+			position: absolute;
+			margin: 0;
+			padding: 0;
+			/*width: 100% !important;*/
+			/*height: 100% !important;*/
+		}
+	</style>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+</head>
+<body>
+
+	<script type="text/javascript">
+
+
+		var walls = [], ray
+
+
+		function setup() {
+			createCanvas(window.innerWidth, window.innerHeight);
+			strokeWeight(2)
+
+			walls.push(new Wall(300, 60, 300, 300))
+			walls.push(new Wall(200, 20, 200, 200))
+			ray = new Ray(100, 200)
+		}
+
+		function draw() {
+			clear()
+			for(let wall in walls) walls[wall].draw()
+			ray.lookAt(mouseX, mouseY)
+			ray.draw()
+
+			var pt = ray.cast(walls)
+			if (pt) {
+				fill(200)
+				ellipse(pt.x, pt.y, 8, 8)
+				let dist = p5.Vector.dist(ray.pos, pt)
+				rect(window.innerWidth/2-20, window.innerHeight/2-dist/2, 40, dist);
+			}
+		}
+
+		class Wall{
+			constructor(x1, y1, x2, y2){
+				this.a = createVector(x1, y1)
+				this.b = createVector(x2, y2)
+			}
+			draw(){
+				stroke(200)
+				line(this.a.x, this.a.y, this.b.x, this.b.y)
+			}
+		}
+
+		class Ray{
+			constructor(x, y){
+				this.pos = createVector(x, y)
+				this.dir = createVector(1, 0)
+			}
+			draw(){
+				stroke(200)
+				push()
+				translate(this.pos.x, this.pos.y)
+				line(0, 0, this.dir.x*10, this.dir.y*10)
+				pop()
+			}
+			lookAt(x, y){
+				this.dir.x = x - this.pos.x
+				this.dir.y = y - this.pos.y
+				this.dir.normalize()
+			}
+			cast(walls){
+				let d = Infinity
+				var closest = null
+
+				for(let wall of walls){
+					let pt = this.trace(wall)
+					if(pt){
+						var dist = p5.Vector.dist(this.pos, pt)
+						if(dist<d) {
+							d = dist
+							closest = pt
+						}
+					}
+				}
+
+				if(closest) line(this.pos.x, this.pos.y, closest.x, closest.y)
+				return closest;
+
+			}
+			trace(wall){
+				const x1 = wall.a.x;
+				const y1 = wall.a.y;
+				const x2 = wall.b.x;
+				const y2 = wall.b.y;
+
+				const x3 = this.pos.x;
+				const y3 = this.pos.y;
+				const x4 = this.pos.x + this.dir.x;
+				const y4 = this.pos.y + this.dir.y;
+
+				const den = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+				if (den==0) {
+					return;
+				}
+
+				const t =  ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / den;
+				const u = -((x1 - x2) * (y1 - y3) - (y1 - y2) * (x1 - x3)) / den;
+
+				if(t>0 && t<1 && u>0){
+					const pt = createVector()
+					pt.x = x1 + t * (x2 - x1)
+					pt.y = y1 + t * (y2 - y1)
+
+					return pt;
+				}else{
+					return;
+				}
+			}
+		}
+
+
+
+
+
+	</script>
+
+</body>
+</html>
