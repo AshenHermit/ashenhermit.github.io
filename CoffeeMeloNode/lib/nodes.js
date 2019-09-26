@@ -127,6 +127,24 @@
 
     ListOfNotes.prototype.update = function(time) {};
 
+    ListOfNotes.prototype.updateList = function() {
+      var count, lines;
+      $(this.dom).children(".window").children(".content").html("");
+      lines = '';
+      count = 0;
+      this.listOfNotes.forEach(function(note) {
+        lines += '<input data-type="note" data-nodeId="' + window.lastId + '" data-listId="' + count + '" class="content-input-line" value="' + note + '">';
+        return count++;
+      });
+      this.addContent = lines + '<div data-nodeId="' + window.lastId + '" onclick="addInputLineBeforeAddButton(this,' + new String("'") + 'C4' + new String("'") + ')" class="content-add-button">+</div>';
+      return $(this.dom).children(".window").children(".content").html(this.addContent);
+    };
+
+    ListOfNotes.prototype.loadJSON = function(json) {
+      this.listOfNotes = JSON.parse(json);
+      return this.updateList();
+    };
+
     ListOfNotes.prototype.updateInputs = function() {
       var array, el, i, ref;
       this.listOfNotes = [];

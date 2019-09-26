@@ -147,6 +147,21 @@ class ListOfNotes extends Node
 
 	update: (time) ->
 
+	updateList: () ->
+		$(@dom).children(".window").children(".content").html("")
+		lines = ''
+		count = 0
+		@listOfNotes.forEach (note) ->
+			lines+='<input data-type="note" data-nodeId="'+window.lastId+'" data-listId="'+count+'" class="content-input-line" value="'+note+'">'
+			count++
+
+		@addContent = lines+'<div data-nodeId="'+window.lastId+'" onclick="addInputLineBeforeAddButton(this,'+new String("'")+'C4'+new String("'")+')" class="content-add-button">+</div>'
+		$(@dom).children(".window").children(".content").html(@addContent)
+
+	loadJSON: (json)->
+		@listOfNotes = JSON.parse(json)
+		@updateList()
+
 	updateInputs: () ->
 		@listOfNotes = []
 		array = $('.content-input-line[data-nodeId="'+@id+'"]').toArray()
