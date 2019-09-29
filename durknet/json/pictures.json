@@ -1,21 +1,41 @@
 [	
 	{
-		"name": "\"marshmallow #0\"",
+		"name": "the house in which Elina lives",
+		"description":"Я",
+		"imgUrl":"https://sun9-71.userapi.com/c852124/v852124503/1e0e2c/2-_bbPtMBUo.jpg"
+	},
+	{
+		"name": "the finding",
+		"description":"Я",
+		"imgUrl":"https://sun1-23.userapi.com/c852124/v852124503/1e0e19/YaFhzB9p2RQ.jpg"
+	},
+	{
+		"name": "library",
+		"description":"Я",
+		"imgUrl":"https://sun9-71.userapi.com/c857416/v857416641/8cdf3/vX9ycxjySDI.jpg"
+	},
+	{
+		"name": "metro govorovo",
+		"description":"Я",
+		"imgUrl":"https://sun9-50.userapi.com/c852124/v852124503/1e0e36/ucBSdUS3LuI.jpg"
+	},
+	{
+		"name": "marshmallow #0",
 		"description":"Я",
 		"imgUrl":"https://pp.userapi.com/c849432/v849432136/184a24/AlV7t3yHFgQ.jpg"
 	},
 	{
-		"name": "\"marshmallow #1\"",
+		"name": "marshmallow #1",
 		"description":"Я",
 		"imgUrl":"https://pp.userapi.com/c849432/v849432136/184a2e/n7_kc_pTGRQ.jpg"
 	},
 	{
-		"name": "\"полуночный зверь\"",
+		"name": "полуночный зверь",
 		"description":"И.Е. Репин",
 		"imgUrl":"https://pp.userapi.com/c845421/v845421089/1a9e9a/24x-z9aY6KM.jpg"
 	},
 	{
-		"name": "\"ветренный пик\"",
+		"name": "ветренный пик",
 		"description":"Берси Медовая Рука",
 		"imgUrl":"https://pp.userapi.com/c850032/v850032017/132a5e/HGwACF2MFq4.jpg"
 	},
@@ -25,7 +45,7 @@
 		"imgUrl":"https://pp.userapi.com/c846323/v846323269/1a93fd/m_bUd58ebO0.jpg"
 	},
 	{
-		"name": "находка археологической команды: \"гавно в снегу\"",
+		"name": "находка археологической команды: гавно в снегу",
 		"description":"рен-тв",
 		"imgUrl":"https://pp.userapi.com/c850124/v850124990/ded61/9DmalPDQI1Y.jpg"
 	}
