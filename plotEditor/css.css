@@ -45,13 +45,14 @@ body {
 }
 .inputBox {
 	position: relative;
-	top: 8px;
+	top: 45px;
 	width: 12px;
 	height: 12px;
 	background-color: #171a23;
 	border: 3px solid #3b4956;
 	border-radius: 6px;
 	cursor: pointer;
+	left: calc(-50%);
 }
 .outputs {
 	margin-top: 6px;
@@ -171,6 +172,27 @@ svg {
 	}
 }
 
+@keyframes slide-in {
+	from {
+		opacity: 0;
+		transform: translateY(-100px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@keyframes slide-out {
+	from {
+		opacity: 1;
+		transform: translateY(-100px);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-100px);
+	}
+}
+
 .custom-file-upload{
 
 }
@@ -267,4 +289,22 @@ span{
 .help-title{ 
 	color: #fff;
 	font-size: 1.6em;
+}
+
+.swal2-show {
+	transition-timing-function: ease;
+    -webkit-animation: slide-in .3s !important;
+    animation: slide-in .3s !important;
+}
+
+.swal2-hide {
+	transition-timing-function: ease;
+    -webkit-animation: slide-out .3s !important;
+    animation: slide-out .3s !important;
+}
+
+
+.swal2-container.swal2-shown {
+	transition: background-color 0.3s !important;
+	transition-timing-function: ease !important;
 }
