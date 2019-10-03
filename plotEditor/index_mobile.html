@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>plot editor</title>
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+	<link rel= "stylesheet" href="css.css"/>
+	<link rel="icon" type="image/png" href="ico.png" />
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+</head>
+<body>
+	<svg width="5000" height="3000" xmlns="http://www.w3.org/2000/svg"></svg>
+	<div class="top-bar">
+		<button style="margin-left: 14px;" onclick="Save();" class="top-bar-button">Save</button>
+		<!-- <button  class="top-bar-button" onclick="Open();">Open</button> -->
+		<label for="file-upload" class="top-bar-button">Open</label>
+		<input onchange="onFileSelected(this.files)" id="file-upload" type="file"/>
+
+		<button style="margin-left: 40px;" onclick="addNode();" class="top-bar-button">Create Node</button>
+		<button onclick="addComment();" class="top-bar-button">Create Comment</button>
+
+		<button onclick="this.value=this.value=='Show'?'Hide':'Show';" value="Hide" style="margin-left: 40px;" class="top-bar-button spoilerbutton">Read this</button>
+		<div class="spoiler content"><div>
+			<span class="help-title">nodes:</span>
+			<ul>
+				<li>You can drag a node using the node header.</li>
+				<li>You can delete a node by double clicking on node header.</li>
+				<li>You can change title and content of a node by double clicking on content of node.</li>
+				<li>You can change name of a node output by double clicking output name.</li>
+				<li>You can hide/show content of a node by clicking on node input.</li>
+			</ul>
+
+			<span class="help-title">comments:</span>
+			<ul>
+				<li>You can change content of a comment by double clicking on content of comment.</li>
+			</ul>
+
+			<span class="help-title">text:</span>
+			<ul>
+				<li>/*marked text*/ is marked as <span style="padding: 2px;background-color: rgba(255, 255, 255, 0.11);">marked text</span></li>
+				<li>--tab is looks like "&nbsp;&nbsp;&nbsp;&nbsp;tab"</li>
+				<li>/// is looks like <div class="slashLine">-</div> that</li>
+			</ul>
+
+			<span class="help-title">other:</span>
+			<ul>
+				<li>You can drag the view with middle mouse button.</li>
+				<li>Please remove all links from the node before removing the node, links just stupid, I'll fix it soon.</li>
+			</ul>
+		</div></div>
+	</div>
+
+	
+	<script type="text/javascript" src="domElements.js"></script>
+	<script type="text/javascript" src="FileSaver.js"></script>
+	<script type="text/javascript" src="js_mobile.js" charset="utf-8"></script>
+</body>
+</html>
