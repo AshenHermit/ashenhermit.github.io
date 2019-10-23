@@ -15,7 +15,7 @@
 		"name": "Mind Game",
 		"description":"мультиплеерное текстовое рпг",
 		"preview":"https://pp.userapi.com/c856036/v856036010/2d948/q9-R874F8kk.jpg",
-		"url":"https://github.com/blacktiger54/mindGame"
+		"url":"https://blacktiger54.github.io/VersionLoader/#mindGame"
 	},
 	{
 		"name": "редактор всего ветвистого",
@@ -39,6 +39,12 @@
 		"name": "[android] Сreepy Finder + читалка",
 		"description":"ищет крипипасты и истории с разных источников",
 		"preview":"https://sun9-62.userapi.com/c855632/v855632073/10ecef/k8mwbpQL_go.jpg",
+		"url":"https://blacktiger54.github.io/VersionLoader/#evoilSticker"
+	},
+	{
+		"name": "Evoil Sticker",
+		"description":"создает стикеры с трансформацией поверх всех окон",
+		"preview":"https://sun9-42.userapi.com/c858228/v858228530/b26a0/NZwN6K9mqtE.jpg",
 		"url":"https://blacktiger54.github.io/VersionLoader/#creepyFinder"
 	}
 ]
