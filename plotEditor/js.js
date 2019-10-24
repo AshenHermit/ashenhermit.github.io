@@ -276,19 +276,7 @@ function getOutBoxId(el){
 
 function updateCurve(curveEl, x1, y1, x2, y2){
 	try{
-		$(curveEl).attr("d",('M '
-			+(x1)+' '
-			+(y1)+' C '
-
-			+(x1+curveInt)+' '
-			+(y1)+', '
-
-			+(x2)+' '
-			+(y2-curveInt)+', '
-
-			+(x2)+' '
-			+(y2)+
-		''));
+		$(curveEl).attr("d", 'M ' + x1 + ' ' + y1 + ' C ' + (x1 + curveInt) + ' ' + y1 + ', ' + (x2 - curveInt) + ' ' + y2 + ', ' + x2 + ' ' + y2 + '');
 	}catch(err){
 
 	}
