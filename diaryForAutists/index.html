@@ -2,13 +2,13 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>diary for autists</title>
+	<meta name="viewport" content="width=device-width, initial-scale=0.9">
+	<title>classes</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
-	
+		
 	<style type="text/css">
 		body{
 			user-select: none;
@@ -20,6 +20,9 @@
 			font-size: 1;
 		}
 		.list{
+			transition: transform 0.3s;
+			transition-timing-function: ease;
+			transform: perspective(1360px) rotate3d(0, 1, 0, 0deg);
 			background-color: #364b60;
 			padding: 2em;
 			margin: 2em;
@@ -35,7 +38,7 @@
 		}
 		.accent{
 			color: #72d8cf;
-			font-size: 1.5em;
+			font-size: 1.4em;
 		}
 		.name{
 			/* position: absolute; */
@@ -50,6 +53,7 @@
 		.teacher{
 			user-select: text !important;
 			color: #7c8ea0;
+			font-size: 0.9em;
 		}
 		.load-xlsx{
 			transition: all 0.05s;
@@ -60,24 +64,51 @@
 			text-align: center;
 			font-size: 1.1em;
 		}
+		.day-list{
+		    display: grid;
+		    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+		    margin-left: 2em;
+		    margin-right: 2em;
+		    margin-top: 2em;
+		}
+		.day{
+			transition: all 0.1s;
+			transition-timing-function: ease;
+			padding: 1em;
+			text-align: center;
+			background-color: #253646;
+		}
 	</style>
 
 </head>
 <body>
 
+
+
 <input style="display: none;" type="file" id="file" ng-model="csvFile" onchange="parseExcel(this.files[0])"/>
 
-<div for="file" id="load-xlsx" class="load-xlsx">
-	<span style="opacity: 0.5; pointer-events: none;">хочу</span> .xlsx
+<!-- <div class="day" id="day"></div> -->
+
+<div class="day-list">
+	<div data-id="0" class="day">пн</div>
+	<div data-id="1" class="day">вт</div>
+	<div data-id="2" class="day">ср</div>
+	<div data-id="3" class="day">чт</div>
+	<div data-id="4" class="day">пт</div>
 </div>
 
 <div class="list" id="list">
 	<div class="item">
 		<div class="name accent">тута</div>
 		<div class="cabinet accent">будут</div>
-		<div class="teacher">предметы (выбери файл таблицы, который наталья алексеевна кидает обычно, тип с именами и кабинетами)</div>
+		<div class="teacher">предметы <br>(можн выбрать файл таблицы, который наталья алексеевна кидает обычно, тип с именами и кабинетами)</div>
 	</div>
 </div>
+
+<div for="file" id="load-xlsx" class="load-xlsx">
+	<span style="opacity: 0.5; pointer-events: none;">хочу</span> .xlsx
+</div>
+
 
 <script src="js.js"></script>
 
