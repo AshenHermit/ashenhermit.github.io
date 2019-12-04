@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>classes</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+	
+	<style type="text/css">
+		body{
+			user-select: none;
+			font-family: 'Open Sans', sans-serif;
+			color: #afc0d2;
+			background-color: #314254;
+			margin: 0;
+			padding: 0;
+		}
+		.list{
+			background-color: #364b60;
+			padding: 2em;
+			margin: 2em;
+			border-radius: 4px;
+		}
+		.item{
+			padding: 1em;
+			border-bottom: #2f4459 6px solid;
+			position: relative;
+		}
+		.muted{
+
+		}
+		.accent{
+			color: #72d8cf;
+			font-size: 1.5em;
+		}
+		.name{
+			/* position: absolute; */
+			width: 66%;
+		}
+		.cabinet{
+			/* text-align: right; */
+			position: absolute;
+			right: 0;
+			top: 0.7em;
+		}
+		.teacher{
+			user-select: text !important;
+			color: #7c8ea0;
+		}
+		.load-xlsx{
+			transition: all 0.05s;
+			transition-timing-function: ease;
+			background-color: #253646;
+			padding: 1em;
+			margin: 2em;
+			text-align: center;
+			font-size: 1.1em;
+		}
+	</style>
+
+</head>
+<body>
+
+<input style="display: none;" type="file" id="file" ng-model="csvFile" onchange="parseExcel(this.files[0])"/>
+
+<div for="file" id="load-xlsx" class="load-xlsx">
+	<span style="opacity: 0.5; pointer-events: none;">хочу</span> .xlsx
+</div>
+
+<div class="list" id="list">
+	<div class="item">
+		<div class="name accent">тута</div>
+		<div class="cabinet accent">будут</div>
+		<div class="teacher">предметы (выбери файл таблицы, который наталья алексеевна кидает обычно, тип с именами и кабинетами)</div>
+	</div>
+</div>
+
+<script src="js.js"></script>
+
+</body>
+</html>
