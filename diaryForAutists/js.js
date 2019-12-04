@@ -1,3 +1,13 @@
+//json days
+var days = [
+	'[["Феттер Р.А.","206а"],["Боровков С.Е.","204"],["Березин Е.В.","204"],["Клюева Н.А. / Лиганова Е.Н.","204 / 302"],["Лиганова Е.Н. / Пашкова С.В.","204 / 206а"],["Быкова Ю.В.","212"],["Полункина С.Н.","301"]]',
+	'[["Клюева Н.А. / Мусина А.А.","204 / 303"],["Ужинкин И.К.","307"],["Полункина С.Н.","301"],["Ужинкин И.К.","305"],["Ужинкин И.К.","204"],["Клюева Н.А. / Лиганова Е.Н.","204 / 202"],["Клюева Н.А. / Половинкина Ю.В.","204 / 306"]]',
+	'[["Полункина С.Н.","301"],["Лиганова Е.Н. / Феттер Р.А.","204 / 206а"],["Лиганова Е.Н. / Феттер Р.А.","204 / 206а"],["Ужинкин И.К.","204"],["Ужинкин И.К.","204"],["Клюева Н.А.","204"],["Пашкова С.В. / Половинкина Ю.В.","204 / 205"]]',
+	'[["Феттер Р.А. / Мусина А.А.","206а / 204"],["Полункина С.Н.","301"],["Лиганова Е.Н. / Половинкина Ю.В.","207 / 303"],["Клюева Н.А. / Пашкова С.В.","204 / 306"],["Клюева Н.А. / Пашкова С.В.","204 / 302"],["Полункина С.Н.","301"]]',
+	'[["пятниса чета слишкам дикая, обновлю в пятнису","гы"]]'
+]
+
+
 var parseExcel = function(file) {
 		var reader = new FileReader();
 		reader.onload = function(e) {
@@ -33,7 +43,11 @@ var parseExcel = function(file) {
 				}
 			})
 
-			
+			window.outputArray = classes;
+
+			//document.getElementById('day').innerHTML = window.xlsxArr.filter((el)=>{if(el!="") return el;});
+
+			selectDay(-1);
 			loadFromArray(classes);
 
 			console.log(classes);
@@ -44,8 +58,18 @@ var parseExcel = function(file) {
 		reader.readAsBinaryString(file);
 	};
 
+var rotateState = true;
 function loadFromArray(array){
 	// var list = document.getElementById('list');
+	if(rotateState){
+		document.getElementById('list').style.transform = "perspective(1360px) rotate3d(0, 1, 0, 180deg) scaleX(-1)";
+	}
+	else {
+		document.getElementById('list').style.transform = "perspective(1360px) rotate3d(0, 1, 0, 0deg) scaleX(1)";
+	}
+
+	rotateState = !rotateState;
+
 	var newHtml = "";
 
 	array.forEach(function(item){
@@ -102,7 +126,14 @@ function getTeachersId(teacher){
 		}
 	}
 }
-
+function selectDay(id){
+	var dayEls = document.getElementsByClassName("day")
+	for (var i = 0; i < dayEls.length; i++) {
+		dayEls[i].style.backgroundColor = "rgba(37, 54, 70, 0)"
+		if(i==id)dayEls[i].style.backgroundColor = "rgba(37, 54, 70, 1)"
+	}
+}
+selectDay(-1);
 //touch
 document.addEventListener('touchstart', function(e){
 	onDown(e.changedTouches[0])
@@ -124,6 +155,11 @@ document.addEventListener('click', function(e){
 	if(e.target.id=='load-xlsx'){
 		document.getElementById('file').click();
 	}
+	if(e.target.className=='day'){
+		var dayId = parseInt(e.target.getAttribute("data-id"));
+		selectDay(dayId);
+		loadFromArray(JSON.parse(days[dayId]))
+	}
 });
 
 
@@ -136,4 +172,3 @@ function onDown(e){
 function onUp(e){
 	document.getElementById('load-xlsx').style.transform = "scale(1)";
 }
-
