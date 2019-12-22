@@ -151,29 +151,29 @@ font-size: 3em;
 
 .loading-animation{
 	width: fit-content;
-	animation: loading 1s infinite ease;
+	animation: loading 2s infinite ease;
 }
 
 @keyframes loading {
 	0% {
 		opacity: 0.2;
 		margin-top: 0px;
-		transform: rotate(-8deg);
+		transform: rotate(-4deg);
 	}
 	25% {
 		opacity: 0.2;
-		transform: rotate(8deg);
+		transform: rotate(4deg);
 	}
 	50% {
 		opacity: 1;
-		transform: rotate(-8deg);
+		transform: rotate(-4deg);
 	}
 	75% {
 		opacity: 1;
-		transform: rotate(8deg);
+		transform: rotate(4deg);
 	}
 	100% {
 		opacity: 0.2;
-		transform: rotate(-8deg);
+		transform: rotate(-4deg);
 	}
 }
