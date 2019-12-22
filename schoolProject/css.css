@@ -1,0 +1,179 @@
+:root{
+	--low-color: #2a2c31;
+	--middle-color: #31343a;
+	--high-color: #3c4048;
+	--light-color: #ed8d8d;
+}
+
+body{
+	margin: 0;
+	padding: 2em;
+	background-color: var(--low-color);
+	font-family: 'Roboto', sans-serif;
+	display: flex;
+}
+
+.item-container {
+	/* border-right: 4px rgba(255, 255, 255, 0.13) solid; */
+	width: fit-content;
+	padding: 1em;
+	background-color: var(--middle-color);
+	margin: 1em;
+}
+
+.item {
+	transform: perspective(1360px) rotate3d(1, 0, 0, 0deg);
+	transition: background-color 0.1s, transform 0.2s;
+	transition-timing-function: ease;
+    background-color: var(--middle-color);
+    padding: 1.5em;
+    color: #ffffffb8;
+    /* margin-bottom: 23px; */
+    font-size: 1.1em;
+    cursor: pointer;
+    user-select: none;
+}
+
+.active{
+	background-color: var(--high-color);
+}
+
+.item:hover {
+    background-color: var(--low-color);
+}
+
+	
+.arrow{
+	user-select: none;
+	pointer-events: none; 
+	transform: scale(0.5);
+	position: relative;
+	float: right;
+	opacity: 0.1;
+	margin-top: -21px;
+	margin-right: -13px;
+	left: 16px;
+}
+
+.bar {
+	transition: height 0.3s;
+	transition-timing-function: ease;
+    width: 32px;
+    height: 0px;
+    background-color: rgb(70, 195, 170);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.bar-container {
+    height: 100%;
+    position: relative;
+    padding-left: 32px;
+    margin-left: 32px;
+    margin-right: 32px;
+}
+
+#graph{
+	display: flex;
+	padding: 2em;
+}
+
+.name{
+	
+width: max-content;
+	
+color: rgba(255, 255, 255, 0.31);
+	
+/* transform: rotate(-90deg); */
+	
+position: absolute;
+	
+margin-left: -50%;
+}
+
+.name-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-left: -22px;
+    transform: rotate(-90deg);
+}
+
+.label{
+	
+position: absolute;
+	
+color: rgba(255, 255, 255, 0.25);
+	
+font-size: 13px;
+	
+z-index: 1;
+}
+
+.score{
+	
+color: rgb(70, 195, 170);
+	
+margin-top: -21px;
+	
+position: absolute;
+	
+font-weight: 500;
+	
+font-size: 18px;
+}
+
+.loading{
+	transition: opacity 0.2s;
+	transition-timing-function: ease;
+	
+position: fixed;
+	
+background-color: rgba(17, 17, 23, 0.86);
+	
+top: 0;
+	
+left: 0;
+	
+width: 100%;
+	
+height: 100%;
+	
+z-index: 2;
+	
+padding: 6em;
+	
+color: #fff;
+	
+font-size: 3em;
+}
+
+.loading-animation{
+	width: fit-content;
+	animation: loading 1s infinite ease;
+}
+
+@keyframes loading {
+	0% {
+		opacity: 0.2;
+		margin-top: 0px;
+		transform: rotate(-8deg);
+	}
+	25% {
+		opacity: 0.2;
+		transform: rotate(8deg);
+	}
+	50% {
+		opacity: 1;
+		transform: rotate(-8deg);
+	}
+	75% {
+		opacity: 1;
+		transform: rotate(8deg);
+	}
+	100% {
+		opacity: 0.2;
+		transform: rotate(-8deg);
+	}
+}
