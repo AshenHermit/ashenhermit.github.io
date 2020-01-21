@@ -69,6 +69,7 @@ menu.enter = function(){
 	menu.state = false
 	document.getElementById('back-button').style.opacity = 1
 	animateContent()
+	document.body.userSelect = "auto"
 }
 menu.clampSelected = function(){
 	if(menu.selectedTarget>menu.items.length-1) menu.selectedTarget = 0
@@ -97,9 +98,9 @@ menu.init = function(){
 	setTimeout(()=>{
 		this.container.style.opacity = 1
 		for (var i = 0; i < this.items.length; i++) {
-			var rect = getRect(this.items[i])
+			//var rect = getRect(this.items[i])
 			this.items[i].style.marginLeft = -114/2 + "px"
-			this.items[i].style.marginTop  = ( -rect.height/2 ) + "px"
+			this.items[i].style.marginTop  = -78.1094 + "px"
 		}
 	}, 200)
 }
@@ -147,6 +148,7 @@ store.initContent = function() {
 }
 
 function onBackButton(){
+	document.body.userSelect = "none"
 	animateContent()
 	menu.setTitle("useless site")
 	menu.selected = 0;
