@@ -1,0 +1,139 @@
+@font-face{
+	font-family: Text;
+	src: url(Text.ttf);
+}
+
+body{
+	/*font-family: Text;*/
+	font-family: 'Press Start 2P', cursive;
+	margin: 0;
+	background-color: #2a2d33;
+	text-align: center;
+	image-rendering: pixelated;
+	line-height: normal;
+}
+
+.menu-title{
+	background-color: #92aeb6;
+	width: 100%;
+	height: fit-content;
+	margin-bottom: 10px;
+	font-size: 35px;
+	color: #2a2d33;
+	user-select: none;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+.menu-title>div {
+    position: relative;
+    top: 33%;
+    width: 100%;
+}
+
+.menu-container {
+    margin-top: 3%;
+    position: relative;
+    width: 397px;
+    height: 302px;
+    display: inline-block;
+}
+
+.menu-item {
+    width: 114px;
+    position: absolute;
+    display: block;
+}
+
+.storage-container {
+	transition: all 0.2s;
+	transition-timing-function: ease;
+	margin: 1em;
+	display: grid;
+	grid-template-columns: 1fr 8fr;
+}
+
+.storage-text {
+    color: rgba(255, 255, 255, 0.62);
+    text-align: left;
+    padding: 2em;
+    /* background-color: #26292f; */
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.52);
+}
+
+.storage-list {
+    text-align: left;
+}
+
+.list-item {
+	transition: all 0.1s;
+	transition-timing-function: ease;
+	background-color: #33373e;
+	color: #92aeb6;
+	margin-bottom: 4px;
+	padding: 1.3em;
+	user-select: none;
+	cursor: pointer;
+}
+
+.list-item.hovered {
+	transform: translateY(-10px);
+	box-shadow: 0 8px 3px 0px rgba(26, 30, 35, 0.14);
+	background-color: #26292f;
+}
+
+.content-block {
+    background-color: #30343c;
+    padding: 3em;
+}
+
+.content-title{
+	
+color: rgba(255, 255, 255, 0.75);
+	
+font-size: 1.5em;
+	
+border-bottom: 4px solid rgba(0, 0, 0, 0.15);
+	
+margin: -1em;
+	
+position: absolute;
+}
+
+textarea {
+    background-color: rgba(255, 255, 255, 0);
+    font-family: inherit;
+    line-height: 1.5em;
+    outline: none;
+    border: 0;
+    resize: none;
+}
+
+.save-button {
+	transition: transform 0.06s;
+	transition-timing-function: ease;
+	position: absolute;
+	background-color: #ea5697;
+	color: #fff;
+	padding: 1em;
+	user-select: none;
+	cursor: pointer;
+}
+
+.save-button:active{
+	transform: scale(0.8);
+}
+
+.back-button {
+	transition: all 0.1s;
+	transition-timing-function: ease;
+    float: left;
+    width: 103px;
+    margin-left: -103px;
+    user-select: none;
+    cursor: pointer;
+}
+.back-button:hover {
+	transform: rotate(10deg);
+}
