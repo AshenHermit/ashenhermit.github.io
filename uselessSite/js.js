@@ -49,7 +49,7 @@ function getRect(el) {
 var content = null
 readFile(contentJsonUrl, function(data){
 	content = data
-	menu.title.innerHTML = "useless site"
+	menu.setTitle("useless site")
 })
 
 
@@ -60,6 +60,10 @@ menu.selectedTarget = 0;
 menu.title = document.getElementById('menu-title')
 menu.container = document.getElementById('items-container')
 menu.items = menu.container.children
+menu.setTitle = function(title){
+	this.title.innerHTML = title
+	document.title = title
+}
 menu.enter = function(){
 	store.initContent()
 	menu.state = false
@@ -127,7 +131,8 @@ store.init = function() {
 
 store.initContent = function() {
 	this.container.style.opacity = 1
-	menu.title.innerHTML = content[menu.selectedTarget]["name"]
+	menu.setTitle(content[menu.selectedTarget]["name"])
+
 
 	if(content[menu.selectedTarget]["content"][0].type=="item"){
 		this.itemContainer.innerHTML = "";
@@ -143,7 +148,7 @@ store.initContent = function() {
 
 function onBackButton(){
 	animateContent()
-	menu.title.innerHTML = "useless site"
+	menu.setTitle("useless site")
 	menu.selected = 0;
 	menu.state = true;
 	store.selected = 0;
@@ -177,7 +182,7 @@ update()
 //event listeners
 
 document.addEventListener('keydown', function(e){
-	console.log(e.keyCode);
+	//console.log(e.keyCode);
 
 	// 40 // 38
 	// 90 - z
