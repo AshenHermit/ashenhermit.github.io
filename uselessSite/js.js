@@ -1,6 +1,20 @@
 var contentJsonUrl = "https://dl.dropboxusercontent.com/s/cumzhh838e2z0co/content.json"
 
+var isMobile = false
 
+if( navigator.userAgent.match(/Android/i)
+	|| navigator.userAgent.match(/webOS/i)
+	|| navigator.userAgent.match(/iPhone/i)
+	|| navigator.userAgent.match(/iPad/i)
+	|| navigator.userAgent.match(/iPod/i)
+	|| navigator.userAgent.match(/BlackBerry/i)
+	|| navigator.userAgent.match(/Windows Phone/i)
+){
+	isMobile = true;
+}
+else {
+	isMobile = false;
+}
 
 var Edit = false
 
@@ -113,6 +127,9 @@ store.update = function() {
 store.init = function() {
 	this.container.style.opacity = 0
 	this.content.style.display = 'block'
+
+	if(isMobile)
+		this.container.style.gridTemplateColumns = "1fr";
 }
 
 store.initContent = function() {
