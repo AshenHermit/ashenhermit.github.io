@@ -237,7 +237,9 @@ document.addEventListener('click', function(e){
 	if (e.target.classList.contains('back-button')) {
 		onBackButton()
 	}
+})
 
+document.addEventListener('mousedown', function(e){
 	//for mobile
 	if(menu.state && !e.target.classList.contains('back-button')){
 		if(e.pageY<window.innerHeight/2-32){// up
