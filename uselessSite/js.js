@@ -39,8 +39,11 @@ function getRect(el) {
 }
 
 
-var content
-readFile(contentJsonUrl, function(data){content = data})
+var content = null
+readFile(contentJsonUrl, function(data){
+	content = data
+	menu.title.innerHTML = "useless site"
+})
 
 
 var menu = {}
@@ -62,7 +65,7 @@ menu.clampSelected = function(){
 }
 menu.update = function(){
 	var op = parseFloat(this.container.style.opacity)
-	if(menu.state){
+	if(menu.state && content!=null){
 		this.container.style.opacity = op+(1-op)/3
 		this.selected+=(this.selectedTarget-this.selected) / 5
 
@@ -80,12 +83,14 @@ menu.update = function(){
 }
 
 menu.init = function(){
-	this.container.style.opacity = 1
-	for (var i = 0; i < this.items.length; i++) {
-		var rect = getRect(this.items[i])
-		this.items[i].style.marginLeft = ( -rect.width/2 ) + "px"
-		this.items[i].style.marginTop  = ( -rect.height/2 ) + "px"
-	}
+	setTimeout(()=>{
+		this.container.style.opacity = 1
+		for (var i = 0; i < this.items.length; i++) {
+			var rect = getRect(this.items[i])
+			this.items[i].style.marginLeft = ( -rect.width/2 ) + "px"
+			this.items[i].style.marginTop  = ( -rect.height/2 ) + "px"
+		}
+	}, 200)
 }
 
 
@@ -224,7 +229,7 @@ document.addEventListener('click', function(e){
 	}
 
 	//for mobile
-	if(menu.state){
+	if(menu.state && !e.target.classList.contains('back-button')){
 		if(e.pageY<window.innerHeight/2-32){// up
 			menu.selectedTarget -= 1;
 			menu.clampSelected()
