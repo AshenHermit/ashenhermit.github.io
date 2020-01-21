@@ -80,7 +80,7 @@ menu.update = function(){
 			var x = i-this.selected
 
 			this.items[i].style.left= (window.innerWidth/2 ) + "px"
-			this.items[i].style.top = (window.innerHeight/2 + x*(getRect(this.items[i]).height)*1.1) + "px"
+			this.items[i].style.top = (window.innerHeight/2 + x*getRect(this.items[i]).height*1.1) + "px"
 			this.items[i].style.transform = "scale("+ (1 - Math.abs(x)/4) +") perspective(200px) rotate3d(1, 0, 0, "+ (-x*45) +"deg)"
 			this.items[i].style.opacity = 1-Math.abs(x)/1.06
 		}
