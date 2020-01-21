@@ -69,6 +69,7 @@ body{
     width: 397px;
     height: 302px;
     display: inline-block;
+    overflow-x: initial;
 }
 
 .menu-item {
@@ -160,11 +161,11 @@ textarea {
 .back-button {
 	transition: all 0.1s;
 	transition-timing-function: ease;
-    float: left;
-    width: 103px;
-    margin-left: -103px;
-    user-select: none;
-    cursor: pointer;
+	float: left;
+	width: 103px;
+	margin-left: -103px;
+	user-select: none;
+	cursor: pointer;
 }
 .back-button:hover {
 	transform: rotate(10deg);
