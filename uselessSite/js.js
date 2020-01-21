@@ -250,11 +250,11 @@ document.addEventListener('click', function(e){
 document.addEventListener('touchstart', function(t){
 	var e = t.changedTouches[0]
 	if(menu.state && !e.target.classList.contains('back-button')){
-		if(e.pageY<window.innerHeight/2-32){// up
+		if(e.pageY<window.innerHeight/2-46){// up
 			menu.selectedTarget -= 1;
 			menu.clampSelected()
 		}
-		if(e.pageY>window.innerHeight/2+32){// down
+		if(e.pageY>window.innerHeight/2+46){// down
 			menu.selectedTarget += 1;
 			menu.clampSelected()
 		}
