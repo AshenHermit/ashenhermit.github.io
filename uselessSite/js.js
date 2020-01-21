@@ -98,11 +98,11 @@ menu.init = function(){
 	setTimeout(()=>{
 		this.container.style.opacity = 1
 		for (var i = 0; i < this.items.length; i++) {
-			//var rect = getRect(this.items[i])
+			var rect = getRect(this.items[i])
 			this.items[i].style.marginLeft = -114/2 + "px"
-			this.items[i].style.marginTop  = -78.1094 + "px"
+			this.items[i].style.marginTop  = ( -rect.height/2 ) + "px"
 		}
-	}, 200)
+	}, 500)
 }
 
 
@@ -246,8 +246,9 @@ document.addEventListener('click', function(e){
 	}
 })
 
-document.addEventListener('mousedown', function(e){
-	//for mobile
+//for mobile
+document.addEventListener('touchstart', function(t){
+	var e = t.changedTouches[0]
 	if(menu.state && !e.target.classList.contains('back-button')){
 		if(e.pageY<window.innerHeight/2-32){// up
 			menu.selectedTarget -= 1;
