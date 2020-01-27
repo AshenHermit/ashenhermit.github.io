@@ -153,6 +153,7 @@ update()
 
 
 function onDown(e){
+init()
 	var rect = circle.getClientRects()[0]
 	if (e.pageX > rect.x+rect.width/2) isRight = true
 	else isRight = false
