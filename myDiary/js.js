@@ -1,3 +1,19 @@
+function detectMob() {
+    const toMatch = [
+        /Android/i,
+        /webOS/i,
+        /iPhone/i,
+        /iPad/i,
+        /iPod/i,
+        /BlackBerry/i,
+        /Windows Phone/i
+    ];
+
+    return toMatch.some((toMatchItem) => {
+        return navigator.userAgent.match(toMatchItem);
+    });
+}
+
 var months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
 
 Number.prototype.clamp = function(min, max) {
@@ -29,6 +45,11 @@ window.onresize();
 
 var nearCircle = 240;
 var farCircle = 270;
+
+if(detectMob()){
+	title.style.userSelect = "none"
+	description.style.userSelect = "none"
+}
 
 var memories = [
 	{
