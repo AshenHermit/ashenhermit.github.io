@@ -186,7 +186,7 @@ document.addEventListener('mouseup', function(e){
 })
 
 document.addEventListener('touchstart', function(e){
-	if(e.target.id == "canvas") onDown(e)
+	if(e.target.id == "canvas") onDown(e.changedTouches[0])
 })
 document.addEventListener('touchend', function(e){
 	onUp(e.changedTouches[0])
