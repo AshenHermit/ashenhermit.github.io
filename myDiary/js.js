@@ -253,7 +253,7 @@ var dbx = new Dropbox.Dropbox();
 
 function editClick(){
 	var el = document.getElementById("edit_block")
-	el.style.visibility = el.style.visibility == "" ? "hidden" : "" 
+	el.style.visibility = el.style.visibility != "hidden" ? "hidden" : "" 
 }
 
 function addMemory(){
