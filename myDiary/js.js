@@ -174,7 +174,7 @@ function onDown(e){
 	else isRight = false
 	isDown = true;
 
-	year.innerHTML = e.layerX + " " + canvas.clientWidth/2
+	year.innerHTML = e.pageX + " " + canvas.clientWidth/2
 }
 function onUp(e){
 	isDown = false;
@@ -188,7 +188,7 @@ document.addEventListener('mouseup', function(e){
 })
 
 document.addEventListener('touchstart', function(e){
-	if(e.target.id == "canvas") onDown(e.changedTouches[0])
+	if(e.changedTouches[0].target.id == "canvas") onDown(e.changedTouches[0])
 })
 document.addEventListener('touchend', function(e){
 	onUp(e.changedTouches[0])
