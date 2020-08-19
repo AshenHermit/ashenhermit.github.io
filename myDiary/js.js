@@ -214,7 +214,8 @@ document.addEventListener('keyup', function(e){
 });
 
 
-window.resize = function(e){
+window.onresize = function(e){
+	console.log(0)
 	canvas.width = window.innerWidth
 	canvas.height = window.innerHeight
 }
