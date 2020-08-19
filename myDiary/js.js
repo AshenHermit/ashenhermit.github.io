@@ -251,9 +251,11 @@ readFile("https://dl.dropbox.com/s/so8ud7sp9lae0vj/memories.json", function(data
 
 var dbx = new Dropbox.Dropbox();
 
+var editVisible = false;
 function editClick(){
 	var el = document.getElementById("edit_block")
-	el.style.visibility = el.style.visibility != "hidden" ? "hidden" : "" 
+	editVisible = !editVisible
+	el.style.visibility = editVisible ? "hidden" : "visible"
 }
 
 function addMemory(){
