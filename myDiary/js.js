@@ -136,12 +136,12 @@ function draw(){
 	if(selected!=lastSelected){
 		updateMemoryBlock()
 	}
-
 	lastSelected = selected
-	year.innerHTML = ""
-	var m = months[mod(Math.floor(ang/360*12), 12)]
-	for(var i=0; i<(8-m.length); i++) year.innerHTML += "&nbsp;"
-	year.innerHTML +=  m + " " + (2020+Math.floor(ang/360))
+
+	//year.innerHTML = ""
+	//var m = months[mod(Math.floor(ang/360*12), 12)]
+	//for(var i=0; i<(8-m.length); i++) year.innerHTML += "&nbsp;"
+	//year.innerHTML +=  m + " " + (2020+Math.floor(ang/360))
 
 }
 
@@ -173,6 +173,8 @@ function onDown(e){
 	if (e.layerX > canvas.clientWidth/2) isRight = true
 	else isRight = false
 	isDown = true;
+
+	year.innerHTML = e.layerX + " " + canvas.clientWidth/2
 }
 function onUp(e){
 	isDown = false;
