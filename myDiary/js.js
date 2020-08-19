@@ -142,7 +142,6 @@ function draw(){
 	var m = months[mod(Math.floor(ang/360*12), 12)]
 	for(var i=0; i<(8-m.length); i++) year.innerHTML += "&nbsp;"
 	year.innerHTML +=  m + " " + (2020+Math.floor(ang/360))
-	for(var i=0; i<(8-m.length); i++) year.innerHTML += "&nbsp;"
 
 }
 
