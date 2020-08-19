@@ -138,10 +138,10 @@ function draw(){
 	}
 	lastSelected = selected
 
-	//year.innerHTML = ""
-	//var m = months[mod(Math.floor(ang/360*12), 12)]
-	//for(var i=0; i<(8-m.length); i++) year.innerHTML += "&nbsp;"
-	//year.innerHTML +=  m + " " + (2020+Math.floor(ang/360))
+	year.innerHTML = ""
+	var m = months[mod(Math.floor(ang/360*12), 12)]
+	for(var i=0; i<(8-m.length); i++) year.innerHTML += "&nbsp;"
+	year.innerHTML +=  m + " " + (2020+Math.floor(ang/360))
 
 }
 
@@ -170,11 +170,11 @@ update()
 
 function onDown(e){
 	//var rect = circle.getClientRects()[0]
-	if (e.layerX > canvas.clientWidth/2) isRight = true
+	if (e.pageX > canvas.clientWidth/2) isRight = true
 	else isRight = false
 	isDown = true;
 
-	year.innerHTML = e.pageX + " " + canvas.clientWidth/2
+	//year.innerHTML = e.pageX + " " + canvas.clientWidth/2
 }
 function onUp(e){
 	isDown = false;
