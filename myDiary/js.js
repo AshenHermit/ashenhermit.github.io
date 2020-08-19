@@ -170,8 +170,8 @@ update()
 
 
 function onDown(e){
-	var rect = circle.getClientRects()[0]
-	if (e.pageX > rect.x+rect.width/2) isRight = true
+	//var rect = circle.getClientRects()[0]
+	if (e.pageX > window.innerWidth/2) isRight = true
 	else isRight = false
 	isDown = true;
 }
