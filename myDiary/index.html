@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=1080, initial-scale=1">
+	<meta name="viewport" content="width=800, initial-scale=1">
 	<title>my Diary</title>
 
 	<script src="https://unpkg.com/dropbox/dist/Dropbox-sdk.min.js"></script>
@@ -14,13 +14,16 @@
 	<div class="circle" id="circle"></div>
 	<canvas id="canvas"></canvas>
 
-	<textarea id="edit-title" rows="1"></textarea>
-	<textarea id="edit-description"></textarea>
-	<textarea id="edit-tracks-embed" style="font-size: 12px;"></textarea>
-	<input edit="text" id="accessToken" style="font-size: 12px;display: block;">
-	<input edit="text" id="clientSecret" style="font-size: 12px;display: block;">
-	<input edit="text" id="clientId" style="font-size: 12px;display: block;">
-	<div class="button" onclick="addMemory();">add memory</div>
+	<div class="button" onclick="editClick();">edit</div>
+	<div id="edit_block" style="visibility: hidden;">
+		<textarea id="edit-title" rows="1"></textarea>
+		<textarea id="edit-description"></textarea>
+		<textarea id="edit-tracks-embed" style="font-size: 12px;"></textarea>
+		<input edit="text" id="accessToken" style="font-size: 12px;display: block;">
+		<input edit="text" id="clientSecret" style="font-size: 12px;display: block;">
+		<input edit="text" id="clientId" style="font-size: 12px;display: block;">
+		<div class="button" onclick="addMemory();">add memory</div>
+	</div>
 
 	<!-- <div class="save-error">ACCESS ERROR</div> -->
 
