@@ -92,11 +92,11 @@ function draw(){
 
 		ctx.beginPath();
 		ctx.moveTo(
-			window.innerWidth/2+ dir.x*nearCircle,
-			window.innerHeight/2+ dir.y*nearCircle);
+			canvas.clientWidth/2+ dir.x*nearCircle,
+			canvas.clientHeight/2+ dir.y*nearCircle);
 		ctx.lineTo(
-			window.innerWidth/2+ dir.x*farCircle,
-			window.innerHeight/2+ dir.y*farCircle);
+			canvas.clientWidth/2+ dir.x*farCircle,
+			canvas.clientHeight/2+ dir.y*farCircle);
 		ctx.stroke();
 	}
 
@@ -118,17 +118,17 @@ function draw(){
 
 		ctx.beginPath();
 		ctx.moveTo(
-			window.innerWidth/2+ dir.x*nearCircle*1.2,
-			window.innerHeight/2+ dir.y*nearCircle*1.2);
+			canvas.clientWidth/2+ dir.x*nearCircle*1.2,
+			canvas.clientHeight/2+ dir.y*nearCircle*1.2);
 		ctx.lineTo(
-			window.innerWidth/2+ dir.x*farCircle*1.2,
-			window.innerHeight/2+ dir.y*farCircle*1.2);
+			canvas.clientWidth/2+ dir.x*farCircle*1.2,
+			canvas.clientHeight/2+ dir.y*farCircle*1.2);
 		ctx.stroke();
 
 		ctx.font = "18px monospace";
 		ctx.fillText(memories[i].title,
-			window.innerWidth/2+ dir.x*farCircle*1.3, 
-			window.innerHeight/2+ dir.y*farCircle*1.3);
+			canvas.clientWidth/2+ dir.x*farCircle*1.3, 
+			canvas.clientHeight/2+ dir.y*farCircle*1.3);
 
 		ctx.globalAlpha = 1
 	}
