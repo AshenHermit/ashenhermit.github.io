@@ -1,5 +1,11 @@
+var months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
+
 Number.prototype.clamp = function(min, max) {
   return Math.min(Math.max(this, min), max);
+};
+
+function mod(x, y) {
+  return  x - y * Math.floor(x/y)
 };
 
 var circle = document.getElementById('circle')
@@ -7,6 +13,8 @@ var circle = document.getElementById('circle')
 var memoryEl = document.getElementById('memory')
 var title = document.getElementById('title')
 var description = document.getElementById('description')
+var year = document.getElementById('year')
+var trackList = document.getElementById('track-list')
 
 var canvas = document.getElementById('canvas')
 var ctx = canvas.getContext('2d')
@@ -56,6 +64,8 @@ function updateMemoryBlock(){
 	description.innerHTML = memories[selected].description
 	.replace(new RegExp("\n", "g"), "<br>")
 
+	try{trackList.innerHTML = decodeURIComponent(escape(window.atob(memories[selected].tracks)))}catch(err){}
+
 	var rect = memoryEl.getClientRects()[0]
 	memoryEl.style.marginLeft = -rect.width/2+"px"
 	memoryEl.style.marginTop  = -rect.height/2+"px"
@@ -72,8 +82,8 @@ function draw(){
 
 	for (var i = 0; i < 12; i++) {
 		var dir = {
-			x: Math.cos((Math.PI*2/12)*i+(Math.PI*2/12/2)),
-			y: Math.sin((Math.PI*2/12)*i+(Math.PI*2/12/2))
+			x: Math.cos((Math.PI*2/12)*i+(Math.PI*2/12/2)+(Math.PI*2/12)*1),
+			y: Math.sin((Math.PI*2/12)*i+(Math.PI*2/12/2)+(Math.PI*2/12)*1)
 		}
 
 		ctx.lineWidth = 4
@@ -91,18 +101,19 @@ function draw(){
 	}
 
 	var dist = 360
+	var ang = angle - (360/12) * 1
 
 	for (var i = 0; i < memories.length; i++) {
-		ctx.globalAlpha = (1-Math.abs(angle-memories[i].pos)/16).clamp(0, 1)
+		ctx.globalAlpha = (1-Math.abs(ang-memories[i].pos)/16).clamp(0, 1)
 
-		if (Math.abs(angle-memories[i].pos)<dist) {
-			dist = Math.abs(angle-memories[i].pos);
-			selected = new Number(i)
+		if (Math.abs(ang-memories[i].pos)<dist) {
+			dist = Math.abs(ang-memories[i].pos);
+			selected = i
 		}
 
 		var dir = {
-			x: Math.cos((Math.PI/180)*memories[i].pos+(Math.PI*2/12/2)+(Math.PI*2/12)*1),
-			y: Math.sin((Math.PI/180)*memories[i].pos+(Math.PI*2/12/2)+(Math.PI*2/12)*1)
+			x: Math.cos((Math.PI/180)*memories[i].pos+(Math.PI*2/12/2)+(Math.PI*2/12)*2),
+			y: Math.sin((Math.PI/180)*memories[i].pos+(Math.PI*2/12/2)+(Math.PI*2/12)*2)
 		}
 
 		ctx.beginPath();
@@ -127,6 +138,12 @@ function draw(){
 	}
 
 	lastSelected = selected
+	year.innerHTML = ""
+	var m = months[mod(Math.floor(ang/360*12), 12)]
+	for(var i=0; i<(8-m.length); i++) year.innerHTML += "&nbsp;"
+	year.innerHTML +=  m + " " + (2020+Math.floor(ang/360))
+	for(var i=0; i<(8-m.length); i++) year.innerHTML += "&nbsp;"
+
 }
 
 function update(){
@@ -153,7 +170,6 @@ update()
 
 
 function onDown(e){
-init()
 	var rect = circle.getClientRects()[0]
 	if (e.pageX > rect.x+rect.width/2) isRight = true
 	else isRight = false
@@ -163,17 +179,17 @@ function onUp(e){
 	isDown = false;
 }
 
-circle.addEventListener('mousedown', function(e){
-	onDown(e)
+document.addEventListener('mousedown', function(e){
+	if(e.target.id == "canvas") onDown(e)
 })
-circle.addEventListener('mouseup', function(e){
+document.addEventListener('mouseup', function(e){
 	onUp(e)
 })
 
-circle.addEventListener('touchstart', function(e){
-	onDown(e.changedTouches[0])
+document.addEventListener('touchstart', function(e){
+	if(e.target.id == "canvas") onDown(e)
 })
-circle.addEventListener('touchend', function(e){
+document.addEventListener('touchend', function(e){
 	onUp(e.changedTouches[0])
 })
 
@@ -187,8 +203,9 @@ document.addEventListener('mousemove', function(e){
 
 
 document.addEventListener('keydown', function(e){
-	console.log(e.code);
-	if(e.code=="BracketRight"||e.code=="BracketLeft") controls[e.code] = true
+	if(e.ctrlKey){
+		if(e.code=="BracketRight"||e.code=="BracketLeft") controls[e.code] = true
+	}
 });
 
 document.addEventListener('keyup', function(e){
@@ -226,23 +243,43 @@ readFile("https://dl.dropbox.com/s/so8ud7sp9lae0vj/memories.json", function(data
 	memories = data
 })
 
-var dbx = new Dropbox.Dropbox({
-	accessToken:  "8CVESRMgviAAAAAAAAAATyJPBq4RUD0yclwcKNtQukQvZ4MK7hMOxKtES8rjBJL_", 
-	clientSecret: "kl4qiv86lecfzgk", 
-	clientId:     "mp9t7d5r7kl6qfm", 
-	fetch:fetch
-});
+var dbx = new Dropbox.Dropbox();
 
 function addMemory(){
-	var tmp_title = document.getElementById("edit-title").value
-	var tmp_description = document.getElementById("edit-description").value
+	var at = document.getElementById("accessToken").value
+	var cs = document.getElementById("clientSecret").value
+	var ci = document.getElementById("clientSecret").value
 
-	memories.push({
-		pos: new Number(angle),
-		title: tmp_title,
-		description: tmp_description
-	})
+	var valid = true
 
+	try{
+		dbx = new Dropbox.Dropbox({
+			accessToken:  at, 
+			clientSecret: cs, 
+			clientId:     ci, 
+			fetch:fetch
+		});
+	}catch(err){
+		valid = false
+	}
+
+	if(valid){
+		var tmp_title = document.getElementById("edit-title").value
+		var tmp_description = document.getElementById("edit-description").value
+		var tmp_tracks_embed = document.getElementById("edit-tracks-embed").value
+
+		memories.push({
+			pos: new Number(angle - (360/12) * 1),
+			title: tmp_title,
+			description: tmp_description,
+			tracks: window.btoa(unescape(encodeURIComponent(tmp_tracks_embed)))
+		})
+
+		saveMemories()
+	}
+}
+
+function saveMemories(){
 	dbx.filesUpload({
 	    "path": "/memories.json",
 	    "contents": JSON.stringify(memories, null, 2),

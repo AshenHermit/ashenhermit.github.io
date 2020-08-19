@@ -1,9 +1,25 @@
+::-webkit-scrollbar-thumb{
+    border-width:1px 1px 1px 2px;
+    border-color: #fff;
+    background-color: #fff;
+}
+::-webkit-scrollbar{
+    width: 6px;
+    height: 0px;
+}
+::-webkit-scrollbar-track{
+   border-width:4px solid #fff;
+}
+::-webkit-scrollbar-track:hover{
+     border-width:4px solid #fff;
+}
+
+
 body{
-overflow: hidden;
-	margin: 0;
-	/*background-color: #2E3133;*/
-	/* text-align: center; */
-	background-image: url("bg.png");
+    margin: 0;
+    /*background-color: #2E3133;*/
+    /* text-align: center; */
+    background-image: url("bg.png");
 }
 
 .circle {
@@ -20,21 +36,23 @@ overflow: hidden;
     background-image: url("bg.png"), conic-gradient(#3A3F42 1%, #282b2d 0 99%, #3A3F42 0);
     background-origin: border-box;
     background-clip: content-box, border-box;
+    z-index: -2;
 }
 
 canvas{
-	pointer-events: none;
-	top: 0;
-	left: 0;
-	position: absolute;
-	width: 100%;
-	height: 100%;
+    z-index: -1;
+    /*pointer-events: none;*/
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 .memory {
     position: absolute;
-	left: 50%;
-	top: 50%;
+    left: 50%;
+    top: 50%;
     color: #fff;
     font-family: monospace;
     text-align: center;
@@ -46,8 +64,15 @@ canvas{
 }
 
 .description {
+    max-height: 119px;
+    max-width: 357.984px;
     font-size: 1.1em;
     color: rgba(255, 255, 255, 0.61);
+    overflow-y: auto;
+    text-align: left;
+    /* background-color: rgb(19, 19, 19); */
+    padding: 1.4em;
+    text-shadow: 0 0 10px #000;
 }
 
 textarea {
@@ -59,11 +84,12 @@ textarea {
     color: rgba(255, 255, 255, 0.83);
     display: block;
     margin-bottom: 5px;
+    white-space: nowrap;
 }
 
 .button {
-	transition: transform 0.05s;
-	transition-timing-function: ease;
+    transition: transform 0.05s;
+    transition-timing-function: ease;
     background-color: #272b2d;
     width: fit-content;
     padding: 1em;
@@ -74,5 +100,41 @@ textarea {
 }
 
 .button:active{
-	transform: scale(0.8);
+    transform: scale(0.8);
+}
+
+.track-list {
+    display: inline-block;
+    width: 600px;
+}
+
+.track-list-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.year-container {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.year {
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 5em;
+    margin-top: 3%;
+}
+
+.save-error{
+
+}
+
+iframe{
+    height: 120px;
 }
