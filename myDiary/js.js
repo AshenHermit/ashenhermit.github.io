@@ -8,6 +8,13 @@ function mod(x, y) {
   return  x - y * Math.floor(x/y)
 };
 
+window.onresize = function(e){
+	// canvas.width = window.innerWidth
+	// canvas.height = window.innerHeight
+	canvas.width = document.documentElement.clientWidth
+	canvas.height = document.documentElement.clientHeight
+}
+
 var circle = document.getElementById('circle')
 
 var memoryEl = document.getElementById('memory')
@@ -18,8 +25,7 @@ var trackList = document.getElementById('track-list')
 
 var canvas = document.getElementById('canvas')
 var ctx = canvas.getContext('2d')
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight
+window.onresize();
 
 var nearCircle = 240;
 var farCircle = 270;
@@ -188,6 +194,7 @@ document.addEventListener('mouseup', function(e){
 })
 
 document.addEventListener('touchstart', function(e){
+	window.onresize();
 	if(e.changedTouches[0].target.id == "canvas") onDown(e.changedTouches[0])
 })
 document.addEventListener('touchend', function(e){
@@ -212,13 +219,6 @@ document.addEventListener('keydown', function(e){
 document.addEventListener('keyup', function(e){
 	if(e.code=="BracketRight"||e.code=="BracketLeft") controls[e.code] = false
 });
-
-
-window.onresize = function(e){
-	console.log(0)
-	canvas.width = window.innerWidth
-	canvas.height = window.innerHeight
-}
 
 
 
