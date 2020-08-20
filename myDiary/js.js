@@ -55,7 +55,7 @@ var memories = [
 	{
 		"pos": 0,
 		"title": "Waiting for data...",
-		"description": ""
+		"description": "controls: ctrl + [ or ]"
 	}
 
 ]
