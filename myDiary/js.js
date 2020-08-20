@@ -53,20 +53,10 @@ if(detectMob()){
 
 var memories = [
 	{
-		"pos": 48,
-		"title": "sssdaw",
+		"pos": 0,
+		"title": "Waiting for data...",
 		"description": ""
-	},
-	{
-		"pos": 4,
-		"title": "Снежная деревня",
-		"description": "apdpawkd awdkm lkwamd lka\nawdawawd\nawawd"
-	},
-	{
-		"pos": 12,
-		"title": "Возвращение",
-		"description": "awda\nawdawe aqwd wdadawd awdawd\nawd"
-	},
+	}
 
 ]
 
@@ -85,6 +75,21 @@ var controls = {}
 
 var lastSelected = -1;
 var selected = 0;
+
+function setLastAsTarget(){
+	var lastAng = memories[0].pos
+	for (var i = 1; i < memories.length; i++) {
+		if(memories[i].pos > lastAng){
+			lastAng = memories[i].pos
+		}else{
+			
+		}
+	}
+
+	angleTarget = lastAng
+}
+
+setLastAsTarget()
 
 function updateMemoryBlock(){
 	title.innerHTML = memories[selected].title
@@ -128,7 +133,7 @@ function draw(){
 	}
 
 	var dist = 360
-	var ang = angle - (360/12) * 1
+	var ang = angle 
 
 	for (var i = 0; i < memories.length; i++) {
 		ctx.globalAlpha = (1-Math.abs(ang-memories[i].pos)/16).clamp(0, 1)
@@ -153,6 +158,11 @@ function draw(){
 		ctx.stroke();
 
 		ctx.font = "18px monospace";
+		if(dir.x > 0){
+			ctx.textAlign = "left";
+		}else{
+			ctx.textAlign = "right";
+		}
 		ctx.fillText(memories[i].title,
 			canvas.clientWidth/2+ dir.x*farCircle*1.3, 
 			canvas.clientHeight/2+ dir.y*farCircle*1.3);
@@ -188,7 +198,7 @@ function update(){
 
 	angle += (angleTarget-angle)/5
 
-	circle.style.transform = "rotate("+(angle+((Math.PI*2/12)*4+(Math.PI*2/12/2))*(180/Math.PI))+"deg)"
+	circle.style.transform = "rotate("+(angle+((Math.PI*2/12)*4+(Math.PI*2/12*1.5))*(180/Math.PI))+"deg)"
 
 	draw()
 }
@@ -268,6 +278,7 @@ function readFile(url, callback){
 
 readFile("https://dl.dropbox.com/s/so8ud7sp9lae0vj/memories.json", function(data){
 	memories = data
+	setLastAsTarget()
 })
 
 var dbx = new Dropbox.Dropbox();
@@ -303,7 +314,7 @@ function addMemory(){
 		var tmp_tracks_embed = document.getElementById("edit-tracks-embed").value
 
 		memories.push({
-			pos: new Number(angle - (360/12) * 1),
+			pos: new Number(angle),
 			title: tmp_title,
 			description: tmp_description,
 			tracks: window.btoa(unescape(encodeURIComponent(tmp_tracks_embed)))
