@@ -16,12 +16,19 @@
 
 	<div class="button" onclick="editClick();">edit</div>
 	<div id="edit_block" style="visibility: hidden;">
+
+		<div class="label">title:</div>
 		<textarea id="edit-title" rows="1"></textarea>
+
+		<div class="label">description:</div>
 		<textarea id="edit-description"></textarea>
+
+		<div class="label">tracks embed:</div>
 		<textarea id="edit-tracks-embed" style="font-size: 12px;"></textarea>
-		<input edit="text" id="accessToken" style="font-size: 12px;display: block;">
-		<input edit="text" id="clientSecret" style="font-size: 12px;display: block;">
-		<input edit="text" id="clientId" style="font-size: 12px;display: block;">
+
+		<div class="label">access keys:</div>
+		<textarea id="edit-access-keys" style="font-size: 12px; background-color: #181a1b;"></textarea>
+
 		<div class="button" onclick="addMemory();">add memory</div>
 		<div class="button" onclick="copyMemoryData();">copy data</div>
 		<div class="button" onclick="clearFields();">clearFileds</div>

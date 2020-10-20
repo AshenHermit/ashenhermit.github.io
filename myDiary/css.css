@@ -140,3 +140,12 @@ textarea {
 iframe{
     height: 120px;
 }
+
+.label {
+    color: #5d5d5d;
+    font-family: monospace;
+}
+
+div#edit_block {
+    margin-left: 4px;
+}

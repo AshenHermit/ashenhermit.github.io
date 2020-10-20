@@ -14,6 +14,8 @@ function detectMob() {
     });
 }
 
+const fetch = window.fetch.bind(window);
+
 var months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
 
 Number.prototype.clamp = function(min, max) {
@@ -291,9 +293,11 @@ function editClick(){
 }
 
 function executeWithAccessToDB(callback){
-	var at = document.getElementById("accessToken").value
-	var cs = document.getElementById("clientSecret").value
-	var ci = document.getElementById("clientId").value
+	var accessKeys = document.getElementById("edit-access-keys").value
+	accessKeys = accessKeys.split("\n")
+	var ci = accessKeys[0]
+	var cs = accessKeys[1]
+	var at = accessKeys[2]
 
 	var valid = true
 
@@ -302,7 +306,7 @@ function executeWithAccessToDB(callback){
 			accessToken:  at, 
 			clientSecret: cs, 
 			clientId:     ci, 
-			fetch:fetch
+			fetch: fetch
 		});
 	}catch(err){
 		valid = false
@@ -333,6 +337,7 @@ function copyMemoryData(){
 	document.getElementById("edit-title").value = title.innerHTML
 	document.getElementById("edit-description").value = description.innerHTML.replace(new RegExp("<br>", "g"), "\n")
 	document.getElementById("edit-tracks-embed").value = trackList.innerHTML
+	angleTarget = memories[selected].pos
 }
 function clearFields(){
 	document.getElementById("edit-title").value = ""
@@ -362,7 +367,7 @@ function removeMemory(){
 		selected = 0
 		setLastAsTarget()
 		updateMemoryBlock()
-		
+
 		saveMemories()
 	})
 }
