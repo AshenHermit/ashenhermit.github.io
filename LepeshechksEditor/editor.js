@@ -30,19 +30,17 @@ function _Editor() {
 
 		ctx.clearRect(0, 0, 320, 240);
 
-		for (var w = 0; w < this.width; w++) {
-			for (var h = 0; h < this.height; h++) {
-				ctx.drawImage(this.grid.img,w*cellWidth,h*cellHeight,this.cursorImg.width,this.cursorImg.height);
-			}
-		}
+		// for (var w = 0; w < this.width; w++) {
+		// 	for (var h = 0; h < this.height; h++) {
+		// 		ctx.drawImage(this.grid.img,w*cellWidth,h*cellHeight,this.cursorImg.width,this.cursorImg.height);
+		// 	}
+		// }
 
 		for (var o = 0; o < Map.floor.length; o++) {
-			var tmp = new _sprite(Map.floor[o].sprite)
-			ctx.drawImage(tmp.img,(Map.floor[o].x*cellWidth/2)+Map.floor[o].sprite.offset.x,(Map.floor[o].y*cellHeight/2)+Map.floor[o].sprite.offset.y,tmp.img.width,tmp.img.height);
+			ctx.drawImage(Map.floor[o].spriteImg.img,(Map.floor[o].x*cellWidth/2)+Map.floor[o].sprite.offset.x,(Map.floor[o].y*cellHeight/2)+Map.floor[o].sprite.offset.y,Map.floor[o].spriteImg.img.width,Map.floor[o].spriteImg.img.height);
 		}
 		for (var o = 0; o < Map.objects.length; o++) {
-			var tmp = new _sprite(Map.objects[o].sprite)
-			ctx.drawImage(tmp.img,(Map.objects[o].x*cellWidth/2)+Map.objects[o].sprite.offset.x,(Map.objects[o].y*cellHeight/2)+Map.objects[o].sprite.offset.y,tmp.img.width,tmp.img.height);
+			ctx.drawImage(Map.objects[o].spriteImg.img,(Map.objects[o].x*cellWidth/2)+Map.objects[o].sprite.offset.x,(Map.objects[o].y*cellHeight/2)+Map.objects[o].sprite.offset.y,Map.objects[o].spriteImg.img.width,Map.objects[o].spriteImg.img.height);
 		}
 
 		obj = findObj($('.select').val());
@@ -120,7 +118,6 @@ function saveJson() {
 
 
 function CreateObj(obj) {
-	console.log("ы")
 
 	if (obj.type=="floor") {
 		Map.floor.push(
@@ -128,7 +125,8 @@ function CreateObj(obj) {
 				x:Editor.cursor.x,
 				y:Editor.cursor.y,
 				name:obj.name,
-				sprite:obj.sprite,
+				sprite: obj.sprite,
+				spriteImg: new _sprite(obj.sprite),
 				type:"floor"
 			}
 		);
@@ -138,8 +136,9 @@ function CreateObj(obj) {
 				x:Editor.cursor.x,
 				y:Editor.cursor.y,
 				name:obj.name,
-				sprite:obj.sprite,
-				type:"floor",
+				sprite: obj.sprite,
+				spriteImg: new _sprite(obj.sprite),
+				type:"obj",
 				object:obj
 			}
 		);
