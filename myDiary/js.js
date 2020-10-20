@@ -290,7 +290,7 @@ function editClick(){
 	el.style.visibility = editVisible ? "hidden" : "visible"
 }
 
-function addMemory(){
+function executeWithAccessToDB(callback){
 	var at = document.getElementById("accessToken").value
 	var cs = document.getElementById("clientSecret").value
 	var ci = document.getElementById("clientSecret").value
@@ -309,6 +309,12 @@ function addMemory(){
 	}
 
 	if(valid){
+		callback();
+	}
+}
+
+function addMemory(){
+	executeWithAccessToDB(function(){
 		var tmp_title = document.getElementById("edit-title").value
 		var tmp_description = document.getElementById("edit-description").value
 		var tmp_tracks_embed = document.getElementById("edit-tracks-embed").value
@@ -321,7 +327,44 @@ function addMemory(){
 		})
 
 		saveMemories()
-	}
+	})
+}
+function copyMemoryData(){
+	document.getElementById("edit-title").value = title.innerHTML
+	document.getElementById("edit-description").value = description.innerHTML.replace(new RegExp("<br>", "g"), "\n")
+	document.getElementById("edit-tracks-embed").value = trackList.innerHTML
+}
+function clearFields(){
+	document.getElementById("edit-title").value = ""
+	document.getElementById("edit-description").value = ""
+	document.getElementById("edit-tracks-embed").value = ""
+}
+function rewriteMemory(){
+	executeWithAccessToDB(function(){
+		var tmp_title = document.getElementById("edit-title").value
+		var tmp_description = document.getElementById("edit-description").value
+		var tmp_tracks_embed = document.getElementById("edit-tracks-embed").value
+
+		memories[selected] = {
+			pos: new Number(angle),
+			title: tmp_title,
+			description: tmp_description,
+			tracks: window.btoa(unescape(encodeURIComponent(tmp_tracks_embed)))
+		}
+		updateMemoryBlock()
+
+		saveMemories()
+	})
+}
+function removeMemory(){
+	executeWithAccessToDB(function(){
+		memories.splice(selected, 1)
+		selected = 0
+		setLastAsTarget()
+		updateMemoryBlock()
+		
+		saveMemories()
+	})
 }
 
 function saveMemories(){
