@@ -293,7 +293,7 @@ function editClick(){
 function executeWithAccessToDB(callback){
 	var at = document.getElementById("accessToken").value
 	var cs = document.getElementById("clientSecret").value
-	var ci = document.getElementById("clientSecret").value
+	var ci = document.getElementById("clientId").value
 
 	var valid = true
 
