@@ -149,3 +149,11 @@ iframe{
 div#edit_block {
     margin-left: 4px;
 }
+
+a {
+    color: #bd5656;
+}
+
+a:hover {
+    color: #ff7070;
+}
