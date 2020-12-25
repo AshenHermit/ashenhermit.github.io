@@ -157,3 +157,13 @@ a {
 a:hover {
     color: #ff7070;
 }
+
+.last-update {
+    text-align: right;
+    color: rgb(255 255 255 / 25%);
+    font-family: monospace;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1em;
+}

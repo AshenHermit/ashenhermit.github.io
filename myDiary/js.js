@@ -285,8 +285,13 @@ function readFile(url, callback){
 }
 
 
+function setLastUpdateText(text){
+	document.getElementById("last_update").innerHTML = text
+}
+
 readFile("https://dl.dropbox.com/s/so8ud7sp9lae0vj/memories.json", function(data){
-	memories = data
+	memories = data.memories
+	if(data.last_update) setLastUpdateText(data.last_update)
 	setLastAsTarget()
 })
 
@@ -379,10 +384,26 @@ function removeMemory(){
 	})
 }
 
+function minDigitsCount(num, minCount){
+	let str = ""+num
+	let add = minCount - str.length
+	for(let i=0; i<add; i+=1) str = "0"+str
+	return str
+}
+
+function getCurrentDate(){
+	let date = new Date()
+	var txt = minDigitsCount(date.getDate(), 2) + "." + minDigitsCount(date.getMonth()+1, 2) + "." + date.getFullYear()
+	return txt
+}
+
 function saveMemories(){
+	let lastUpdate = getCurrentDate()
+	setLastUpdateText(lastUpdate)
+
 	dbx.filesUpload({
 	    "path": "/memories.json",
-	    "contents": JSON.stringify(memories, null, 2),
+	    "contents": JSON.stringify({"last_update": lastUpdate, "memories":memories}, null, 2),
 		"mode": {".tag": "overwrite"},
 		"autorename": false,
 		"mute": true,
