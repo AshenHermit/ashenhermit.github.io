@@ -306,13 +306,13 @@ function editClick(){
 function executeWithAccessToDB(callback){
 	var accessKeys = document.getElementById("edit-access-token").value
 	accessKeys = accessKeys.split("\n")
-	var ci = accessKeys[0]
+	var at = accessKeys[0]
 
 	var valid = true
 
 	try{
 		dbx = new Dropbox.Dropbox({
-			accessToken:  at, 
+			accessToken:  at,
 			fetch: fetch
 		});
 	}catch(err){
