@@ -15,6 +15,23 @@
 	<canvas id="canvas"></canvas>
 
 	<div class="button" onclick="editClick();">edit</div>
+
+	<!-- <div class="save-error">ACCESS ERROR</div> -->
+
+	<div class="memory" id="memory">
+		<div class="title" id="title"></div>
+		<div class="description" id="description"></div>
+	</div>
+
+	<div class="year-container">
+		<div class="year" id="year">Year</div>
+	</div>
+
+	<div class="last-update">
+		<div>последнее обновление:</div>
+		<div id="last_update"></div>
+	</div>
+	
 	<div id="edit_block" style="visibility: hidden;">
 
 		<div class="label">title:</div>
@@ -34,22 +51,6 @@
 		<div class="button" onclick="clearFields();">clear fields</div>
 		<div class="button" onclick="rewriteMemory();">rewrite memory</div>
 		<div class="button" onclick="removeMemory();">del</div>
-	</div>
-
-	<!-- <div class="save-error">ACCESS ERROR</div> -->
-
-	<div class="memory" id="memory">
-		<div class="title" id="title"></div>
-		<div class="description" id="description"></div>
-	</div>
-
-	<div class="year-container">
-		<div class="year" id="year">Year</div>
-	</div>
-
-	<div class="last-update">
-		<div>последнее обновление:</div>
-		<div id="last_update"></div>
 	</div>
 
 	<div class="track-list-container">

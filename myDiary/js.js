@@ -95,9 +95,24 @@ function setLastAsTarget(){
 
 setLastAsTarget()
 
+function replaceByMarkdown(text, regex, replaceFunc){
+	match = text.match(regex)
+	while(match){
+		text = text.replace(match[0], replaceFunc(match.splice(1)))
+		match = text.match(regex)
+	}
+	return text
+}
+
+function applyMarkdown(text){
+	// links
+	text = replaceByMarkdown(text, /\[(.*)\]\((.*)\)/m, args=>`<a target="_blank" href="${args[1]}">${args[0]}</a>`)
+	return text
+}
+
 function updateMemoryBlock(){
 	title.innerHTML = memories[selected].title
-	description.innerHTML = memories[selected].description
+	description.innerHTML = applyMarkdown(memories[selected].description)
 	.replace(new RegExp("\n", "g"), "<br>")
 
 	try{trackList.innerHTML = decodeURIComponent(escape(window.atob(memories[selected].tracks)))}catch(err){}
@@ -346,8 +361,8 @@ function addMemory(){
 	})
 }
 function copyMemoryData(){
-	document.getElementById("edit-title").value = title.innerHTML
-	document.getElementById("edit-description").value = description.innerHTML.replace(new RegExp("<br>", "g"), "\n")
+	document.getElementById("edit-title").value = memories[selected].title
+	document.getElementById("edit-description").value = memories[selected].description
 	document.getElementById("edit-tracks-embed").value = trackList.innerHTML
 	angleTarget = memories[selected].pos
 }
