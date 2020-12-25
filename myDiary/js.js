@@ -33,6 +33,8 @@ window.onresize = function(e){
 	canvas.height = document.documentElement.clientHeight
 }
 
+var editVisible = false;
+
 var circle = document.getElementById('circle')
 
 var memoryEl = document.getElementById('memory')
@@ -190,8 +192,8 @@ function update(){
 	//var targetAngle = Math.atan2(window.innerHeight/2-mousePos.y, window.innerWidth/2-mousePos.x)
 	//var circleAngle = Math.atan2(window.innerHeight/2-mousePos.y, window.innerWidth/2-mousePos.x)
 
-	if(controls["BracketRight"]) angleTarget+=1
-	if(controls["BracketLeft"]) angleTarget-=1
+	if(controls["BracketRight"] || controls["ArrowRight"] || controls["KeyD"]) angleTarget+=1
+	if(controls["BracketLeft"] || controls["ArrowLeft"] || controls["KeyA"]) angleTarget-=1
 
 	if(isDown){
 		if(isRight) angleTarget+=1
@@ -247,10 +249,15 @@ document.addEventListener('keydown', function(e){
 	if(e.ctrlKey){
 		if(e.code=="BracketRight"||e.code=="BracketLeft") controls[e.code] = true
 	}
+	if(!editVisible){
+		if(e.code!="BracketRight"&&e.code!="BracketLeft"){
+			controls[e.code] = true
+		}
+	}
 });
 
 document.addEventListener('keyup', function(e){
-	if(e.code=="BracketRight"||e.code=="BracketLeft") controls[e.code] = false
+	controls[e.code] = false
 });
 
 
@@ -271,7 +278,7 @@ function readFile(url, callback){
 	};
 
 	request.onerror = function() {
-
+		
 	};
 
 	request.send();
@@ -285,27 +292,27 @@ readFile("https://dl.dropbox.com/s/so8ud7sp9lae0vj/memories.json", function(data
 
 var dbx = new Dropbox.Dropbox();
 
-var editVisible = false;
-function editClick(){
+function setEditVisibility(state){
 	var el = document.getElementById("edit_block")
+	el.style.visibility = state ? "visible" : "hidden"
+}
+
+setEditVisibility(editVisible)
+function editClick(){
 	editVisible = !editVisible
-	el.style.visibility = editVisible ? "hidden" : "visible"
+	setEditVisibility(editVisible)
 }
 
 function executeWithAccessToDB(callback){
-	var accessKeys = document.getElementById("edit-access-keys").value
+	var accessKeys = document.getElementById("edit-access-token").value
 	accessKeys = accessKeys.split("\n")
 	var ci = accessKeys[0]
-	var cs = accessKeys[1]
-	var at = accessKeys[2]
 
 	var valid = true
 
 	try{
 		dbx = new Dropbox.Dropbox({
 			accessToken:  at, 
-			clientSecret: cs, 
-			clientId:     ci, 
 			fetch: fetch
 		});
 	}catch(err){
