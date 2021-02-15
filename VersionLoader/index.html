@@ -45,7 +45,11 @@
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
-
+		var winHash = window.location.hash.substring(1)
+		if(winHash.indexOf("http")!=-1){
+			window.open(winHash,"_self");	
+		}
+			
 
 		var j = $.getJSON('https://raw.githubusercontent.com/blacktiger54/blacktiger54.github.io/master/AppVersions.json');
         if(window.location.hash==""){
@@ -53,7 +57,7 @@
         	$('#text').html('ахуенно<br>искать то че?<br>не, мне не сложно вот так просто потупить, но это как-то не прикольно');
         }else{
 			var waiting = setInterval(function(){
-	        	let appName = window.location.hash.substring(1);
+	        	let appName = winHash;
 			    if(j.readyState>3){
 			        let data = JSON.parse(j.responseText);
 			        let appObj = data.AppVersions[appName];
