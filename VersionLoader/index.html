@@ -48,7 +48,7 @@
 		var winHash = window.location.hash.substring(1)
 		if(winHash.indexOf("http")!=-1){
 			window.open(winHash,"_self");	
-		}
+		}else{
 			
 
 		var j = $.getJSON('https://raw.githubusercontent.com/blacktiger54/blacktiger54.github.io/master/AppVersions.json');
@@ -79,6 +79,7 @@
 			    }
 			},100);
         }
+	}
 	</script>
 </body>
 </html>
