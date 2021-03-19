@@ -50,10 +50,6 @@ function Destroy_Page_With_VideoBG(audio_url, video_search_tags, pages_load, con
     
 
     var last_video = 0
-    var today = new Date()
-    
-    var next_day = new Date()
-    next_day = new Date(next_day.getFullYear(), next_day.getMonth(), next_day.getDate()+1)
 
     var music = new Audio(audio_url)
     music.loop = true
@@ -169,6 +165,9 @@ var scenes = {
                 text+=num
                 return text
             }
+            
+            var next_day = new Date()
+            next_day = new Date(next_day.getFullYear(), next_day.getMonth(), next_day.getDate()+1)
             function get_lifetime_text(){
                 var life_time = new Date(next_day - (new Date()))
                 return `${fixed_zeros_num(life_time.getHours(), 2)}:${fixed_zeros_num(life_time.getMinutes(), 2)}:${fixed_zeros_num(life_time.getSeconds(), 2)}:${fixed_zeros_num(life_time.getMilliseconds(), 3)}`
