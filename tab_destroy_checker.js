@@ -182,7 +182,7 @@ var scenes = {
                 <div style="font-size: 1.5em; color: rgb(255 255 255 / 60%); font-family: congress">you are disgusting</div>
                 <div style="font-size: 3em; color: rgb(255 255 255 / 75%); font-family: congress">Fortunately, Your Remaining Lifetime is:</div>
                 <div style="font-size: 5em; color:#fff; font-family: congress" id="lifetime_text">${get_lifetime_text()}</div>
-                `
+                `,
                 function (){
                     document.getElementById("lifetime_text").innerHTML = get_lifetime_text()
                 }
@@ -194,7 +194,7 @@ var scenes = {
 function Destroy_Page_by_Scene(scene_name){
     try{
         scenes[scene_name].destroy_page()
-    catch(){
+    }catch(e){
         document.body.innerHTML = ""
     }
 }
