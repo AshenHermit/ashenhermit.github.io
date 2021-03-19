@@ -42,7 +42,7 @@ function* pseudoRandom(seed) {
 
 };
 
-function FuckYourself_DestroyPage(){
+function FuckYourself_DestroyPage(noise_audio){
     let generator = pseudoRandom(1)
     var super_words = ["Fuck", "Kill", "Humiliate"];
     noise_audio.play();
@@ -74,7 +74,7 @@ function start_checking(){
             console.log(close_time)
             if(current_time >= close_time && current_time < close_time + 60*2){
                 clearInterval(check_interval)
-                FuckYourself_DestroyPage()
+                FuckYourself_DestroyPage(noise_audio)
             }
         })
     }, 5000)
