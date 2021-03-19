@@ -93,7 +93,7 @@ function Destroy_Page_With_VideoBG(audio_url, video_search_tags, pages_load, con
             `
             main_content_setup = true
         }else if(time>24){
-            update_callback()
+            update_callback(time-24)
             
             var current_video = Math.floor((time-24)/30) % videos.length
             if(last_video != current_video){
@@ -195,7 +195,24 @@ var scenes = {
                 <div style="font-size: 3em; color: rgb(255 255 255 / 75%); font-family: congress">Fortunately, Your Remaining Lifetime is:</div>
                 <div style="font-size: 5em; color:#fff; font-family: congress" id="lifetime_text">${get_lifetime_text()}</div>
                 `,
-                function (){
+                function (time){
+                    document.getElementById("lifetime_text").innerHTML = get_lifetime_text()
+                }
+            )
+        }
+    },
+    god: {
+        destroy_page: ()=>{
+            Destroy_Page_With_VideoBG(
+                "https://t4.bcbits.com/stream/edb7076d22ba1e03e79b8c06ffb9dca1/mp3-128/776737745?p=0&ts=1616249791&t=6933124e242c0362e31fdcc816516d6aabbf4169&token=1616249791_b9bfd12c86ad852236f4d31d8ac6ee53abe46d0d",
+                "church",
+                10,
+                `
+                <div style="font-size: 1.5em; color: rgb(255 255 255 / 60%); font-family: congress"></div>
+                <div style="font-size: 3em; color: rgb(255 255 255 / 75%); font-family: congress">Fortunately, Your Remaining Lifetime is:</div>
+                <div style="font-size: 5em; color:#fff; font-family: congress" id="lifetime_text">${get_lifetime_text()}</div>
+                `,
+                function (time){
                     document.getElementById("lifetime_text").innerHTML = get_lifetime_text()
                 }
             )
@@ -204,8 +221,11 @@ var scenes = {
 }
 
 function Destroy_Page_by_Scene(scene_name){
+    var success = false
     try{
-        scenes[scene_name].destroy_page()
+        if(!document.hidden){
+            scenes[scene_name].destroy_page()
+        }
     }catch(e){
         document.body.innerHTML = ""
     }
