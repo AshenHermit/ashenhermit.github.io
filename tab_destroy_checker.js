@@ -84,6 +84,8 @@ function Destroy_Page_With_VideoBG(audio_url, video_search_tags, pages_load, con
             `
             main_content_setup = true
         }else if(time>24){
+            update_callback()
+            
             var current_video = Math.floor((time-24)/30) % videos.length
             if(last_video != current_video){
                 console.log(current_video)
