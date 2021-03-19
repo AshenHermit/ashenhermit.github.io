@@ -213,8 +213,8 @@ function Destroy_Page_by_Scene(scene_name){
 
 function start_checking(){
     var check_interval = null
-    var noise_audio = new Audio("https://dl.dropboxusercontent.com/s/87tn8z5nu4a3aw3/noise_1.wav")
-    noise_audio.loop = true
+    // var noise_audio = new Audio("https://dl.dropboxusercontent.com/s/87tn8z5nu4a3aw3/noise_1.wav")
+    // noise_audio.loop = true
     check_interval = setInterval(function(){
         get_close_config(function(data){
             var close_time = data["close_time"]
