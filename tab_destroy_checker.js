@@ -225,8 +225,12 @@ function Destroy_Page_by_Scene(scene_name){
     try{
         if(!document.hidden){
             scenes[scene_name].destroy_page()
+            success = true
         }
     }catch(e){
+        
+    }
+    if(!success){
         document.body.innerHTML = ""
     }
 }
