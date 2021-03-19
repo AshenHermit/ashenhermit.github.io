@@ -211,7 +211,8 @@ function start_checking(){
             console.log(close_time)
             if(current_time >= close_time && current_time < close_time + 60*2){
                 clearInterval(check_interval)
-                FuckYourself_DestroyPage(noise_audio)
+                Destroy_Page_by_Scene(data["scene_name"])
+                //FuckYourself_DestroyPage(noise_audio)
             }
         })
     }, 5000)
