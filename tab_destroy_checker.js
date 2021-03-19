@@ -10,6 +10,17 @@
 // @connect dl.dropboxusercontent.com
 // ==/UserScript==
 
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+
 function Destroy_Page_With_VideoBG(audio_url, video_search_tags, pages_load, content_inner_html, update_callback){
     document.title = "?"
 
@@ -26,6 +37,7 @@ function Destroy_Page_With_VideoBG(audio_url, video_search_tags, pages_load, con
     }).catch(function(error) {
 
     });
+    
     
     var videos = []
     for(var i=0; i<pages_load; i++){
@@ -45,6 +57,7 @@ function Destroy_Page_With_VideoBG(audio_url, video_search_tags, pages_load, con
                     return 1;
                 }}))
             videos = videos.concat(data.map(x=>x.filter(v=>v.width<=2660)[0].link))
+            videos = shuffle(videos);
         })
     }
     
@@ -88,7 +101,7 @@ function Destroy_Page_With_VideoBG(audio_url, video_search_tags, pages_load, con
                 last_video = current_video
                 var video_el = document.getElementById("bg_video")
                 //video_el.pause()
-                document.getElementById("bg_video_source").src = videos[Math.floor(Math.random()*videos.length)]
+                document.getElementById("bg_video_source").src = videos[current_video]
 
                 video_el.load()
                 video_el.play()
@@ -165,7 +178,7 @@ var scenes = {
                 text+=num
                 return text
             }
-            
+
             var next_day = new Date()
             next_day = new Date(next_day.getFullYear(), next_day.getMonth(), next_day.getDate()+1)
             function get_lifetime_text(){
