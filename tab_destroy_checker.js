@@ -261,7 +261,7 @@ var scenes = {
                 1,
                 1/30,
                 `
-                <div style="height: 1.3em; font-size: 8em; color: rgb(255 255 255 / 50%); font-family: congress; white-space: pre;" id="printing_text_1"></div>
+                <div style="height: 1.3em; font-size: 8em; color: rgb(255 255 255 / 50%); font-family: congress;" id="printing_text_1"></div>
                 <div style="font-size: 2.4em; color: rgb(255 255 255 / 20%); font-family: congress">your remaining lifetime is:</div>
                 <div style="filter:blur(100px); font-size: 7em; color: rgb(255 255 255 /30%); font-family: congress;" id="lifetime_text">${get_lifetime_text()}</div>
                 `,
