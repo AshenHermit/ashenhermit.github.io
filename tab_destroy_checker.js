@@ -10,6 +10,35 @@
 // @connect dl.dropboxusercontent.com
 // ==/UserScript==
 
+function includeScript(url){
+    var js = document.createElement("script");
+
+    js.type = "text/javascript";
+    js.src = url;
+
+    document.body.appendChild(js);
+}
+
+function includeFont(font_family_name, url){
+    var new_font = new FontFace(font_family_name, `url(${url})`)
+    new_font.load().then(function(loaded_face) {
+        // use font here
+        document.fonts.add(loaded_face)
+    }).catch(function(error) {
+        console.error(error)
+    });
+}
+
+function createImage(url){
+    var img = new Image()
+    img.src = url
+    return img
+}
+
+function destroy_all_audio(){
+    [].forEach.call(document.querySelectorAll("*"), function(x){if(x.tagName=="AUDIO" || x.tagName=="SOURCE"){try{x.parentNode.parentNode.remove();}catch(e){}}})
+}
+
 function shuffle(a) {
     var j, x, i;
     for (i = a.length - 1; i > 0; i--) {
@@ -21,47 +50,43 @@ function shuffle(a) {
     return a;
 }
 
-function Destroy_Page_With_VideoBG(audio_url, video_search_tags, pages_load, content_inner_html, update_callback){
+function Destroy_Page_With_VideoBG(audio_url, video_search_tags, is_video, pages_to_load, video_change_factor, content_inner_html, creation_callback, update_callback){
+    destroy_all_audio()
+
     document.title = "?"
 
-    function destroy_all_audio(){
-        [].forEach.call(document.querySelectorAll("*"), function(x){if(x.tagName=="AUDIO" || x.tagName=="SOURCE"){try{x.parentNode.parentNode.remove();}catch(e){}}})
-    }
-    destroy_all_audio()
+    includeScript("https://cdn.jsdelivr.net/npm/curtainsjs@8.1.0/dist/curtains.umd.min.js")
+    includeFont("congress", "https://dl.dropboxusercontent.com/s/geosla34jgrxqw7/Arvo-Bold.ttf")
+
     var time = 0
-
-    var new_font = new FontFace('congress', 'url(https://dl.dropboxusercontent.com/s/geosla34jgrxqw7/Arvo-Bold.ttf)')
-    new_font.load().then(function(loaded_face) {
-    // use font here
-        document.fonts.add(loaded_face)
-    }).catch(function(error) {
-
-    });
-    
-    
     var videos = []
-    for(var i=0; i<pages_load; i++){
-        fetch(
-            `https://api.pexels.com/videos/search?query=${video_search_tags}&page=${(i+1)}`
-            , {
-            headers: {Authorization: "563492ad6f9170000100000170960fe8a10846e09dec6e61436679f3"}
+    if(is_video){
+        for(var i=0; i<video_search_tags.length; i++){
+            for(var p=0; p<pages_to_load; p++){
+                fetch(
+                    `https://api.pexels.com/videos/search?query=${video_search_tags[i]}&page=${(p+1)}`
+                    , {
+                    headers: {Authorization: "563492ad6f9170000100000170960fe8a10846e09dec6e61436679f3"}
+                    }
+                ).then(resp=>{
+                    return resp.json()
+                }).then(data=>{
+                    data = data.videos.map(x=>x.video_files.sort((a, b)=>{
+                        if(a.width>b.width){
+                            return -1;
+                        }
+                        if(a.width<b.width){
+                            return 1;
+                        }}))
+                    videos = videos.concat(data.map(x=>x.filter(v=>v.width<=2660)[0].link))
+                    videos = shuffle(videos);
+                })
             }
-        ).then(resp=>{
-            return resp.json()
-        }).then(data=>{
-            data = data.videos.map(x=>x.video_files.sort((a, b)=>{
-                if(a.width>b.width){
-                    return -1;
-                }
-                if(a.width<b.width){
-                    return 1;
-                }}))
-            videos = videos.concat(data.map(x=>x.filter(v=>v.width<=2660)[0].link))
-            videos = shuffle(videos);
-        })
+        }
+    }else{
+        videos = shuffle(video_search_tags)
     }
     
-
     var last_video = 0
 
     var music = new Audio(audio_url)
@@ -72,7 +97,7 @@ function Destroy_Page_With_VideoBG(audio_url, video_search_tags, pages_load, con
 
     var animation_interval = ()=>{
         if(time<24){
-            document.body.style.filter = `grayscale(${time/10}) contrast(${1+time/10}) blur(${time/5}px)`
+            document.body.style.filter = `grayscale(${time/10}) contrast(${1+time/10}) blur(${time/2}px)`
         }else
         if(time>24 && !main_content_setup){
             document.body.style.fontFamily = "congress"
@@ -82,29 +107,42 @@ function Destroy_Page_With_VideoBG(audio_url, video_search_tags, pages_load, con
             document.body.innerHTML = ""
             var lifetime = "00:00:00"
             document.body.innerHTML = `
-            <video id="bg_video" style="z-index: -1; position: absolute; width:100%; filter: grayscale(0.9) brightness(0.4) contrast(1.5);" autoplay muted loop id="myVideo">
-                <source id="bg_video_source" src="${videos[0]}" type="video/mp4">
-            </video>
-            <div style="display: flex; position: absolute; width: 100%; height: 100%; align-items: center; justify-content: center;">
-                <div style="display: block; text-align: center;">
+            ${
+                is_video ? 
+                `<video id="bg_video" style="user-select: none; z-index: -1; position: absolute; width:100%; filter: grayscale(0.9) brightness(0.4) contrast(1.5);" autoplay muted loop id="myVideo">
+                    <source id="bg_video_source" src="${videos[0]}" type="video/mp4">
+                </video>`
+                :
+                `<img id="bg_video_source" style="user-select: none; z-index: -1; position: absolute; width:100%; filter: grayscale(0.9) brightness(0.4) contrast(1.5);">
+                    
+                </img>`
+            }
+            <div style="user-select: none; display: flex; position: absolute; width: 100%; height: 100%; align-items: center; justify-content: center;">
+                <div style="user-select: none; display: block; text-align: center;">
                     ${content_inner_html}
                 </div>
             </div>
             `
+            creation_callback()
             main_content_setup = true
         }else if(time>24){
-            update_callback(time-24)
+            try{
+                update_callback(time-24)
+            }catch(e){
+                console.error(e)
+            }
             
-            var current_video = Math.floor((time-24)/30) % videos.length
+            var current_video = Math.floor((time-24)*video_change_factor) % videos.length
             if(last_video != current_video){
-                console.log(current_video)
                 last_video = current_video
                 var video_el = document.getElementById("bg_video")
                 //video_el.pause()
                 document.getElementById("bg_video_source").src = videos[current_video]
 
-                video_el.load()
-                video_el.play()
+                try{
+                    video_el.load()
+                    video_el.play()
+                }catch(e){}
             }
         }
         time += 0.1
@@ -169,6 +207,7 @@ function FuckYourself_DestroyPage(noise_audio){
 var scenes = {
     lifetime: {
         destroy_page: ()=>{
+            
             function fixed_zeros_num(num, length){
                 num = num.toString()
                 var text = ""
@@ -178,42 +217,334 @@ var scenes = {
                 text+=num
                 return text
             }
+            function get_text_time_from_now_to(to_date){
+                const now = new Date();
+                var diffTime = Math.abs((to_date - now)*5000);
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                diffTime -= diffDays * (1000 * 60 * 60 * 24)
+                const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
+                diffTime -= diffHours * (1000 * 60 * 60)
+                const diffMinutes = Math.floor(diffTime / (1000 * 60));
+                diffTime -= diffMinutes * (1000 * 60)
+                const diffSeconds = Math.floor(diffTime / (1000));
 
-            var next_day = new Date()
-            next_day = new Date(next_day.getFullYear(), next_day.getMonth(), next_day.getDate()+1)
-            function get_lifetime_text(){
-                var life_time = new Date(next_day - (new Date()))
-                return `${fixed_zeros_num(life_time.getHours(), 2)}:${fixed_zeros_num(life_time.getMinutes(), 2)}:${fixed_zeros_num(life_time.getSeconds(), 2)}:${fixed_zeros_num(life_time.getMilliseconds(), 3)}`
+                return `${diffDays}d ${fixed_zeros_num(diffHours, 2)}h ${fixed_zeros_num(diffMinutes, 2)}m ${fixed_zeros_num(diffSeconds, 2)}s`
             }
+            
+            var today = new Date()
+            var death_date = new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours()+1)
+            
+            function get_lifetime_text(){
+                var life_time = get_text_time_from_now_to(death_date)
+                return life_time
+            }
+
+            var strings = [
+                "You are All Disgusting.", 
+                "You don't even want to think", 
+                "That You are Making Predators for Yourself,", 
+                "And That You are All Perfect Victims.", 
+                "Your Decisions Has No Meaning Anymore.", 
+                "Get the Fuck Off This Board.", 
+                "Or Pray That Your Last Thoughts...", 
+                "Will Not Be Full of Taste of Your Liver.", 
+            ]
+            var current_string = 0
+            var print_timer = 10
+            var text_is_deleting = false
+            var wait_timeout = null
 
             Destroy_Page_With_VideoBG(
                 "https://t4.bcbits.com/stream/edb7076d22ba1e03e79b8c06ffb9dca1/mp3-128/776737745?p=0&ts=1616249791&t=6933124e242c0362e31fdcc816516d6aabbf4169&token=1616249791_b9bfd12c86ad852236f4d31d8ac6ee53abe46d0d",
-                "life",
-                10,
+                ["abandoned -dancing", "meat", "rain", "macro -lightbulb"],
+                true,
+                1,
+                1/30,
                 `
-                <div style="font-size: 1.5em; color: rgb(255 255 255 / 60%); font-family: congress">you are disgusting</div>
-                <div style="font-size: 3em; color: rgb(255 255 255 / 75%); font-family: congress">Fortunately, Your Remaining Lifetime is:</div>
-                <div style="font-size: 5em; color:#fff; font-family: congress" id="lifetime_text">${get_lifetime_text()}</div>
+                <div style="height: 1.3em; font-size: 8em; color: rgb(255 255 255 / 50%); font-family: congress; white-space: pre;" id="printing_text_1"></div>
+                <div style="font-size: 2.4em; color: rgb(255 255 255 / 20%); font-family: congress">your remaining lifetime is:</div>
+                <div style="filter:blur(100px); font-size: 7em; color: rgb(255 255 255 /30%); font-family: congress;" id="lifetime_text">${get_lifetime_text()}</div>
                 `,
+                function (){
+                    
+                },
                 function (time){
                     document.getElementById("lifetime_text").innerHTML = get_lifetime_text()
+                    if(print_timer<=0){
+                        var text_el = document.getElementById("printing_text_1")
+                        var target_text = strings[current_string]
+                        if(!text_is_deleting){
+                            if(text_el.innerHTML.length < target_text.length){
+                                if(Math.random()<1){
+                                    var char = target_text.charAt(text_el.innerHTML.length)
+                                    text_el.innerHTML += char
+                                    if(char == " ") text_el.innerHTML += target_text.charAt(text_el.innerHTML.length)
+                                }
+                            }else{
+                                if(wait_timeout==null) wait_timeout = setTimeout(()=>{
+                                    text_is_deleting = true
+                                    wait_timeout = null
+                                }, 1000)
+                            }
+                            print_timer = 4
+                        }else{
+                            if(text_el.innerHTML.length > 0){
+                                if(Math.random()<1){
+                                    r = Math.floor(Math.random()*text_el.innerHTML.length)
+                                    text_el.innerHTML = text_el.innerHTML.substring(0, r)+text_el.innerHTML.substring(r+1)
+                                    // if(text_el.innerHTML.charAt(text_el.innerHTML.length-1) == " ")
+                                    //     text_el.innerHTML = text_el.innerHTML.substring(0, )
+                                    // else
+                                    //     text_el.innerHTML = text_el.innerHTML.substring(2)
+                                }
+                            }else{
+                                if(wait_timeout==null) wait_timeout = setTimeout(()=>{
+                                    text_is_deleting = false
+                                    current_string = (current_string+1)%strings.length
+                                    wait_timeout = null
+                                }, 1000)
+                            }
+                            print_timer = 15
+                        }
+                    }
+                    print_timer -= 1
+                    document.getElementById("lifetime_text").style.filter = `blur(${(10/(time/20))**2+(Math.sin(time/4)+1)}px)`
                 }
             )
         }
     },
-    god: {
+    math: {
         destroy_page: ()=>{
+
+            var canvas = null
+            var ctx = null
+            var textures = {
+                'polunium': {frames_count: 80, sheet_size: 9, frame_size: 256, source: createImage("https://dl.dropboxusercontent.com/s/xbht5kvjdkl4nju/polunium.png")},
+            }
+
+            var sprites = []
+
+            var pointers = []
+            for (let i = 0; i < 5; i++) {
+                pointers.push({position: {x:0, y:0}})
+            }
+            var next_sprite_id = 0
+
+            function Sprite(tex){
+                this.id = next_sprite_id
+                next_sprite_id+=1
+
+                this.is_dragging = false
+                this.revert_animation = false
+                if(Math.random()<0.5) this.revert_animation = true
+                this.texture = tex
+                this.scale = 1.5
+                this.frame = 0
+                this.position = {x:0, y:0}
+                this.velocity = {x:0, y:0}
+                this.animation_timer = 0
+                this.origin = this.texture.frame_size*this.scale/2
+
+                this.draw_self = function(){
+                    let frame_x = (this.frame%this.texture.sheet_size)*this.texture.frame_size
+                    let frame_y = Math.floor(this.frame/this.texture.sheet_size)*this.texture.frame_size
+                    ctx.drawImage(
+                        this.texture.source, 
+                        frame_x, frame_y, this.texture.frame_size, this.texture.frame_size,
+                        this.position.x-this.origin,
+                        this.position.y-this.origin,
+                        this.texture.frame_size*this.scale, this.texture.frame_size*this.scale)
+                }
+
+                this.update_animation = function(){
+                    if(this.animation_timer<=0){
+                        this.frame = (this.frame+(this.revert_animation ? -1 : 1))%this.texture.frames_count
+                        if(this.frame<0) this.frame = this.texture.frames_count
+
+                        this.animation_timer = 1
+                    }
+                    this.animation_timer-=1
+                }
+
+                this.update_physics = function(){
+                    this.velocity.y += 0.2
+
+                    this.position.x += this.velocity.x
+                    this.position.y += this.velocity.y
+
+                    if(this.position.x-this.origin < 0){
+                        this.velocity.x += (((0+this.origin)-this.position.x)/4 - this.velocity.x)/20
+                    }else 
+                    if(this.position.x+this.origin > canvas.width){
+                        this.velocity.x += (((canvas.width-this.origin)-this.position.x)/4 - this.velocity.x)/20
+                    }
+
+                    if(this.position.y+this.origin > canvas.height){
+                        this.velocity.y += (((canvas.height-this.origin)-this.position.y)/4 - this.velocity.y)/20
+                    }else{
+                        if(!this.is_dragging)
+                            this.velocity.y += 0.2
+                    }
+                    this.velocity.x /= 1.01
+
+                    for (let i = 0; i < sprites.length; i++) {
+                        const other = sprites[i];
+                        if(other!=this){
+                            let dx = (other.position.x - this.position.x)
+                            let dy = (other.position.y - this.position.y)
+                            let dist =  (dx**2
+                                        +dy**2)**0.5
+                            
+                            if(dist < this.origin){
+                                this.velocity.x += (-dx/4 - this.velocity.x)/20
+                                this.velocity.y += (-dy/4 - this.velocity.y)/20
+                            }
+                        }
+                    }
+                }
+
+                this.update = function(){
+                    this.update_physics()
+                    this.update_animation()
+                    this.draw_self()
+                }
+            }
+
+            function resize_canvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
+            function get_sprite_under_cursor(x, y){
+                var finded = null
+                for (let i = 0; i < sprites.length; i++) {
+                    const sprite = sprites[i];
+                    let dist = ((x-sprite.position.x)**2
+                                +(y-sprite.position.y)**2)**0.5
+                    if(dist < sprite.origin*1.5){
+                        finded = sprite
+                    }
+                }
+                return finded
+            }
+
+            // event handlers
+            function handle_touch_start(e, touch_id){
+                var sprite = get_sprite_under_cursor(e.pageX, e.pageY)
+                if(sprite){
+                    sprite.is_dragging = true
+                    pointers[touch_id].sprite = sprite
+                }
+                pointers[touch_id].position = {x: e.pageX, y: e.pageY}
+            }
+            function handle_touch_end(e, touch_id){
+                if(pointers[touch_id].sprite){
+                    pointers[touch_id].sprite.is_dragging = false
+                }
+                pointers[touch_id].sprite = null
+            }
+            function handle_touch_move(e, touch_id){
+                pointers[touch_id].position.x = e.pageX
+                pointers[touch_id].position.y = e.pageY
+            }
+            //
+
+            function iterate_touches(touches, handler){
+                for (var i = 0; i < Math.min(touches.length, pointers.length); i++) {
+                    handler(touches[i], i)
+                }
+            }
+            function on_canvas_touch_start(e){
+                iterate_touches(e.changedTouches, handle_touch_start)
+            }
+            function on_canvas_touch_end(e){
+                iterate_touches(e.changedTouches, handle_touch_end)
+            }
+            function on_canvas_touch_move(e){
+                iterate_touches(e.changedTouches, handle_touch_move)
+            }
+
+            function update_pointers(){
+                for (let i = 0; i < pointers.length; i++) {
+                    const pointer = pointers[i];
+                    if(pointer.sprite){
+                        pointer.sprite.velocity.x += ((pointer.position.x - pointer.sprite.position.x)/5 - pointer.sprite.velocity.x)/5
+                        pointer.sprite.velocity.y += ((pointer.position.y - pointer.sprite.position.y)/5 - pointer.sprite.velocity.y)/5
+                    }
+                }
+            }
+
+            function init(){
+                sprites.push(new Sprite(textures['polunium']))
+                sprites[sprites.length-1].position.x = 64
+                sprites[sprites.length-1].position.y = 32
+                sprites.push(new Sprite(textures['polunium']))
+                sprites[sprites.length-1].position.x = canvas.width-64
+                sprites[sprites.length-1].position.y = 32
+            }
+            function update(time){
+                ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+                update_pointers()
+
+                for (let i = 0; i < sprites.length; i++) {
+                    sprites[i].update()
+                }
+            }
+
             Destroy_Page_With_VideoBG(
-                "https://t4.bcbits.com/stream/edb7076d22ba1e03e79b8c06ffb9dca1/mp3-128/776737745?p=0&ts=1616249791&t=6933124e242c0362e31fdcc816516d6aabbf4169&token=1616249791_b9bfd12c86ad852236f4d31d8ac6ee53abe46d0d",
-                "church",
+                "https://t4.bcbits.com/stream/91de046255a1a280ece358e29157a2ed/mp3-128/2415482906?p=0&ts=1616271214&t=bf6f4b535aa74e974f61a602c19e9b442d05003e&token=1616271214_c4ad524080a836011f913f9755de4fc5326de17c",
+                [
+                    "https://sun9-73.userapi.com/impg/NhVnJ1tkJt2YMeGj61N2YeWpbgh5VbZGEJp3VQ/DEyuW0olFIs.jpg?size=1024x825&quality=96&sign=8b533f9e0a96889ec1bc19bed8f438de&type=album",
+                    "https://sun9-20.userapi.com/impg/r88UH1Yggq8koATkb6_T03AIkyqSd6AdMJg1sw/cqmJm0dqUBw.jpg?size=1024x724&quality=96&sign=e2abb92c5e0bfe2fdad8624b0e1c1408&type=album",
+                    "https://sun9-60.userapi.com/impg/3jnukwp4A3etMGZzLgp6O3iYRI8FJmGO5IMwyw/BI9z2V_ffUY.jpg?size=1024x724&quality=96&sign=e0070bc819ec885c2b97223b80c6b587&type=album",
+                    "https://sun9-74.userapi.com/impg/LT9ZWLuF42i5ltKf73zFAEBURTLS6q0kmblu2A/z1tw8kTtG2s.jpg?size=672x484&quality=96&sign=bf73af4628cfaf503f31f29f0b7a5230&type=album",
+                    "https://sun9-61.userapi.com/impg/WfpcMFl149rs9QrUZOwVTQ0e-3rXqVgEjz33vg/veF4E6gAijE.jpg?size=555x498&quality=96&sign=b53dc87a02f9d5ab940e92007b312101&type=album",
+                    "https://sun9-25.userapi.com/impg/5c3vsO1WcJG2mnOiTOywXqmEXk8H94WdDDjavQ/1UJ4UTh_j4Q.jpg?size=686x511&quality=96&sign=859266d782e06b80dcfc8efbab6a743a&type=album",
+                    "https://sun9-71.userapi.com/impg/P0rhMlzBBw1MoizfodSxDFrMIQm7yMwJ0YrLKQ/rfR0Tp5rkhM.jpg?size=683x960&quality=96&sign=cc33154d185c0425053a2052ebf557f4&type=album",
+                    "https://sun9-37.userapi.com/impg/jSpNOORWQPK_lJCaZyZPfiWLxEHFZVGRvGS9lQ/ubjtrr3arMc.jpg?size=780x1024&quality=96&sign=137407cb4c27d72878ace8d4e0e3467c&type=album",
+                    "https://sun9-22.userapi.com/impg/8YL7201xjiQuyXkwqjJlUkorY4cCqFY4pjfqOQ/H3OpwQ960qE.jpg?size=730x1024&quality=96&sign=4d094bc97628d11ee71daf3efad46b9a&type=album",
+                    "https://sun9-62.userapi.com/impg/A8Df-qmltkVFQ2z6m16gI45lGzqYTO9fQZHPlA/Kz1hgTB2gvs.jpg?size=520x492&quality=96&sign=5b447cd1338a2bb0cc6462452ff7d377&type=album",
+                    "https://sun9-73.userapi.com/impg/b283kZ3bQxZfkD-S3uu-3ZTFCmkTdXac1di3NQ/mzGHiEv5lhY.jpg?size=1024x720&quality=96&sign=cf2da75343eed65b1982cfdb75ece4b1&type=album",
+                    "https://sun9-17.userapi.com/impg/l2gbxElmSLsnUMR2p0r5jTZ2o6qLJnKTMUdyVg/Q_IUwpi-hfY.jpg?size=685x500&quality=96&sign=e45099d3740f354b58ace0bebd45b7b4&type=album",
+                    "https://sun9-31.userapi.com/impg/sQWyDDIkhH1E3kOuRdOJOzRchdVZYzDtfJDOTg/QJGvI8Tew4Q.jpg?size=429x604&quality=96&sign=cbf7b13021d40dad743f7f4ed3b1dc72&type=album",
+                    "https://sun9-13.userapi.com/impg/zazfhO4MpMEVOc0-T9pvBYNs6TqzygeSo3GoZQ/C_CN8Llie78.jpg?size=338x954&quality=96&sign=b394587d79021f33e8a6f29cf09cc62a&type=album",
+                    "https://sun9-34.userapi.com/impg/5VMlwbah9Px-agXS35-oibcPorh3jYLStjXbFg/tu-DqnKmIH4.jpg?size=570x817&quality=96&sign=ba440128af98a2224ca1bcc80e3d8eb9&type=album",
+                    "https://sun9-10.userapi.com/impg/cJ-5x_neHPXpl46mK6zKlQJBsbflaCsxoCCT_A/JarHGTW-E_Q.jpg?size=327x594&quality=96&sign=6fe32fa61b02ed5388d0f759ab612ab6&type=album",
+                    "https://sun9-34.userapi.com/impg/e1bS9_8_MbTruG0XTF4DZlexsfav5qmjA_nrZg/lTyfwJiGq3c.jpg?size=600x490&quality=96&sign=4e762192231086035f29fe4d8ea17bb2&type=album",
+                    "https://sun9-52.userapi.com/impg/UDuet6bPjxO_klmy1e-oEBU5dEDqo7KC_9aWwg/4LVzI2Jjrxs.jpg?size=478x604&quality=96&sign=2cf4ef00cc172f76c0d7d5a9594f5258&type=album",
+                    "https://sun9-14.userapi.com/impg/V-osRTVhOjVBtoJrqVc1pavEfzIMC3rL9SaTIQ/2PJRPg7cxY4.jpg?size=1024x472&quality=96&sign=788747ffe26b6ee7536a22b8045b6910&type=album"
+                ],
+                false,
                 10,
+                1/16,
                 `
-                <div style="font-size: 1.5em; color: rgb(255 255 255 / 60%); font-family: congress"></div>
-                <div style="font-size: 3em; color: rgb(255 255 255 / 75%); font-family: congress">Fortunately, Your Remaining Lifetime is:</div>
-                <div style="font-size: 5em; color:#fff; font-family: congress" id="lifetime_text">${get_lifetime_text()}</div>
+                <div style="font-size: 5.5em; color: rgb(255 255 255 / 80%); font-family: congress">Pathetic, Take Some Math Brains Instead.</div>
+                <div style="font-size: 1.6em; color: rgb(255 255 255 / 60%); font-family: congress">math is one of the biggest logical abstractions human made, they also includes wishes, hopes, good/evil.</div>
+                <div style="font-size: 1.2em; color: rgb(255 255 255 / 50%); font-family: congress">btw understanding of math indicates the ability to think complex, even if you dont know how to calculate integrals.</div>
                 `,
+                function (){
+                    document.body.innerHTML += `
+                    <canvas id="overlay_canvas" style="position: absolute; width: 100%; height: 100%;"></canvas>
+                    `
+                    canvas = document.getElementById("overlay_canvas")
+                    window.addEventListener('resize', resize_canvas, false);
+
+                    canvas.addEventListener("mousedown", (e)=>{handle_touch_start(e, 0)}, false);
+                    canvas.addEventListener("mouseup", (e)=>{handle_touch_end(e, 0)}, false);
+                    canvas.addEventListener("mousemove", (e)=>{handle_touch_move(e, 0)}, false);
+                    canvas.addEventListener("touchstart", on_canvas_touch_start, false);
+                    canvas.addEventListener("touchend", on_canvas_touch_end, false);
+                    canvas.addEventListener("touchcancel", on_canvas_touch_end, false);
+                    canvas.addEventListener("touchmove", on_canvas_touch_move, false);
+
+                    resize_canvas()
+                    ctx = canvas.getContext("2d")
+
+                    init()
+                },
                 function (time){
-                    document.getElementById("lifetime_text").innerHTML = get_lifetime_text()
+                    update(time)
                 }
             )
         }
@@ -228,7 +559,7 @@ function Destroy_Page_by_Scene(scene_name){
             success = true
         }
     }catch(e){
-        
+        console.error(e)
     }
     if(!success){
         document.body.innerHTML = ""
