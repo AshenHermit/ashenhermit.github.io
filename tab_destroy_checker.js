@@ -326,7 +326,10 @@ var scenes = {
 
             var pointers = []
             for (let i = 0; i < 5; i++) {
-                pointers.push({position: {x:0, y:0}})
+                pointers.push({
+                    position: {x:0, y:0},
+                    offset: {x:0, y:0},
+                })
             }
             var next_sprite_id = 0
 
@@ -338,11 +341,19 @@ var scenes = {
                 this.revert_animation = false
                 if(Math.random()<0.5) this.revert_animation = true
                 this.texture = tex
-                this.scale = 1.5
+                this.scale = 1.5+(Math.random()-0.5)
                 this.frame = 0
                 this.position = {x:0, y:0}
                 this.velocity = {x:0, y:0}
                 this.animation_timer = 0
+                this.animation_speed = 1
+                this.can_spawn = false
+
+                if(Math.random()<0.05){
+                    this.animation_speed = 2
+                    this.scale = 5.0
+                }
+
                 this.origin = this.texture.frame_size*this.scale/2
 
                 this.draw_self = function(){
@@ -358,8 +369,8 @@ var scenes = {
 
                 this.update_animation = function(){
                     if(this.animation_timer<=0){
-                        this.frame = (this.frame+(this.revert_animation ? -1 : 1))%this.texture.frames_count
-                        if(this.frame<0) this.frame = this.texture.frames_count
+                        this.frame = (this.frame+(this.revert_animation ? -this.animation_speed : this.animation_speed))%this.texture.frames_count
+                        if(this.frame<0) this.frame = this.texture.frames_count-this.animation_speed
 
                         this.animation_timer = 1
                     }
@@ -384,6 +395,17 @@ var scenes = {
                     }else{
                         if(!this.is_dragging)
                             this.velocity.y += 0.2
+                    }
+
+                    if(this.position.y < -512){
+                        if(this.can_spawn){
+                            sprites.push(new Sprite(this.texture))
+                            sprites[sprites.length-1].position.x = this.position.x
+                            sprites[sprites.length-1].position.y = this.position.y
+                            this.can_spawn = false
+                        }
+                    }else if(this.position.y>0){
+                        this.can_spawn = true
                     }
                     this.velocity.x /= 1.01
 
@@ -421,7 +443,7 @@ var scenes = {
                     const sprite = sprites[i];
                     let dist = ((x-sprite.position.x)**2
                                 +(y-sprite.position.y)**2)**0.5
-                    if(dist < sprite.origin*1.5){
+                    if(dist < sprite.origin*1){
                         finded = sprite
                     }
                 }
@@ -431,11 +453,13 @@ var scenes = {
             // event handlers
             function handle_touch_start(e, touch_id){
                 var sprite = get_sprite_under_cursor(e.pageX, e.pageY)
+                pointers[touch_id].position = {x: e.pageX, y: e.pageY}
                 if(sprite){
                     sprite.is_dragging = true
                     pointers[touch_id].sprite = sprite
+                    pointers[touch_id].offset.x = pointers[touch_id].position.x-pointers[touch_id].sprite.position.x
+                    pointers[touch_id].offset.y = pointers[touch_id].position.y-pointers[touch_id].sprite.position.y
                 }
-                pointers[touch_id].position = {x: e.pageX, y: e.pageY}
             }
             function handle_touch_end(e, touch_id){
                 if(pointers[touch_id].sprite){
@@ -468,8 +492,8 @@ var scenes = {
                 for (let i = 0; i < pointers.length; i++) {
                     const pointer = pointers[i];
                     if(pointer.sprite){
-                        pointer.sprite.velocity.x += ((pointer.position.x - pointer.sprite.position.x)/5 - pointer.sprite.velocity.x)/5
-                        pointer.sprite.velocity.y += ((pointer.position.y - pointer.sprite.position.y)/5 - pointer.sprite.velocity.y)/5
+                        pointer.sprite.velocity.x += ((pointer.position.x - pointer.offset.x - pointer.sprite.position.x)/5 - pointer.sprite.velocity.x)/5
+                        pointer.sprite.velocity.y += ((pointer.position.y - pointer.offset.y - pointer.sprite.position.y)/5 - pointer.sprite.velocity.y)/5
                     }
                 }
             }
