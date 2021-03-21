@@ -613,7 +613,8 @@ var scenes = {
 function options_from_string(string){
     var dict = {}
     string
-    .replaceAll(" ", "")
+    .replaceAll(": ", ":")
+    .replaceAll("; ", ";")
     .split(";")
     .filter(x=>x!="")
     .map(x=>{
@@ -626,7 +627,8 @@ function options_from_string(string){
 }
 
 function Destroy_With_Music_Player(audio_url, artist, title, special_options){
-    var bg_tags = special_options["bg_tags"].split(",") || ["abstract"]
+    var bg_tags = special_options["bg_tags"] || "abstract"
+    bg_tags = bg_tags.split(",")
     var pages_count = parseInt(special_options["pages_count"]) || 1
     var video_change_factor = (1/30)
     if(special_options["video_change_factor"]){
