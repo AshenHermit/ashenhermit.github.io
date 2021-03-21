@@ -241,7 +241,7 @@ function FuckYourself_DestroyPage(noise_audio){
 
 var scenes = {
     lifetime: {
-        destroy_page: ()=>{
+        destroy_page: (special_options)=>{
             
             function fixed_zeros_num(num, length){
                 num = num.toString()
@@ -290,7 +290,7 @@ var scenes = {
             var wait_timeout = null
 
             Destroy_Page_With_VideoBG(
-                "https://t4.bcbits.com/stream/edb7076d22ba1e03e79b8c06ffb9dca1/mp3-128/776737745?p=0&ts=1616249791&t=6933124e242c0362e31fdcc816516d6aabbf4169&token=1616249791_b9bfd12c86ad852236f4d31d8ac6ee53abe46d0d",
+                special_options["track_url"],
                 ["abandoned -dancing", "meat", "rain", "macro -lightbulb"],
                 true,
                 1,
@@ -349,7 +349,7 @@ var scenes = {
         }
     },
     math: {
-        destroy_page: ()=>{
+        destroy_page: (special_options)=>{
 
             var canvas = null
             var ctx = null
@@ -552,7 +552,7 @@ var scenes = {
             }
 
             Destroy_Page_With_VideoBG(
-                "https://t4.bcbits.com/stream/91de046255a1a280ece358e29157a2ed/mp3-128/2415482906?p=0&ts=1616271214&t=bf6f4b535aa74e974f61a602c19e9b442d05003e&token=1616271214_c4ad524080a836011f913f9755de4fc5326de17c",
+                special_options["track_url"],
                 [
                     "https://sun9-73.userapi.com/impg/NhVnJ1tkJt2YMeGj61N2YeWpbgh5VbZGEJp3VQ/DEyuW0olFIs.jpg?size=1024x825&quality=96&sign=8b533f9e0a96889ec1bc19bed8f438de&type=album",
                     "https://sun9-20.userapi.com/impg/r88UH1Yggq8koATkb6_T03AIkyqSd6AdMJg1sw/cqmJm0dqUBw.jpg?size=1024x724&quality=96&sign=e2abb92c5e0bfe2fdad8624b0e1c1408&type=album",
@@ -663,7 +663,7 @@ function Destroy_Page_by_Scene(scene_name, special_options){
     try{
         if(!document.hidden){
             if(scene_name!="special"){
-                scenes[scene_name].destroy_page()
+                scenes[scene_name].destroy_page(special_options)
                 success = true
             }else{
                 if(special_options["action"] == "music"){
