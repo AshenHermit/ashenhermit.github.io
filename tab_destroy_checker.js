@@ -616,7 +616,10 @@ function options_from_string(string){
     .replaceAll(" ", "")
     .split(";")
     .filter(x=>x!="")
-    .map(x=>x.split(":"))
+    .map(x=>{
+        let index = x.indexOf(":")
+        return [x.substring(0, index), x.substring(index+1)]
+    })
     .forEach(x=>dict[x[0]]=x[1])
 
     return dict
@@ -660,7 +663,7 @@ function Destroy_Page_by_Scene(scene_name, special_options){
             }else{
                 if(special_options["action"] == "music"){
                     if(special_options["audio_url"] != ""){
-                        var audio_url = special_options["audio_url"]
+                        var audio_url = special_options["track_url"]
                         var artist = special_options["artist"]
                         var title = special_options["title"]
 
