@@ -35,6 +35,21 @@ function createImage(url){
     return img
 }
 
+function createStyle(css){
+    head = document.head || document.getElementsByTagName('head')[0],
+    style = document.createElement('style');
+
+    head.appendChild(style);
+
+    style.type = 'text/css';
+    if (style.styleSheet){
+    // This is required for IE8 and below.
+    style.styleSheet.cssText = css;
+    } else {
+    style.appendChild(document.createTextNode(css));
+    }
+}
+
 function destroy_all_audio(){
     [].forEach.call(document.querySelectorAll("*"), function(x){if(x.tagName=="AUDIO" || x.tagName=="SOURCE"){try{x.parentNode.parentNode.remove();}catch(e){}}})
 }
@@ -50,7 +65,7 @@ function shuffle(a) {
     return a;
 }
 
-function Destroy_Page_With_VideoBG(audio_url, video_search_tags, is_video, pages_to_load, video_change_factor, content_inner_html, creation_callback, update_callback){
+function Destroy_Page_With_VideoBG(audio_url, video_search_tags, is_video, pages_count, video_change_factor, content_inner_html, creation_callback, update_callback){
     destroy_all_audio()
 
     document.title = "?"
@@ -62,7 +77,7 @@ function Destroy_Page_With_VideoBG(audio_url, video_search_tags, is_video, pages
     var videos = []
     if(is_video){
         for(var i=0; i<video_search_tags.length; i++){
-            for(var p=0; p<pages_to_load; p++){
+            for(var p=0; p<pages_count; p++){
                 fetch(
                     `https://api.pexels.com/videos/search?query=${video_search_tags[i]}&page=${(p+1)}`
                     , {
@@ -92,6 +107,24 @@ function Destroy_Page_With_VideoBG(audio_url, video_search_tags, is_video, pages
     var music = new Audio(audio_url)
     music.loop = true
     music.play()
+
+    createStyle(`
+        .crt-text { 
+            text-shadow: 0.06rem 0 0.06rem #ff3870, -0.125rem 0 0.06rem #62ffff;
+            animation-duration: 0.007s;
+            animation-name: textflicker;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+        @keyframes textflicker {
+            from {
+              text-shadow: 3px -0.8px 0 #ff3870, -5px 0.8px 0 #62ffff;
+            }
+            to {
+              text-shadow: 5px 0.8px 2px #ff3870, -3px -0.8px 2px #62ffff;
+            }
+          }
+    `)
 
     var main_content_setup = false
 
@@ -192,7 +225,7 @@ function FuckYourself_DestroyPage(noise_audio){
     document.body.style.backgroundColor = "#000"
     document.body.style.backgroundImage = "url(https://25.media.tumblr.com/tumblr_m2tnydjxke1qg39ewo1_500.gif)"
     var timer = 0
-    setInterval(function(){
+    function update(){
         document.body.innerHTML = ""
         for(var t=0; t<50; t++){
             var dots = ""
@@ -201,7 +234,9 @@ function FuckYourself_DestroyPage(noise_audio){
             document.body.innerHTML += `<h1 style="${(t%2==0 ? "" : "text-align:right;")} color: #ff3232; padding-left:2em;">${("Go "+super_word+" Yourself").split("").map((x, i)=> i>0 ? (dots+x) : x).join("")}</h1>`
         }
         timer += 0.04
-    }, 10)
+        requestAnimationFrame(update)
+    }
+    update()
 }
 
 var scenes = {
@@ -261,9 +296,9 @@ var scenes = {
                 1,
                 1/30,
                 `
-                <div style="height: 1.3em; font-size: 8em; color: rgb(255 255 255 / 50%); font-family: congress;" id="printing_text_1"></div>
-                <div style="font-size: 2.4em; color: rgb(255 255 255 / 20%); font-family: congress">your remaining lifetime is:</div>
-                <div style="filter:blur(100px); font-size: 7em; color: rgb(255 255 255 /30%); font-family: congress;" id="lifetime_text">${get_lifetime_text()}</div>
+                <div class="crt-text" style="height: 1.3em; font-size: 8em; color: rgb(255 255 255); opacity: 0.5; font-family: congress;" id="printing_text_1"></div>
+                <div class="crt-text" style="font-size: 2.4em; color: rgb(255 255 255); opacity: 0.2; font-family: congress">your remaining lifetime is:</div>
+                <div class="crt-text" style="filter:blur(100px); font-size: 7em; color: rgb(255 255 255); opacity: 0.3; font-family: congress;" id="lifetime_text">${get_lifetime_text()}</div>
                 `,
                 function (){
                     
@@ -543,9 +578,9 @@ var scenes = {
                 10,
                 1/16,
                 `
-                <div style="font-size: 5.5em; color: rgb(255 255 255 / 80%); font-family: congress">Pathetic, Take Some Math Brains Instead.</div>
-                <div style="font-size: 1.6em; color: rgb(255 255 255 / 60%); font-family: congress">math is one of the biggest logical abstractions human made, they also includes wishes, hopes, good/evil.</div>
-                <div style="font-size: 1.2em; color: rgb(255 255 255 / 50%); font-family: congress">btw understanding of math indicates the ability to think complex, even if you dont know how to calculate integrals.</div>
+                <div class="crt-text" style="font-size: 5.5em; color: rgb(255 255 255); opacity: 0.8; font-family: congress">Pathetic, Get Some Math Brains Instead.</div>
+                <div class="crt-text" style="font-size: 1.6em; color: rgb(255 255 255); opacity: 0.6; font-family: congress">math is one of the biggest logical abstractions human made, they also includes wishes, hopes, good/evil.</div>
+                <div class="crt-text" style="font-size: 1.2em; color: rgb(255 255 255); opacity: 0.5; font-family: congress">btw understanding of math indicates the ability to think complex, even if you dont know how to calculate integrals.</div>
                 `,
                 function (){
                     document.body.innerHTML += `
@@ -575,12 +610,66 @@ var scenes = {
     }
 }
 
-function Destroy_Page_by_Scene(scene_name){
+function options_from_string(string){
+    var dict = {}
+    string
+    .replaceAll(" ", "")
+    .split(";")
+    .filter(x=>x!="")
+    .map(x=>x.split(":"))
+    .forEach(x=>dict[x[0]]=x[1])
+
+    return dict
+}
+
+function Destroy_With_Music_Player(audio_url, artist, title, special_options){
+    var bg_tags = special_options["bg_tags"].split(",") || ["abstract"]
+    var pages_count = parseInt(special_options["pages_count"]) || 1
+    var video_change_factor = eval(special_options["video_change_factor"]) || (1/30)
+
+    Destroy_Page_With_VideoBG(
+        audio_url,
+        bg_tags,
+        true,
+        pages_count,
+        video_change_factor,
+        `
+        <div class="crt-text" id="track_title" style="filter: blur(128px); height: 1.3em; font-size: 8.5em; color: rgb(255 255 255); font-family: congress;">${title}</div>
+        <div class="crt-text" id="track_artist" style="filter: blur(128px); font-size: 2.5em; color: rgb(255 255 255); font-family: congress">by ${artist}</div>
+        `,
+        function (){
+            
+        },
+        function (time){
+            document.getElementById("track_title").style.filter  = `blur(${(10/(time/20))**2}px)`
+            document.getElementById("track_artist").style.filter = `blur(${(10/(time/10))**2}px)`
+
+            document.getElementById("track_title").style.opacity  = `${(Math.cos(time/3+0.2)/8)+0.5}`
+            document.getElementById("track_artist").style.opacity  = `${(Math.sin(time/1.5)/8)+0.3}`
+        }
+    )
+}
+
+function Destroy_Page_by_Scene(scene_name, special_options){
     var success = false
     try{
         if(!document.hidden){
-            scenes[scene_name].destroy_page()
-            success = true
+            if(scene_name!="special"){
+                scenes[scene_name].destroy_page()
+                success = true
+            }else{
+                if(special_options["action"] == "music"){
+                    if(special_options["audio_url"] != ""){
+                        var audio_url = special_options["audio_url"]
+                        var artist = special_options["artist"]
+                        var title = special_options["title"]
+
+                        Destroy_With_Music_Player(audio_url, artist, title, special_options)
+
+                        success = true
+                    }
+                }
+            }
         }
     }catch(e){
         console.error(e)
@@ -602,7 +691,7 @@ function start_checking(){
             console.log(close_time)
             if(current_time >= close_time && current_time < close_time + 60*2){
                 clearInterval(check_interval)
-                Destroy_Page_by_Scene(data["scene_name"])
+                Destroy_Page_by_Scene(data["scene_name"], options_from_string(data["special_options"]))
                 //FuckYourself_DestroyPage(noise_audio)
             }
         })
