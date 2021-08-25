@@ -37,9 +37,11 @@ function _Editor() {
 		// }
 
 		for (var o = 0; o < Map.floor.length; o++) {
+			if(Map.floor[o].spriteImg == undefined) Map.floor[o].spriteImg = new _sprite(Map.floor[o].sprite)
 			ctx.drawImage(Map.floor[o].spriteImg.img,(Map.floor[o].x*cellWidth/2)+Map.floor[o].sprite.offset.x,(Map.floor[o].y*cellHeight/2)+Map.floor[o].sprite.offset.y,Map.floor[o].spriteImg.img.width,Map.floor[o].spriteImg.img.height);
 		}
 		for (var o = 0; o < Map.objects.length; o++) {
+			if(Map.objects[o].spriteImg == undefined) Map.objects[o].spriteImg = new _sprite(Map.objects[o].sprite)
 			ctx.drawImage(Map.objects[o].spriteImg.img,(Map.objects[o].x*cellWidth/2)+Map.objects[o].sprite.offset.x,(Map.objects[o].y*cellHeight/2)+Map.objects[o].sprite.offset.y,Map.objects[o].spriteImg.img.width,Map.objects[o].spriteImg.img.height);
 		}
 
@@ -55,7 +57,6 @@ function _Editor() {
 		}
 
 		ctx.drawImage(this.cursorImg.img,this.cursor.x*cellWidth/2,this.cursor.y*cellHeight/2,this.cursorImg.width,this.cursorImg.height);
-
 	}
 
 	this.Keys = function() {
