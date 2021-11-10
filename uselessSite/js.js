@@ -134,11 +134,12 @@ store.initContent = function() {
 	this.container.style.opacity = 1
 	menu.setTitle(content[menu.selectedTarget]["name"])
 
-
-	if(content[menu.selectedTarget]["content"][0].type=="item"){
+	var group = content[menu.selectedTarget]
+	if(group.content.length==0) return;
+	if(group.content[0].type=="item"){
 		this.itemContainer.innerHTML = "";
 		var count = 0
-		content[menu.selectedTarget]["content"].forEach((function(item){
+		group.content.forEach((function(item){
 			this.itemContainer.innerHTML += htmlElement("list item", [count, item.name])
 			count++
 		}).bind(this));
