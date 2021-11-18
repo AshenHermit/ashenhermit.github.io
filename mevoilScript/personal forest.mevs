@@ -1,0 +1,183 @@
+# psychonaut 4 - personal forest
+
+#-- init -----------------------------------------------------------
+/bpm 120
+/npb 16
+
+/nl note
+"1:G3","2:B3","3:B3","4:C#4","5:D4","6:E4"
+/nl guitar
+"1:G1","2:G2","3:B1","4:B2","5:E1","6:E2"
+
+/nl voice
+"1:B4","2:C#5","3:D5","4:E5","5:E1","6:E2"
+
+/nl bass
+"0:D3","1:C3","2:B2","3:A#2"
+/nl drum
+"0:D1","1:D2","2:D3","3:D4"
+#-- init end -------------------------------------------------------
+
+#-- instruments --------
+/inst voice 8bit
+/eff voice osc square
+/eff voice release 20
+/eff voice volume -1
+
+/inst sawer 8bit
+/eff sawer reverb 0.5
+/eff sawer osc sawtooth
+/eff sawer release 5
+
+/inst guitar 8bit
+/eff guitar reverb 0.6
+/eff guitar osc square
+/eff guitar release 5
+
+/inst guitarPalm 8bit
+/eff guitarPalm reverb 0.1
+/eff guitarPalm osc square
+/eff guitarPalm release 1
+/eff guitarPalm lowpass 1000
+
+/inst drum drum
+/eff drum reverb 0.1
+/eff drum volume 5
+
+
+#-- instruments end ----
+
+/ptrn p1 note {
+	sawer: 1431531314314313
+}
+/ptrn p2 note {
+	sawer: 2432532326325242
+}
+
+# part 1 guitars
+/ptrn guitar1 guitar {
+	guitar: 1111111111111111
+	guitar: 2222222222222222
+}
+/ptrn guitar2 guitar {
+	guitar: 3333333333333333
+	guitar: 4444444444444444
+}
+
+# part 2 guitars
+/ptrn guitar_2 guitar {
+	guitar: 5555555555555333
+	guitar: 6666666666666444
+}
+
+# palm guitar
+/ptrn guitarPalm1 guitar {
+	guitarPalm: 2222222222222-2-
+	guitarPalm: 1111111111111-1-
+	    guitar: -------------2-2
+}
+/ptrn guitarPalm2 guitar {
+	guitarPalm: 4444444444444---
+	guitarPalm: 3333333333333---
+	    guitar: -------------444
+}
+
+#--drums
+/ptrn drum1 drum {
+	drum: 0-0-0-0-0-0-0-0-
+}
+/ptrn drum2 drum {
+	drum: 0010-010-01-0010
+	drum: 3-3-3-3-3-3-3-3-
+}
+/ptrn drum3 drum {
+	drum: 0-1--010-01-1010
+	drum: 3-3-3-3-3-3-3-3-
+}
+
+
+# voice
+/ptrn voice1 voice {
+	voice: --1111--22-2-3--
+}
+/ptrn voice2 voice {
+	voice: --1111-2-3------
+}
+/ptrn voice3 voice {
+	voice: --1111--4--4--43
+}
+
+
+# voice part 2
+/ptrn voice1_2 voice {
+	voice: --1--1--2--2--23
+}
+/ptrn voice2_2 voice {
+	voice: --1--1--3--2--23
+}
+/ptrn voice3_2 voice {
+	voice: -11111--44-44-43
+}
+
+
+/play{
+# 	[p1]
+# 	[p2]
+# 	[p1][drum1]
+# 	[p2][drum1]
+	
+# 	[p1][guitar1][drum2]
+# 	[p2][guitar2][drum2]
+# 	[p1][guitar1][drum2]
+# 	[p2][guitar2][drum2]
+	
+# 	[p1][guitar1][drum2]
+# 	[p2][guitar2][drum2]
+# 	[p1][guitar1][drum2]
+# 	[p2][guitar2][drum3]
+	
+	
+	
+	
+	[p1][guitarPalm1][drum2]
+	[p2][guitarPalm2][drum3]
+	[p1][guitarPalm1][drum2]
+	[p2][guitarPalm2][drum3]
+	
+	[p1][guitarPalm1][drum1]
+	[p2][guitarPalm2][drum1]
+	[p1][guitarPalm1][drum1]
+	[p2][guitarPalm2]
+	
+	
+	
+	
+	[p1][guitar1][drum2][voice1]
+	[p2][guitar2][drum2][voice2]
+	[p1][guitar1][drum2][voice1]
+	[p2][guitar_2][drum2][voice3]
+	
+	[p1][guitar1][drum2][voice1]
+	[p2][guitar2][drum2][voice2]
+	[p1][guitar1][drum2][voice1]
+	[p2][guitar_2][drum2][voice3]
+	
+	
+	
+	[p1][drum2]
+	[p2][drum2][voice2]
+	[p1][drum2][voice1]
+	[p2][voice3]
+	
+	
+	
+	[p1][guitar1][drum2][voice1_2]
+	[p2][guitar2][drum2][voice2_2]
+	[p1][guitar1][drum2][voice1_2]
+	[p2][guitar_2][drum2][voice3_2]
+	
+	[p1][guitar1][drum2][voice1_2]
+	[p2][guitar2][drum2][voice2_2]
+    [p1][guitar1][drum2][voice1_2]
+	[p2][guitar_2][drum2][voice3_2]
+}
