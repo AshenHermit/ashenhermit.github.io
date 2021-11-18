@@ -1,0 +1,64 @@
+
+::-webkit-scrollbar-thumb{
+    border-width:1px 1px 1px 2px;
+    border-color: #fff;
+    background-color: #fff;
+}
+::-webkit-scrollbar{
+    width:8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track{
+   border-width:4px solid #fff;
+}
+::-webkit-scrollbar-track:hover{
+     border-width:4px solid #fff;
+}
+*{
+    font-size: 13px;
+}
+#can{
+	position: absolute;
+	width: 500px;
+	background-color: #212121;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: pixelated;
+	-ms-interpolation-mode: nearest-neighbor;
+}
+
+@font-face {
+    font-family: 'comic';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Quantico'), local('Quantico-Regular'), url(https://fonts.gstatic.com/s/quantico/v7/rax-HiSdp9cPL3KIF7xrJD0.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+div{
+	
+	/*user-select: none;*/
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+	font-family: comic;
+}
+
+::selection {
+	background-color: #fff;
+	color: #000;
+
+}
+
+body{
+	cursor: url(blakes\cursor.png),url(blakes\cursor2.png), pro;
+	overflow: hidden;
+	image-rendering: pixelated;
+	color: #fff;
+	background-color: #0A0A0A;
+}
+
+
+
+
+
