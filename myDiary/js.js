@@ -57,9 +57,9 @@ if(detectMob()){
 
 var memories = [
 	{
-		"pos": 0,
+		"position": 0,
 		"title": "Waiting for data...",
-		"description": "controls: ctrl + [ or ]"
+		"description": "controls: ctrl + [ or ]",
 	}
 
 ]
@@ -80,11 +80,19 @@ var controls = {}
 var lastSelected = -1;
 var selected = 0;
 
+// some fixes
+function postPositionToAngle(position){
+	var angleOffset = 360 / 12 * 2.5
+	var angle = position / 12 * 360
+	angle += angleOffset + 72 // 72, its just 72, let it be here
+	return angle
+}
+
 function setLastAsTarget(){
-	var lastAng = memories[0].pos
+	var lastAng = memories[0].position
 	for (var i = 1; i < memories.length; i++) {
-		if(memories[i].pos > lastAng){
-			lastAng = memories[i].pos
+		if(memories[i].position > lastAng){
+			lastAng = memories[i].position
 		}else{
 			
 		}
@@ -115,7 +123,12 @@ function updateMemoryBlock(){
 	description.innerHTML = applyMarkdown(memories[selected].description)
 	.replace(new RegExp("\n", "g"), "<br>")
 
-	try{trackList.innerHTML = decodeURIComponent(escape(window.atob(memories[selected].tracks)))}catch(err){}
+	var selectedMemory = memories[selected]
+	if(selectedMemory.tracks){
+		var tracks_html = selectedMemory.tracks.map(x=>window.atob(x.embedding_code)).join("</b>")
+		console.log(tracks_html)
+		try{trackList.innerHTML = tracks_html}catch(err){console.error(err)}
+	}
 
 	var rect = memoryEl.getClientRects()[0]
 	memoryEl.style.marginLeft = -rect.width/2+"px"
@@ -155,16 +168,17 @@ function draw(){
 	var ang = angle 
 
 	for (var i = 0; i < memories.length; i++) {
-		ctx.globalAlpha = (1-Math.abs(ang-memories[i].pos)/16).clamp(0, 1)
+		var post_ang = postPositionToAngle(memories[i].position)
+		ctx.globalAlpha = (1-Math.abs(ang-post_ang)/16).clamp(0, 1)
 
-		if (Math.abs(ang-memories[i].pos)<dist) {
-			dist = Math.abs(ang-memories[i].pos);
+		if (Math.abs(ang-post_ang)<dist) {
+			dist = Math.abs(ang-post_ang);
 			selected = i
 		}
 
 		var dir = {
-			x: Math.cos((Math.PI/180)*memories[i].pos+(Math.PI*2/12/2)+(Math.PI*2/12)*2),
-			y: Math.sin((Math.PI/180)*memories[i].pos+(Math.PI*2/12/2)+(Math.PI*2/12)*2)
+			x: Math.cos((Math.PI/180)*post_ang+(Math.PI*2/12/2)+(Math.PI*2/12)*2),
+			y: Math.sin((Math.PI/180)*post_ang+(Math.PI*2/12/2)+(Math.PI*2/12)*2)
 		}
 
 		ctx.beginPath();
@@ -196,8 +210,10 @@ function draw(){
 
 	year.innerHTML = ""
 	var m = months[mod(Math.floor(ang/360*12), 12)]
-	for(var i=0; i<(8-m.length); i++) year.innerHTML += "&nbsp;"
-	year.innerHTML +=  m + " " + (2020+Math.floor(ang/360))
+	if(m){
+		for(var i=0; i<(8-m.length); i++) year.innerHTML += "&nbsp;"
+		year.innerHTML +=  m + " " + (2020+Math.floor(ang/360))
+	}
 
 }
 
@@ -215,6 +231,7 @@ function update(){
 		else		angleTarget-=1
 	}
 
+	if(isNaN(angle)) angle = 0
 	angle += (angleTarget-angle)/5
 
 	circle.style.transform = "rotate("+(angle+((Math.PI*2/12)*4+(Math.PI*2/12*1.5))*(180/Math.PI))+"deg)"
@@ -354,7 +371,7 @@ function addMemory(){
 			pos: new Number(angle),
 			title: tmp_title,
 			description: tmp_description,
-			tracks: window.btoa(unescape(encodeURIComponent(tmp_tracks_embed)))
+			tracks: window.btoa(encodeURIComponent(tmp_tracks_embed))
 		})
 
 		saveMemories()
@@ -364,7 +381,7 @@ function copyMemoryData(){
 	document.getElementById("edit-title").value = memories[selected].title
 	document.getElementById("edit-description").value = memories[selected].description
 	document.getElementById("edit-tracks-embed").value = trackList.innerHTML
-	angleTarget = memories[selected].pos
+	angleTarget = memories[selected].position
 }
 function clearFields(){
 	document.getElementById("edit-title").value = ""

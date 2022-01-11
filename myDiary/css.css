@@ -1,7 +1,7 @@
 ::-webkit-scrollbar-thumb{
     border-width:1px 1px 1px 2px;
-    border-color: #fff;
-    background-color: #fff;
+    border-color: rgb(255 255 255 / 28%);
+    background-color: rgb(255 255 255 / 9%);
 }
 ::-webkit-scrollbar{
     width: 6px;
@@ -57,6 +57,7 @@ canvas{
     color: #fff;
     font-family: monospace;
     text-align: center;
+    max-width: 400px;
 }
 
 .title {
@@ -135,7 +136,7 @@ textarea {
 }
 
 .save-error{
-
+    
 }
 
 iframe{
