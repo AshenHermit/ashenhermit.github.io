@@ -16,6 +16,7 @@ var depthMap;
 function onFileSelected(el){
 	var files = el.files; // FileList object
 	var file = files[0];
+	console.log(file)
 
 	if(file.type.match('image.*')) {
 		var reader = new FileReader();
@@ -106,9 +107,10 @@ function getNeighbourCount(px,py,size){
 }
 
 function updateMousePos(e){
+	console.log(e)
 	let rect = can.getBoundingClientRect();
-	let x = e.layerX-((navigator.userAgent.indexOf("Firefox") != -1)?rect.x:0);
-	let y = e.layerY-((navigator.userAgent.indexOf("Firefox") != -1)?rect.y:0);
+	let x = e.offsetX-((navigator.userAgent.indexOf("Firefox") != -1)?rect.x:0);
+	let y = e.offsetY-((navigator.userAgent.indexOf("Firefox") != -1)?rect.y:0);
 
 	mousePos.x = Math.round((can.width/can.clientWidth)*(x-(can.clientWidth/can.width)/2));
 	mousePos.y = Math.round((can.height/can.clientHeight)*(y-(can.clientHeight/can.height)/2));
