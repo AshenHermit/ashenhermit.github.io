@@ -43,11 +43,11 @@ function updateMousePos(x,y){
 	mousePos.y = Math.round((can.height/can.clientHeight)*(y-(can.clientHeight/can.height)/2));
 }
 can.addEventListener('mousemove',function(e){
-	updateMousePos(e.layerX,e.layerY)
+	updateMousePos(e.offsetX,e.offsetY)
 	updateMap();
 });
 can.addEventListener('mousedown',function(e){
-	updateMousePos(e.layerX,e.layerY)
+	updateMousePos(e.offsetX,e.offsetY)
 	if(e.button==0) {
 		if(map[mousePos.x][mousePos.y]=="rgba(0,0,0,0)") isPainting = true;
 		else isErasing = true;
