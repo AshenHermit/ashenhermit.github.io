@@ -1,8 +1,6 @@
 # ashenhermit.github.io
 static pages
 
-![Alt text](https://raw.githubusercontent.com/AshenHermit/ashenhermit.github.io/refs/heads/master/Bird%20pair%20love%20and%20flying%20sky.svg)
-
 ## Good Stuff
 + [Coffee MeloNode](https://ashenhermit.github.io/CoffeeMeloNode/)
 + [My Diary](https://ashenhermit.github.io/myDiary/) old, here is the second version: [my_diary_v2](http://ashen-hermit.42web.io/my_diary/)
